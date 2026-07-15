@@ -1,0 +1,25 @@
+[
+  {
+    "label": "Dev",
+    "command": "bun run dev",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": "system",
+    "show_summary": true,
+    "show_command": true,
+    "save": "current"
+  },
+  {
+    "label": "Format",
+    "command": "bun run format",
+    "use_new_terminal": false,
+    "reveal": "no_focus",
+    "reveal_target": "dock",
+    "hide": "on_success",
+    "shell": "system",
+    "save": "current"
+  }
+]

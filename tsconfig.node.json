@@ -1,0 +1,12 @@
+{
+  "$schema": "https://www.schemastore.org/tsconfig.json",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "rootDir": ".github",
+    "types": ["bun"],
+    "outDir": "dist/node"
+  },
+  "include": [".github/**/*"]
+}

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+  "name": "DATA SCS PDN",
+  "image": "oven/bun:1",
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "forwardPorts": [3000],
+  "postCreateCommand": "bun install",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        /* Files and Explorer */
+        "files.autoSave": "afterDelay",
+        "files.associations": {
+          "*.json": "json"
+        },
+        "files.watcherExclude": {
+          "**/node_modules/*": true,
+          "**/.git/objects/**": true,
+          "**/.git/subtree-cache/**": true,
+          "**/dist/**": true,
+          "**/.wrangler/**": true
+        },
+        "explorer.confirmDragAndDrop": false,
+        "explorer.confirmDelete": false,
+        "explorer.confirmPasteNative": false,
+        "explorer.compactFolders": false,
+
+        /* Editor */
+        "editor.minimap.enabled": false,
+        "editor.smoothScrolling": false,
+        "editor.renderWhitespace": "none",
+        "editor.renderControlCharacters": false,
+        "editor.cursorBlinking": "solid",
+        "editor.semanticHighlighting.enabled": true,
+        "editor.unicodeHighlight.ambiguousCharacters": false,
+        "editor.showUnused": true,
+        "editor.hover.showLongLineWarning": false,
+        "editor.find.history": "never",
+        "breadcrumbs.enabled": false,
+
+        /* Formatter */
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "prettier.jsxSingleQuote": true,
+
+        /* JavaScript and TypeScript */
+        "js/ts.updateImportsOnFileMove.enabled": "always",
+        "npm.packageManager": "bun",
+
+        /* Terminal */
+        "terminal.integrated.enableMultiLinePasteWarning": "never",
+        "terminal.integrated.defaultProfile.windows": "PowerShell",
+        "terminal.integrated.initialHint": false,
+
+        /* Git */
+        "git.suggestSmartCommit": false,
+        "git.replaceTagsWhenPull": true,
+        "git.confirmSync": false,
+        "scm.repositories.selectionMode": "multiple",
+
+        /* UI and Workbench */
+        "workbench.startupEditor": "none",
+        "workbench.iconTheme": "material-icon-theme",
+        "material-icon-theme.folders.theme": "specific",
+        "workbench.colorTheme": "Dark Modern",
+        "workbench.preferredDarkColorTheme": "Dark Modern",
+        "workbench.preferredLightColorTheme": "Dark Modern",
+        "workbench.preferredHighContrastColorTheme": "Dark Modern",
+        "workbench.preferredHighContrastLightColorTheme": "Dark Modern",
+
+        /* Extensions */
+        "extensions.ignoreRecommendations": true,
+
+        /* Copilot */
+        "github.copilot.enable": {
+          "markdown": true,
+          "plaintext": true
+        },
+        "chat.agentSkillsLocations": {
+          ".agents/skills": true,
+          ".github/skills": true,
+          ".claude/skills": true,
+          "~/.agents/skills": true,
+          "~/.copilot/skills": true,
+          "~/.claude/skills": true
+        },
+        "chat.useCustomizationsInParentRepositories": true,
+        "github.copilot.chat.codesearch.enabled": true,
+        "github.copilot.nextEditSuggestions.enabled": false,
+
+        /* Chat */
+        "chat.instructionsFilesLocations": {
+          ".github/instructions": true
+        },
+        "chat.agent.maxRequests": 2500,
+        "chat.tools.terminal.autoApprove": {
+          "bun": true,
+          "bun run dev": true,
+          "bun run format": true
+        },
+        "chat.tools.urls.autoApprove": {},
+        "chat.viewSessions.enabled": false,
+
+        /* Telemetry */
+        "telemetry.feedback.enabled": false,
+        "telemetry.editStats.enabled": false,
+        "code-runner.enableAppInsights": false,
+
+        /* JSON Schema */
+        "json.schemaDownload.trustedDomains": {
+          "https://raw.githubusercontent.com": true,
+          "https://www.unpkg.com": true,
+          "https://www.schemastore.org": true
+        },
+
+        /* Misc */
+        "window.confirmSaveUntitledWorkspace": false,
+        "diffEditor.ignoreTrimWhitespace": false,
+        "git.addAICoAuthor": "off"
+      },
+      "extensions": [
+        /* Core formatting and linting */
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+
+        /* JavaScript and React productivity */
+        "christian-kohler.path-intellisense",
+        "christian-kohler.npm-intellisense",
+        "burkeholland.simple-react-snippets",
+
+        /* Markdown and MDX */
+        "davidanson.vscode-markdownlint",
+        "bierner.markdown-mermaid",
+
+        /* Git and GitHub */
+        "donjayamanne.githistory",
+        "github.vscode-pull-request-github",
+        "github.vscode-github-actions",
+        "github.codespaces",
+
+        /* UI and icons */
+        "pkief.material-icon-theme",
+
+        /* Data and config formats */
+        "redhat.vscode-yaml",
+        "redhat.vscode-xml",
+        "tamasfe.even-better-toml",
+
+        /* Shell and misc tools */
+        "foxundermoon.shell-format",
+
+        /* AI tools */
+        "openai.chatgpt"
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+if [ -f pnpm-lock.yaml ]; then
+    command -v pnpm >/dev/null 2>&1 || {
+        echo "pnpm-lock.yaml found, but pnpm is not installed."
+        exit 1
+    }
+    pnpm run lint-staged
+
+elif [ -f yarn.lock ]; then
+    command -v yarn >/dev/null 2>&1 || {
+        echo "yarn.lock found, but Yarn is not installed."
+        exit 1
+    }
+    yarn run lint-staged
+
+elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+    command -v npm >/dev/null 2>&1 || {
+        echo "npm lockfile found, but npm is not installed."
+        exit 1
+    }
+    npm run lint-staged
+
+elif [ -f bun.lockb ] || [ -f bun.lock ]; then
+    command -v bun >/dev/null 2>&1 || {
+        echo "Bun lockfile found, but Bun is not installed."
+        exit 1
+    }
+    bun run lint-staged
+
+else
+    echo "No supported package-manager lockfile found."
+    exit 1
+fi
