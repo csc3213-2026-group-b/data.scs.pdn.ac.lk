@@ -4,9 +4,9 @@
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "rootDir": ".github",
+    "rootDir": ".",
     "types": ["bun"],
     "outDir": "dist/node"
   },
-  "include": [".github/**/*"]
+  "include": [".github/**/*", "tests/**/*"]
 }
