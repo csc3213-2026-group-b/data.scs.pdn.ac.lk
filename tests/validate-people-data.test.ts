@@ -1,0 +1,94 @@
+import { afterEach, describe, expect, test } from 'bun:test';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { validatePeopleData } from '../.github/scripts/validate-people-data.js';
+
+const student = {
+  title: 'Mr',
+  fullName: 'Jane Student',
+  registrationNo: 'S21513',
+  level: 'UNDERGRADUATE'
+};
+
+let tempRoots: string[] = [];
+
+async function makeRoot() {
+  const root = path.join(
+    os.tmpdir(),
+    `data-scs-validation-${crypto.randomUUID()}`
+  );
+  tempRoots.push(root);
+
+  for (const dir of [
+    'public/people/users',
+    'public/people/staff',
+    'public/people/students',
+    'public/people/special/cs',
+    'public/people/special/ds',
+    'public/people/special/stat',
+    'public/people/special/sor'
+  ]) {
+    await mkdir(path.join(root, dir), { recursive: true });
+  }
+
+  for (const file of [
+    'public/people/staff/academic.json',
+    'public/people/staff/academic-support.json',
+    'public/people/staff/non-academic.json'
+  ]) {
+    await writeJson(root, file, []);
+  }
+
+  return root;
+}
+
+async function writeJson(root: string, relativePath: string, value: unknown) {
+  const absolutePath = path.join(root, relativePath);
+  await mkdir(path.dirname(absolutePath), { recursive: true });
+  await writeFile(absolutePath, `${JSON.stringify(value, null, 2)}\n`);
+}
+
+afterEach(async () => {
+  await Promise.all(
+    tempRoots.map((root) => rm(root, { recursive: true, force: true }))
+  );
+  tempRoots = [];
+});
+
+describe('validatePeopleData', () => {
+  test('accepts an empty initialized data tree', async () => {
+    const root = await makeRoot();
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toEqual([]);
+    expect(result.counts.users).toBe(0);
+  });
+
+  test('accepts a consistent student user and aggregate record', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/users/s21513.json', student);
+    await writeJson(root, 'public/people/students/s21.json', [student]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toEqual([]);
+    expect(result.counts.users).toBe(1);
+    expect(result.counts.students).toBe(1);
+  });
+
+  test('rejects aggregate records that do not match their user file', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/users/s21513.json', student);
+    await writeJson(root, 'public/people/students/s21.json', [
+      { ...student, fullName: 'Different Name' }
+    ]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/students/s21.json[0]: aggregate record differs from public/people/users/s21513.json'
+    );
+  });
+});
