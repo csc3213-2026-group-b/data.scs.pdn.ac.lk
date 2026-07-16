@@ -6,6 +6,7 @@ on:
     paths:
       - 'public/**'
       - '.github/scripts/**'
+      - '.github/workflows/auto-merge-profile-pr.yml'
       - '.github/workflows/validate-public-data.yml'
       - 'package.json'
       - 'bun.lock'
@@ -17,6 +18,7 @@ on:
     paths:
       - 'public/**'
       - '.github/scripts/**'
+      - '.github/workflows/auto-merge-profile-pr.yml'
       - '.github/workflows/validate-public-data.yml'
       - 'package.json'
       - 'bun.lock'
