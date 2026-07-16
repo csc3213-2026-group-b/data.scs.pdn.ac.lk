@@ -72,5 +72,32 @@ Users edit their public profile from the SCS Portal. The API validates submitted
 JSON with `@csc3213-2026-group-b/academic-domain-schemas`, then the SCS Portal
 GitHub App creates or updates a pull request in this repository.
 
-GitHub Actions should validate the changed JSON, auto-merge approved automation
-PRs, and publish `public/` to the configured CDN.
+## Validation
+
+Run the same checks locally with:
+
+```bash
+bun run check
+```
+
+The people-data validator uses
+`@csc3213-2026-group-b/academic-domain-schemas` and accepts an empty initialized
+data tree. Once profiles exist, it checks:
+
+- every JSON file under `public/people/` parses correctly
+- staff and student profiles satisfy the domain schemas
+- `public/people/users/<username>.json` matches the profile identity
+- staff, student, and special aggregate records match the corresponding user
+  file exactly
+- aggregate files do not contain duplicate profile identities
+- required aggregate files exist when a user profile needs them
+
+## GitHub Actions
+
+`Validate Public Data` runs type checks, Bun tests, people-data validation,
+format checks, and the Worker build for pull requests and `main` pushes that
+touch public data or validation code.
+
+`Auto Merge Profile PR` is restricted to same-repository `profile/*` branches
+with both `profile-update` and `auto-merge-profile` labels. It runs the full
+check suite and merges the PR only after the checks pass.
