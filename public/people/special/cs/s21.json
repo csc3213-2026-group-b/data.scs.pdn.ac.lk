@@ -6,11 +6,13 @@
     "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
     "registrationNo": "S21513",
     "level": "UNDERGRADUATE",
+    "personalEmail": "s21513@sci.pdn.ac.lk",
     "socialLinks": {
       "usernames": [
         {
           "linkedin": "sivothajan",
-          "github": "sivothajan"
+          "github": "sivothajan",
+          "x": "sivothajan"
         }
       ]
     }
