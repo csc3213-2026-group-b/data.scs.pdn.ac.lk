@@ -1,0 +1,16 @@
+{
+  "title": "Mr",
+  "fullName": "Sivothayan Sivasiva",
+  "email": "s21513@sci.pdn.ac.lk",
+  "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
+  "registrationNo": "S21513",
+  "level": "UNDERGRADUATE",
+  "socialLinks": {
+    "usernames": [
+      {
+        "linkedin": "sivothajan",
+        "github": "sivothajan"
+      }
+    ]
+  }
+}
