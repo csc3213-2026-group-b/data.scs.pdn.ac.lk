@@ -5,8 +5,7 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "rootDir": ".",
-    "types": ["bun"],
-    "outDir": "dist/node"
+    "types": ["bun"]
   },
   "include": [".github/**/*", "tests/**/*"]
 }

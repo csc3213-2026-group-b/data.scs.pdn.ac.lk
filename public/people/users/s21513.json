@@ -6,12 +6,10 @@
   "registrationNo": "S21513",
   "level": "UNDERGRADUATE",
   "socialLinks": {
-    "usernames": [
-      {
-        "linkedin": "sivothajan",
-        "github": "sivothajan",
-        "x": "sivothajan"
-      }
-    ]
+    "usernames": {
+      "linkedin": "sivothajan",
+      "github": "sivothajan",
+      "x": "sivothajan"
+    }
   }
 }
