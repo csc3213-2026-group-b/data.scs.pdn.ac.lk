@@ -11,6 +11,22 @@ const student = {
   level: 'UNDERGRADUATE'
 };
 
+const academic = {
+  title: 'Dr',
+  fullName: 'Jane Academic',
+  email: 'jane@pdn.ac.lk',
+  staffType: 'ACADEMIC_TEACHING',
+  academicRank: 'LECTURER'
+};
+
+const academicSupport = {
+  title: 'Mr',
+  fullName: 'Jane Academic',
+  email: 'jane@pdn.ac.lk',
+  staffType: 'ACADEMIC_SUPPORT',
+  designation: 'PROGRAMMER'
+};
+
 let tempRoots: string[] = [];
 
 async function makeRoot() {
@@ -90,5 +106,59 @@ describe('validatePeopleData', () => {
     expect(result.errors).toContain(
       'public/people/students/s21.json[0]: aggregate record differs from public/people/users/s21513.json'
     );
+  });
+
+  test('rejects stale special aggregate records after a student becomes normal', async () => {
+    const root = await makeRoot();
+    const updatedStudent = { ...student, fullName: 'Jane Normal Student' };
+    await writeJson(root, 'public/people/users/s21513.json', updatedStudent);
+    await writeJson(root, 'public/people/students/s21.json', [updatedStudent]);
+    await writeJson(root, 'public/people/special/cs/s21.json', [student]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/special/cs/s21.json[0]: special record differs from public/people/users/s21513.json'
+    );
+  });
+
+  test('accepts cleaned special aggregate files after a student becomes normal', async () => {
+    const root = await makeRoot();
+    const updatedStudent = { ...student, fullName: 'Jane Normal Student' };
+    await writeJson(root, 'public/people/users/s21513.json', updatedStudent);
+    await writeJson(root, 'public/people/students/s21.json', [updatedStudent]);
+    await writeJson(root, 'public/people/special/cs/s21.json', []);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toEqual([]);
+  });
+
+  test('rejects stale staff aggregate records after a staff kind changes', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/users/jane.json', academicSupport);
+    await writeJson(root, 'public/people/staff/academic-support.json', [
+      academicSupport
+    ]);
+    await writeJson(root, 'public/people/staff/academic.json', [academic]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/staff/academic.json[0]: aggregate record differs from public/people/users/jane.json'
+    );
+  });
+
+  test('accepts cleaned staff aggregate files after a staff kind changes', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/users/jane.json', academicSupport);
+    await writeJson(root, 'public/people/staff/academic-support.json', [
+      academicSupport
+    ]);
+    await writeJson(root, 'public/people/staff/academic.json', []);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toEqual([]);
   });
 });
