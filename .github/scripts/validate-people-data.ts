@@ -26,9 +26,9 @@ interface ValidationResult {
 }
 
 const staffFiles = {
-  academic: 'public/people/staff/academic.json',
-  'academic-support': 'public/people/staff/academic-support.json',
-  'non-academic': 'public/people/staff/non-academic.json'
+  academic: 'public/people/v1/staff/academic.json',
+  'academic-support': 'public/people/v1/staff/academic-support.json',
+  'non-academic': 'public/people/v1/staff/non-academic.json'
 } as const satisfies Record<Exclude<ProfileKind, 'student'>, string>;
 
 const specialStreams = ['cs', 'ds', 'stat', 'sor'] as const;
@@ -141,7 +141,7 @@ async function validateUserFiles(
   users: Map<string, JsonRecord>,
   expected: Map<string, Map<string, JsonRecord>>
 ) {
-  const userFiles = await listJsonFiles(root, 'public/people/users');
+  const userFiles = await listJsonFiles(root, 'public/people/v1/users');
 
   for (const userPath of userFiles) {
     const value = await readJson(root, userPath);
@@ -198,7 +198,7 @@ async function validateUserFiles(
       } else {
         addExpectedAggregate(
           expected,
-          `public/people/students/${batch}.json`,
+          `public/people/v1/students/${batch}.json`,
           key,
           parsed
         );
@@ -247,11 +247,11 @@ async function validateAggregateFile(
     const userRecord = users.get(key);
     if (!userRecord) {
       result.errors.push(
-        `${itemPath}: missing public/people/users/${key}.json`
+        `${itemPath}: missing public/people/v1/users/${key}.json`
       );
     } else if (!sameRecord(parsed, userRecord)) {
       result.errors.push(
-        `${itemPath}: aggregate record differs from public/people/users/${key}.json`
+        `${itemPath}: aggregate record differs from public/people/v1/users/${key}.json`
       );
     }
   }
@@ -276,7 +276,7 @@ async function validateStudentAggregates(
   users: Map<string, JsonRecord>,
   expected: Map<string, Map<string, JsonRecord>>
 ) {
-  const studentFiles = await listJsonFiles(root, 'public/people/students');
+  const studentFiles = await listJsonFiles(root, 'public/people/v1/students');
   for (const file of studentFiles) {
     const batch = path.basename(file, '.json');
     if (!/^s\d{2}$/.test(batch)) {
@@ -287,7 +287,7 @@ async function validateStudentAggregates(
 
   for (const aggregatePath of expected.keys()) {
     if (
-      aggregatePath.startsWith('public/people/students/') &&
+      aggregatePath.startsWith('public/people/v1/students/') &&
       !studentFiles.includes(aggregatePath)
     ) {
       result.errors.push(`${aggregatePath}: missing aggregate file`);
@@ -301,7 +301,7 @@ async function validateSpecialAggregates(
   users: Map<string, JsonRecord>
 ) {
   for (const stream of specialStreams) {
-    const dir = `public/people/special/${stream}`;
+    const dir = `public/people/v1/special/${stream}`;
     const files = await listJsonFiles(root, dir);
 
     for (const file of files) {
@@ -335,11 +335,11 @@ async function validateSpecialAggregates(
         const userRecord = users.get(key);
         if (!userRecord) {
           result.errors.push(
-            `${itemPath}: missing public/people/users/${key}.json`
+            `${itemPath}: missing public/people/v1/users/${key}.json`
           );
         } else if (!sameRecord(parsed, userRecord)) {
           result.errors.push(
-            `${itemPath}: special record differs from public/people/users/${key}.json`
+            `${itemPath}: special record differs from public/people/v1/users/${key}.json`
           );
         }
       }
@@ -366,10 +366,10 @@ export async function validatePeopleData(
   const expected = new Map<string, Map<string, JsonRecord>>();
 
   for (const requiredPath of [
-    'public/people/users',
-    'public/people/staff',
-    'public/people/students',
-    ...specialStreams.map((stream) => `public/people/special/${stream}`)
+    'public/people/v1/users',
+    'public/people/v1/staff',
+    'public/people/v1/students',
+    ...specialStreams.map((stream) => `public/people/v1/special/${stream}`)
   ]) {
     if (!existsSync(path.join(root, requiredPath))) {
       result.errors.push(`${requiredPath}: missing required directory`);

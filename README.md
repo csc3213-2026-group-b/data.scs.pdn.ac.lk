@@ -11,50 +11,51 @@ Public people-directory data lives under:
 ```text
 public/
   people/
-    users/
-      <username>.json
-    staff/
-      academic.json
-      academic-support.json
-      non-academic.json
-    students/
-      <batch>.json
-    special/
-      cs/
+    v1/
+      users/
+        <username>.json
+      staff/
+        academic.json
+        academic-support.json
+        non-academic.json
+      students/
         <batch>.json
-      ds/
-        <batch>.json
-      stat/
-        <batch>.json
-      sor/
-        <batch>.json
+      special/
+        cs/
+          <batch>.json
+        ds/
+          <batch>.json
+        stat/
+          <batch>.json
+        sor/
+          <batch>.json
 ```
 
 Examples:
 
 ```text
-public/people/users/s21513.json
-public/people/users/ragel.json
-public/people/students/s21.json
-public/people/special/cs/s21.json
+public/people/v1/users/s21513.json
+public/people/v1/users/ragel.json
+public/people/v1/students/s21.json
+public/people/v1/special/cs/s21.json
 ```
 
 Staff profiles are stored in two places:
 
-- `public/people/users/<username>.json`
-- one staff aggregate file under `public/people/staff/`
+- `public/people/v1/users/<username>.json`
+- one staff aggregate file under `public/people/v1/staff/`
 
 Normal student profiles are stored in two places:
 
-- `public/people/users/<snumber>.json`
-- `public/people/students/<batch>.json`
+- `public/people/v1/users/<snumber>.json`
+- `public/people/v1/students/<batch>.json`
 
 Special student profiles are stored in three places because they are also normal
 students:
 
-- `public/people/users/<snumber>.json`
-- `public/people/students/<batch>.json`
-- `public/people/special/<cs|ds|stat|sor>/<batch>.json`
+- `public/people/v1/users/<snumber>.json`
+- `public/people/v1/students/<batch>.json`
+- `public/people/v1/special/<cs|ds|stat|sor>/<batch>.json`
 
 The aggregate JSON files contain arrays. Empty aggregate files should contain:
 
@@ -84,9 +85,9 @@ The people-data validator uses
 `@csc3213-2026-group-b/academic-domain-schemas` and accepts an empty initialized
 data tree. Once profiles exist, it checks:
 
-- every JSON file under `public/people/` parses correctly
+- every JSON file under `public/people/v1/` parses correctly
 - staff and student profiles satisfy the domain schemas
-- `public/people/users/<username>.json` matches the profile identity
+- `public/people/v1/users/<username>.json` matches the profile identity
 - staff, student, and special aggregate records match the corresponding user
   file exactly
 - aggregate files do not contain duplicate profile identities
