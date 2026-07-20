@@ -27,7 +27,7 @@
     "endOfLine": "auto"
   },
   "lint-staged": {
-    "*.{js,ts,json,md}": "bunx prettier --write"
+    "*.{js,ts,json,md}": "prettier --write"
   },
   "devDependencies": {
     "@csc3213-2026-group-b/academic-domain-schemas": "^1.0.0",
