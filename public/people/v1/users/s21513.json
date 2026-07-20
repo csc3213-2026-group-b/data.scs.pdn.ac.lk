@@ -4,5 +4,14 @@
   "email": "s21513@sci.pdn.ac.lk",
   "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
   "registrationNo": "S21513",
-  "level": "UNDERGRADUATE"
+  "level": "UNDERGRADUATE",
+  "socialLinks": {
+    "urls": {
+      "linkedin": "https://www.linkedin.com/in/sivothajan",
+      "github": "https://github.com/sivothajan",
+      "x": "https://x.com/sivothajan",
+      "facebook": "https://www.facebook.com/sivothajan",
+      "instagram": "https://www.instagram.com/sivothajan"
+    }
+  }
 }
