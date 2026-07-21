@@ -1,0 +1,41 @@
+{
+  "version": "v1",
+  "batches": [
+    {
+      "id": "s21",
+      "displayName": "S21",
+      "defaultCategory": "CURRENT",
+      "intakeYear": 2021
+    }
+  ],
+  "programmes": [
+    {
+      "slug": "computer-science",
+      "directory": "cs",
+      "name": "Computer Science",
+      "icon": "computer",
+      "batches": ["s21"]
+    },
+    {
+      "slug": "data-science",
+      "directory": "ds",
+      "name": "Data Science",
+      "icon": "data",
+      "batches": ["s21"]
+    },
+    {
+      "slug": "statistics",
+      "directory": "stat",
+      "name": "Statistics",
+      "icon": "statistics",
+      "batches": ["s21"]
+    },
+    {
+      "slug": "operations-research",
+      "directory": "sor",
+      "name": "Statistics and Operations Research",
+      "icon": "operations-research",
+      "batches": []
+    }
+  ]
+}
