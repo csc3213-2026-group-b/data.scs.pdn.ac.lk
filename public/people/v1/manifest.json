@@ -29,13 +29,6 @@
       "name": "Statistics",
       "icon": "statistics",
       "batches": ["s21"]
-    },
-    {
-      "slug": "operations-research",
-      "directory": "sor",
-      "name": "Statistics and Operations Research",
-      "icon": "operations-research",
-      "batches": []
     }
   ]
 }
