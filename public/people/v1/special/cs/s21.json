@@ -6,6 +6,11 @@
     "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
     "registrationNo": "S21513",
     "level": "UNDERGRADUATE",
+    "researchInterests": [
+      "AI/ ML",
+      "Quantum Computing",
+      "Computer Networks"
+    ],
     "socialLinks": {
       "urls": {
         "linkedin": "https://www.linkedin.com/in/sivothajan",
