@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
@@ -54,6 +54,9 @@ jobs:
 
       - name: Validate people data
         run: bun run validate:people
+
+      - name: Format files
+        run: bun run format
 
       - name: Check formatting
         run: bun run format:check
