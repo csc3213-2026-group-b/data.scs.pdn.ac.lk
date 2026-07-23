@@ -97,9 +97,10 @@ record.
 
 ## Edit Flow
 
-Users edit their public profile from the SCS Portal. The API validates submitted
-JSON with `@csc3213-2026-group-b/academic-domain-schemas`, then the SCS Portal
-GitHub App creates or updates a pull request in this repository.
+Users edit their public profile and project metadata from SCS public sites. The
+API validates submitted JSON with
+`@csc3213-2026-group-b/academic-domain-schemas`, then the SCS Portal GitHub App
+creates or updates a pull request in this repository.
 
 ## Validation
 
@@ -132,9 +133,10 @@ The projects-data validator checks:
 ## GitHub Actions
 
 `Validate Public Data` runs type checks, Bun tests, people-data validation,
-format checks, and the Worker build for pull requests and `main` pushes that
-touch public data or validation code.
+projects-data validation, format checks, and the Worker build for pull requests
+and `main` pushes that touch public data or validation code.
 
-`Auto Merge Profile PR` is restricted to same-repository `profile/*` branches
-with both `profile-update` and `auto-merge-profile` labels. It runs the full
-check suite and merges the PR only after the checks pass.
+`Auto Merge Public Data PR` is restricted to same-repository `profile/*`
+branches with both `profile-update` and `auto-merge-profile` labels, or
+`project/*` branches with both `project-update` and `auto-merge-project` labels.
+It runs the full check suite and merges the PR only after the checks pass.
