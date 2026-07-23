@@ -1,4 +1,4 @@
-name: Auto Merge Profile PR
+name: Auto Merge Public Data PR
 
 on:
   workflow_run:
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Merge eligible profile PR
+      - name: Merge eligible public data PR
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
         run: |
@@ -50,6 +50,8 @@ jobs:
           head_repo="$(echo "$pr_json" | jq -r '.headRepository.nameWithOwner')"
           has_profile_update_label="$(echo "$pr_json" | jq -r 'any(.labels[].name; . == "profile-update")')"
           has_auto_merge_label="$(echo "$pr_json" | jq -r 'any(.labels[].name; . == "auto-merge-profile")')"
+          has_project_update_label="$(echo "$pr_json" | jq -r 'any(.labels[].name; . == "project-update")')"
+          has_auto_merge_project_label="$(echo "$pr_json" | jq -r 'any(.labels[].name; . == "auto-merge-project")')"
 
           if [[ "$state" != "OPEN" ]]; then
             echo "PR #$pr_number is not open; skipping."
@@ -61,13 +63,19 @@ jobs:
             exit 0
           fi
 
-          if [[ "$head_ref" != profile/* ]]; then
-            echo "PR #$pr_number branch is not profile/*; skipping."
-            exit 0
+          is_profile_pr=false
+          is_project_pr=false
+
+          if [[ "$head_ref" == profile/* && "$has_profile_update_label" == "true" && "$has_auto_merge_label" == "true" ]]; then
+            is_profile_pr=true
           fi
 
-          if [[ "$has_profile_update_label" != "true" || "$has_auto_merge_label" != "true" ]]; then
-            echo "PR #$pr_number does not have the required labels; skipping."
+          if [[ "$head_ref" == project/* && "$has_project_update_label" == "true" && "$has_auto_merge_project_label" == "true" ]]; then
+            is_project_pr=true
+          fi
+
+          if [[ "$is_profile_pr" != "true" && "$is_project_pr" != "true" ]]; then
+            echo "PR #$pr_number is not an eligible profile/* or project/* public data PR; skipping."
             exit 0
           fi
 

@@ -55,6 +55,9 @@ jobs:
       - name: Validate people data
         run: bun run validate:people
 
+      - name: Validate projects data
+        run: bun run validate:projects
+
       - name: Format files
         run: bun run format
 
