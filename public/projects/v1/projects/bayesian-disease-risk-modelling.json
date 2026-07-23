@@ -1,0 +1,37 @@
+{
+  "id": "prj-health-risk-bayes",
+  "slug": "bayesian-disease-risk-modelling",
+  "title": "Bayesian Disease Risk Modelling",
+  "shortDescription": "A public-health statistics project for communicating uncertainty in disease risk models.",
+  "description": "This project applies Bayesian modelling to public-health risk analysis. It emphasizes uncertainty, interpretable outputs, and reproducible statistical workflows for collaborative research.",
+  "projectType": "FACULTY_COLLABORATION",
+  "status": "ACTIVE",
+  "categories": ["research", "health", "statistics"],
+  "tags": ["Bayesian", "Public Health", "Statistics", "Risk Modelling"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "Faculty of Science Collaborators",
+      "role": "collaborator"
+    },
+    {
+      "name": "SCS Statistics Staff",
+      "role": "supervisor"
+    }
+  ],
+  "links": {
+    "documentation": "https://sci.pdn.ac.lk"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "SCS Project Registry"
+  },
+  "media": {
+    "icon": "HeartPulse",
+    "coverImage": "/images/science-projects-hero.png"
+  },
+  "dates": {
+    "startedAt": "2026-02-12",
+    "lastUpdatedAt": "2026-07-01"
+  }
+}

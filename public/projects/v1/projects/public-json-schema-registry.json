@@ -1,0 +1,35 @@
+{
+  "id": "prj-public-schema-registry",
+  "slug": "public-json-schema-registry",
+  "title": "Public JSON Schema Registry",
+  "shortDescription": "A public schema collection that validates project metadata and other academic JSON contracts.",
+  "description": "The schema registry makes JSON submissions editor-friendly and reviewable. For project metadata, it gives student repositories a lightweight way to publish structured information without needing a database-backed admin system.",
+  "projectType": "OPEN_SOURCE",
+  "status": "ACTIVE",
+  "categories": ["open-source", "data-contracts", "developer-tools"],
+  "tags": ["JSON Schema", "Validation", "Metadata", "GitHub Pages"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "SCS Web Team",
+      "role": "maintainer"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/csc3213-2026-group-b/public-json-schemas",
+    "documentation": "https://csc3213-2026-group-b.github.io/public-json-schemas"
+  },
+  "source": {
+    "kind": "GITHUB_REPO",
+    "repositoryName": "public-json-schemas",
+    "repositoryOwner": "csc3213-2026-group-b"
+  },
+  "media": {
+    "icon": "Braces",
+    "coverImage": "/images/project-categories-hero.png"
+  },
+  "dates": {
+    "startedAt": "2026-06-01",
+    "lastUpdatedAt": "2026-07-20"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "prj-rainfall-trends",
+  "slug": "rainfall-trend-analysis-sri-lanka",
+  "title": "Rainfall Trend Analysis in Sri Lanka",
+  "shortDescription": "A statistical modelling project that explores regional rainfall change, seasonal patterns, and climate signals.",
+  "description": "This project studies long-term rainfall behavior using statistical models, visual summaries, and reproducible analysis pipelines. It can support teaching, public communication, and future environmental research.",
+  "projectType": "RESEARCH_PROJECT",
+  "status": "COMPLETED",
+  "categories": ["research", "statistics", "environment"],
+  "tags": ["Statistics", "Climate", "Time Series", "Visualization"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "Statistics Research Group",
+      "role": "collaborator"
+    },
+    {
+      "name": "SCS Academic Staff",
+      "role": "supervisor"
+    }
+  ],
+  "links": {
+    "documentation": "https://scs.pdn.ac.lk"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "SCS Project Registry"
+  },
+  "media": {
+    "icon": "ChartNoAxesCombined",
+    "coverImage": "/images/science-projects-hero.png"
+  },
+  "dates": {
+    "completedAt": "2026-05-31",
+    "lastUpdatedAt": "2026-05-31"
+  }
+}

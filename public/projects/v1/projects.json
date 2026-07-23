@@ -1,0 +1,309 @@
+[
+  {
+    "id": "prj-scholarship-system",
+    "slug": "scholarship-management-system",
+    "title": "Scholarship Management System",
+    "shortDescription": "A workflow platform for scholarship applications, eligibility checks, review decisions, and student account linking.",
+    "description": "This department-facing system organizes scholarship applications from intake to review. It connects student records, eligibility evidence, administrative review, and final decision tracking into a maintainable web application.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-systems", "student-services", "software"],
+    "tags": ["Next.js", "Prisma", "Scholarships", "Workflow", "Administration"],
+    "academicYear": "2025/2026",
+    "course": {
+      "code": "CSC3213",
+      "title": "Software Systems Design Project"
+    },
+    "batch": "2021",
+    "groupNumber": "B",
+    "people": [
+      {
+        "name": "CSC3213 Group B",
+        "role": "student"
+      },
+      {
+        "name": "SCS Academic Staff",
+        "role": "supervisor"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b",
+      "documentation": "https://github.com/csc3213-2026-group-b"
+    },
+    "source": {
+      "kind": "TEMPLATE_INDEX_JSON",
+      "repositoryName": "s21-csc3213-group-b",
+      "repositoryOwner": "csc3213-2026-group-b",
+      "metadataPath": ".docs/index.json"
+    },
+    "media": {
+      "icon": "GraduationCap",
+      "coverImage": "/images/science-projects-hero.png"
+    },
+    "dates": {
+      "startedAt": "2026-05-01",
+      "lastUpdatedAt": "2026-07-23"
+    }
+  },
+  {
+    "id": "prj-people-directory",
+    "slug": "scs-people-directory",
+    "title": "SCS People Directory",
+    "shortDescription": "A structured public directory for staff, students, alumni, research interests, and academic profiles.",
+    "description": "The people directory standardizes public profile data for the department and gives the SCS web ecosystem a reusable source for staff, student, alumni, and research-profile views.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-systems", "web-platforms", "open-data"],
+    "tags": ["People", "Profiles", "Next.js", "Public Data", "Academic Web"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "SCS Web Team",
+        "role": "maintainer"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b/people.scs.pdn.ac.lk",
+      "website": "https://people.scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "GITHUB_REPO",
+      "repositoryName": "people.scs.pdn.ac.lk",
+      "repositoryOwner": "csc3213-2026-group-b"
+    },
+    "media": {
+      "icon": "Users",
+      "coverImage": "/images/project-categories-hero.png"
+    },
+    "dates": {
+      "startedAt": "2026-06-01",
+      "lastUpdatedAt": "2026-07-22"
+    }
+  },
+  {
+    "id": "prj-rainfall-trends",
+    "slug": "rainfall-trend-analysis-sri-lanka",
+    "title": "Rainfall Trend Analysis in Sri Lanka",
+    "shortDescription": "A statistical modelling project that explores regional rainfall change, seasonal patterns, and climate signals.",
+    "description": "This project studies long-term rainfall behavior using statistical models, visual summaries, and reproducible analysis pipelines. It can support teaching, public communication, and future environmental research.",
+    "projectType": "RESEARCH_PROJECT",
+    "status": "COMPLETED",
+    "categories": ["research", "statistics", "environment"],
+    "tags": ["Statistics", "Climate", "Time Series", "Visualization"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Statistics Research Group",
+        "role": "collaborator"
+      },
+      {
+        "name": "SCS Academic Staff",
+        "role": "supervisor"
+      }
+    ],
+    "links": {
+      "documentation": "https://scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "SCS Project Registry"
+    },
+    "media": {
+      "icon": "ChartNoAxesCombined",
+      "coverImage": "/images/science-projects-hero.png"
+    },
+    "dates": {
+      "completedAt": "2026-05-31",
+      "lastUpdatedAt": "2026-05-31"
+    }
+  },
+  {
+    "id": "prj-performance-dashboard",
+    "slug": "student-performance-prediction-dashboard",
+    "title": "Student Performance Prediction Dashboard",
+    "shortDescription": "A machine learning dashboard for exploring student performance signals and early academic support indicators.",
+    "description": "The dashboard demonstrates how academic data can be used responsibly for exploratory analysis, risk indicators, and decision support. It combines modelling, visualization, and explainability in a teaching-friendly interface.",
+    "projectType": "COURSE_PROJECT",
+    "status": "COMPLETED",
+    "categories": ["coursework", "machine-learning", "education"],
+    "tags": ["Machine Learning", "Dashboard", "Education", "Analytics"],
+    "academicYear": "2025/2026",
+    "course": {
+      "code": "CSC3213",
+      "title": "Software Construction Project"
+    },
+    "batch": "2021",
+    "groupNumber": "4",
+    "people": [
+      {
+        "name": "Group 4",
+        "role": "student"
+      },
+      {
+        "name": "Course Instructors",
+        "role": "supervisor"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/scipdnaclk/s21-csc3225-group-4",
+      "demo": "https://scspdnaclk.github.io/s21-csc3225-group-4/"
+    },
+    "source": {
+      "kind": "TEMPLATE_INDEX_JSON",
+      "repositoryName": "s21-csc3225-group-4",
+      "repositoryOwner": "scipdnaclk",
+      "metadataPath": ".docs/index.json"
+    },
+    "media": {
+      "icon": "Activity",
+      "coverImage": "/images/project-categories-hero.png"
+    },
+    "dates": {
+      "completedAt": "2026-05-30",
+      "lastUpdatedAt": "2026-05-30"
+    }
+  },
+  {
+    "id": "prj-sinhala-ocr",
+    "slug": "sinhala-ocr-research-toolkit",
+    "title": "Sinhala OCR Research Toolkit",
+    "shortDescription": "An experimental toolkit for OCR workflows, dataset preparation, and evaluation for Sinhala text.",
+    "description": "This research artifact supports document processing experiments for Sinhala text. It focuses on dataset preparation, model evaluation, reproducible notebooks, and public documentation for future contributors.",
+    "projectType": "PUBLICATION_ARTIFACT",
+    "status": "ACTIVE",
+    "categories": ["research", "nlp", "datasets"],
+    "tags": ["OCR", "Sinhala", "NLP", "Datasets", "Evaluation"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Natural Language Processing Group",
+        "role": "collaborator"
+      },
+      {
+        "name": "Faculty Research Supervisor",
+        "role": "supervisor"
+      }
+    ],
+    "links": {
+      "documentation": "https://scs.pdn.ac.lk",
+      "dataset": "https://data.scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "SCS Project Registry"
+    },
+    "media": {
+      "icon": "FileText",
+      "coverImage": "/images/science-projects-hero.png"
+    },
+    "dates": {
+      "startedAt": "2026-01-15",
+      "lastUpdatedAt": "2026-07-10"
+    }
+  },
+  {
+    "id": "prj-public-schema-registry",
+    "slug": "public-json-schema-registry",
+    "title": "Public JSON Schema Registry",
+    "shortDescription": "A public schema collection that validates project metadata and other academic JSON contracts.",
+    "description": "The schema registry makes JSON submissions editor-friendly and reviewable. For project metadata, it gives student repositories a lightweight way to publish structured information without needing a database-backed admin system.",
+    "projectType": "OPEN_SOURCE",
+    "status": "ACTIVE",
+    "categories": ["open-source", "data-contracts", "developer-tools"],
+    "tags": ["JSON Schema", "Validation", "Metadata", "GitHub Pages"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "SCS Web Team",
+        "role": "maintainer"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b/public-json-schemas",
+      "documentation": "https://csc3213-2026-group-b.github.io/public-json-schemas"
+    },
+    "source": {
+      "kind": "GITHUB_REPO",
+      "repositoryName": "public-json-schemas",
+      "repositoryOwner": "csc3213-2026-group-b"
+    },
+    "media": {
+      "icon": "Braces",
+      "coverImage": "/images/project-categories-hero.png"
+    },
+    "dates": {
+      "startedAt": "2026-06-01",
+      "lastUpdatedAt": "2026-07-20"
+    }
+  },
+  {
+    "id": "prj-health-risk-bayes",
+    "slug": "bayesian-disease-risk-modelling",
+    "title": "Bayesian Disease Risk Modelling",
+    "shortDescription": "A public-health statistics project for communicating uncertainty in disease risk models.",
+    "description": "This project applies Bayesian modelling to public-health risk analysis. It emphasizes uncertainty, interpretable outputs, and reproducible statistical workflows for collaborative research.",
+    "projectType": "FACULTY_COLLABORATION",
+    "status": "ACTIVE",
+    "categories": ["research", "health", "statistics"],
+    "tags": ["Bayesian", "Public Health", "Statistics", "Risk Modelling"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Faculty of Science Collaborators",
+        "role": "collaborator"
+      },
+      {
+        "name": "SCS Statistics Staff",
+        "role": "supervisor"
+      }
+    ],
+    "links": {
+      "documentation": "https://sci.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "SCS Project Registry"
+    },
+    "media": {
+      "icon": "HeartPulse",
+      "coverImage": "/images/science-projects-hero.png"
+    },
+    "dates": {
+      "startedAt": "2026-02-12",
+      "lastUpdatedAt": "2026-07-01"
+    }
+  },
+  {
+    "id": "prj-open-campus-map",
+    "slug": "open-campus-map",
+    "title": "Open Campus Map",
+    "shortDescription": "A student innovation project that maps useful locations, accessibility notes, and services across campus.",
+    "description": "Open Campus Map is a student-led project for making university navigation easier. It can combine open data, user-contributed landmarks, accessibility information, and lightweight mobile-friendly interfaces.",
+    "projectType": "STUDENT_INNOVATION",
+    "status": "PLANNED",
+    "categories": ["student-innovation", "open-data", "campus-life"],
+    "tags": ["Maps", "Open Data", "UX", "Mobile Web"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Student Innovation Circle",
+        "role": "contributor"
+      }
+    ],
+    "links": {
+      "documentation": "https://scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "SCS Project Registry"
+    },
+    "media": {
+      "icon": "Map",
+      "coverImage": "/images/project-categories-hero.png"
+    },
+    "dates": {
+      "startedAt": "2026-08-01",
+      "lastUpdatedAt": "2026-07-23"
+    }
+  }
+]
