@@ -1,0 +1,38 @@
+{
+  "id": "prj-sinhala-ocr",
+  "slug": "sinhala-ocr-research-toolkit",
+  "title": "Sinhala OCR Research Toolkit",
+  "shortDescription": "An experimental toolkit for OCR workflows, dataset preparation, and evaluation for Sinhala text.",
+  "description": "This research artifact supports document processing experiments for Sinhala text. It focuses on dataset preparation, model evaluation, reproducible notebooks, and public documentation for future contributors.",
+  "projectType": "PUBLICATION_ARTIFACT",
+  "status": "ACTIVE",
+  "categories": ["research", "nlp", "datasets"],
+  "tags": ["OCR", "Sinhala", "NLP", "Datasets", "Evaluation"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "Natural Language Processing Group",
+      "role": "collaborator"
+    },
+    {
+      "name": "Faculty Research Supervisor",
+      "role": "supervisor"
+    }
+  ],
+  "links": {
+    "documentation": "https://scs.pdn.ac.lk",
+    "dataset": "https://data.scs.pdn.ac.lk"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "SCS Project Registry"
+  },
+  "media": {
+    "icon": "FileText",
+    "coverImage": "/images/science-projects-hero.png"
+  },
+  "dates": {
+    "startedAt": "2026-01-15",
+    "lastUpdatedAt": "2026-07-10"
+  }
+}

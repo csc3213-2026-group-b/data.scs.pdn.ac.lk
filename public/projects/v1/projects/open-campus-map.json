@@ -1,0 +1,33 @@
+{
+  "id": "prj-open-campus-map",
+  "slug": "open-campus-map",
+  "title": "Open Campus Map",
+  "shortDescription": "A student innovation project that maps useful locations, accessibility notes, and services across campus.",
+  "description": "Open Campus Map is a student-led project for making university navigation easier. It can combine open data, user-contributed landmarks, accessibility information, and lightweight mobile-friendly interfaces.",
+  "projectType": "STUDENT_INNOVATION",
+  "status": "PLANNED",
+  "categories": ["student-innovation", "open-data", "campus-life"],
+  "tags": ["Maps", "Open Data", "UX", "Mobile Web"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "Student Innovation Circle",
+      "role": "contributor"
+    }
+  ],
+  "links": {
+    "documentation": "https://scs.pdn.ac.lk"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "SCS Project Registry"
+  },
+  "media": {
+    "icon": "Map",
+    "coverImage": "/images/project-categories-hero.png"
+  },
+  "dates": {
+    "startedAt": "2026-08-01",
+    "lastUpdatedAt": "2026-07-23"
+  }
+}

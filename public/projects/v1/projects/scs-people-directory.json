@@ -1,0 +1,35 @@
+{
+  "id": "prj-people-directory",
+  "slug": "scs-people-directory",
+  "title": "SCS People Directory",
+  "shortDescription": "A structured public directory for staff, students, alumni, research interests, and academic profiles.",
+  "description": "The people directory standardizes public profile data for the department and gives the SCS web ecosystem a reusable source for staff, student, alumni, and research-profile views.",
+  "projectType": "DEPARTMENT_SYSTEM",
+  "status": "ACTIVE",
+  "categories": ["department-systems", "web-platforms", "open-data"],
+  "tags": ["People", "Profiles", "Next.js", "Public Data", "Academic Web"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "SCS Web Team",
+      "role": "maintainer"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/csc3213-2026-group-b/people.scs.pdn.ac.lk",
+    "website": "https://people.scs.pdn.ac.lk"
+  },
+  "source": {
+    "kind": "GITHUB_REPO",
+    "repositoryName": "people.scs.pdn.ac.lk",
+    "repositoryOwner": "csc3213-2026-group-b"
+  },
+  "media": {
+    "icon": "Users",
+    "coverImage": "/images/project-categories-hero.png"
+  },
+  "dates": {
+    "startedAt": "2026-06-01",
+    "lastUpdatedAt": "2026-07-22"
+  }
+}

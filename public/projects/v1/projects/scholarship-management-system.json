@@ -1,0 +1,46 @@
+{
+  "id": "prj-scholarship-system",
+  "slug": "scholarship-management-system",
+  "title": "Scholarship Management System",
+  "shortDescription": "A workflow platform for scholarship applications, eligibility checks, review decisions, and student account linking.",
+  "description": "This department-facing system organizes scholarship applications from intake to review. It connects student records, eligibility evidence, administrative review, and final decision tracking into a maintainable web application.",
+  "projectType": "DEPARTMENT_SYSTEM",
+  "status": "ACTIVE",
+  "categories": ["department-systems", "student-services", "software"],
+  "tags": ["Next.js", "Prisma", "Scholarships", "Workflow", "Administration"],
+  "academicYear": "2025/2026",
+  "course": {
+    "code": "CSC3213",
+    "title": "Software Systems Design Project"
+  },
+  "batch": "2021",
+  "groupNumber": "B",
+  "people": [
+    {
+      "name": "CSC3213 Group B",
+      "role": "student"
+    },
+    {
+      "name": "SCS Academic Staff",
+      "role": "supervisor"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/csc3213-2026-group-b",
+    "documentation": "https://github.com/csc3213-2026-group-b"
+  },
+  "source": {
+    "kind": "TEMPLATE_INDEX_JSON",
+    "repositoryName": "s21-csc3213-group-b",
+    "repositoryOwner": "csc3213-2026-group-b",
+    "metadataPath": ".docs/index.json"
+  },
+  "media": {
+    "icon": "GraduationCap",
+    "coverImage": "/images/science-projects-hero.png"
+  },
+  "dates": {
+    "startedAt": "2026-05-01",
+    "lastUpdatedAt": "2026-07-23"
+  }
+}

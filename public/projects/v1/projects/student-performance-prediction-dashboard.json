@@ -1,0 +1,46 @@
+{
+  "id": "prj-performance-dashboard",
+  "slug": "student-performance-prediction-dashboard",
+  "title": "Student Performance Prediction Dashboard",
+  "shortDescription": "A machine learning dashboard for exploring student performance signals and early academic support indicators.",
+  "description": "The dashboard demonstrates how academic data can be used responsibly for exploratory analysis, risk indicators, and decision support. It combines modelling, visualization, and explainability in a teaching-friendly interface.",
+  "projectType": "COURSE_PROJECT",
+  "status": "COMPLETED",
+  "categories": ["coursework", "machine-learning", "education"],
+  "tags": ["Machine Learning", "Dashboard", "Education", "Analytics"],
+  "academicYear": "2025/2026",
+  "course": {
+    "code": "CSC3213",
+    "title": "Software Construction Project"
+  },
+  "batch": "2021",
+  "groupNumber": "4",
+  "people": [
+    {
+      "name": "Group 4",
+      "role": "student"
+    },
+    {
+      "name": "Course Instructors",
+      "role": "supervisor"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/scipdnaclk/s21-csc3225-group-4",
+    "demo": "https://scspdnaclk.github.io/s21-csc3225-group-4/"
+  },
+  "source": {
+    "kind": "TEMPLATE_INDEX_JSON",
+    "repositoryName": "s21-csc3225-group-4",
+    "repositoryOwner": "scipdnaclk",
+    "metadataPath": ".docs/index.json"
+  },
+  "media": {
+    "icon": "Activity",
+    "coverImage": "/images/project-categories-hero.png"
+  },
+  "dates": {
+    "completedAt": "2026-05-30",
+    "lastUpdatedAt": "2026-05-30"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "version": "v1",
+  "projects": [
+    {
+      "id": "prj-scholarship-system",
+      "slug": "scholarship-management-system",
+      "title": "Scholarship Management System",
+      "projectType": "DEPARTMENT_SYSTEM",
+      "status": "ACTIVE",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-07-23"
+    },
+    {
+      "id": "prj-people-directory",
+      "slug": "scs-people-directory",
+      "title": "SCS People Directory",
+      "projectType": "DEPARTMENT_SYSTEM",
+      "status": "ACTIVE",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-07-22"
+    },
+    {
+      "id": "prj-rainfall-trends",
+      "slug": "rainfall-trend-analysis-sri-lanka",
+      "title": "Rainfall Trend Analysis in Sri Lanka",
+      "projectType": "RESEARCH_PROJECT",
+      "status": "COMPLETED",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-05-31"
+    },
+    {
+      "id": "prj-performance-dashboard",
+      "slug": "student-performance-prediction-dashboard",
+      "title": "Student Performance Prediction Dashboard",
+      "projectType": "COURSE_PROJECT",
+      "status": "COMPLETED",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-05-30"
+    },
+    {
+      "id": "prj-sinhala-ocr",
+      "slug": "sinhala-ocr-research-toolkit",
+      "title": "Sinhala OCR Research Toolkit",
+      "projectType": "PUBLICATION_ARTIFACT",
+      "status": "ACTIVE",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-07-10"
+    },
+    {
+      "id": "prj-public-schema-registry",
+      "slug": "public-json-schema-registry",
+      "title": "Public JSON Schema Registry",
+      "projectType": "OPEN_SOURCE",
+      "status": "ACTIVE",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-07-20"
+    },
+    {
+      "id": "prj-health-risk-bayes",
+      "slug": "bayesian-disease-risk-modelling",
+      "title": "Bayesian Disease Risk Modelling",
+      "projectType": "FACULTY_COLLABORATION",
+      "status": "ACTIVE",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-07-01"
+    },
+    {
+      "id": "prj-open-campus-map",
+      "slug": "open-campus-map",
+      "title": "Open Campus Map",
+      "projectType": "STUDENT_INNOVATION",
+      "status": "PLANNED",
+      "academicYear": "2025/2026",
+      "lastUpdatedAt": "2026-07-23"
+    }
+  ]
+}

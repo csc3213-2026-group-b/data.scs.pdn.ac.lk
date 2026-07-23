@@ -67,6 +67,34 @@ The `users/`, `students/`, and `special/*/` directories include `.gitkeep`
 placeholder files only so Git can track the empty directories before the first
 generated profile JSON is added.
 
+## Projects Data
+
+Public projects-registry data lives under:
+
+```text
+public/
+  projects/
+    v1/
+      manifest.json
+      projects.json
+      projects/
+        <project-slug>.json
+```
+
+Examples:
+
+```text
+public/projects/v1/manifest.json
+public/projects/v1/projects.json
+public/projects/v1/projects/scholarship-management-system.json
+```
+
+Project records use
+`@csc3213-2026-group-b/academic-domain-schemas` `ProjectSchema`. The aggregate
+`projects.json` file contains every project, and each file under
+`projects/<project-slug>.json` must exactly match the corresponding aggregate
+record.
+
 ## Edit Flow
 
 Users edit their public profile from the SCS Portal. The API validates submitted
@@ -92,6 +120,14 @@ data tree. Once profiles exist, it checks:
   file exactly
 - aggregate files do not contain duplicate profile identities
 - required aggregate files exist when a user profile needs them
+
+The projects-data validator checks:
+
+- `public/projects/v1/manifest.json` exists and has a project list
+- every project in `public/projects/v1/projects.json` satisfies `ProjectSchema`
+- every project detail file is named after its project slug
+- project detail files match the aggregate project record exactly
+- every aggregate project has a corresponding project detail file
 
 ## GitHub Actions
 

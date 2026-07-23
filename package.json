@@ -10,7 +10,8 @@
     "test": "bun test tests",
     "typecheck": "tsc -b",
     "validate:people": "bun .github/scripts/validate-people-data.ts",
-    "check": "bun run typecheck && bun run test && bun run validate:people && bun run format:check && bunx wrangler build",
+    "validate:projects": "bun .github/scripts/validate-projects-data.ts",
+    "check": "bun run typecheck && bun run test && bun run validate:people && bun run validate:projects && bun run format:check && bunx wrangler build",
     "lint-staged": "lint-staged",
     "prepare": "husky",
     "dev": "wrangler dev --local"
@@ -30,8 +31,8 @@
     "*.{js,ts,json,md}": "prettier --write"
   },
   "devDependencies": {
-    "@csc3213-2026-group-b/academic-domain-schemas": "^1.0.0",
     "@cloudflare/workers-types": "^4.20260702.1",
+    "@csc3213-2026-group-b/academic-domain-schemas": "^3.0.0",
     "@types/bun": "^1.3.14",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
