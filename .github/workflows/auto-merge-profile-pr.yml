@@ -26,6 +26,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Merge eligible public data PR
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
@@ -77,6 +85,36 @@ jobs:
           if [[ "$is_profile_pr" != "true" && "$is_project_pr" != "true" ]]; then
             echo "PR #$pr_number is not an eligible profile/* or project/* public data PR; skipping."
             exit 0
+          fi
+
+          if [[ "$is_project_pr" == "true" ]]; then
+            slug="${head_ref#project/}"
+            project_path="public/projects/v1/projects/$slug.json"
+            original_head="$(gh pr view "$pr_number" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq '.headRefOid')"
+            tmp_project="$(mktemp)"
+
+            gh pr checkout "$pr_number" --repo "$GITHUB_REPOSITORY"
+            cp "$project_path" "$tmp_project"
+
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$tmp_project" "$project_path"
+
+            bun install --frozen-lockfile
+            bun .github/scripts/reconcile-project-pr.ts "$slug"
+            bun run validate:projects
+
+            if ! git diff --quiet "$original_head"; then
+              git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add public/projects/v1
+              git commit -m "Reconcile project data for $slug"
+              git push origin "HEAD:$head_ref"
+              echo "Updated PR #$pr_number with latest project indexes; waiting for the next validation run."
+              exit 0
+            fi
+
+            git reset --hard "$original_head"
           fi
 
           gh pr merge "$pr_number" \

@@ -139,4 +139,8 @@ and `main` pushes that touch public data or validation code.
 `Auto Merge Public Data PR` is restricted to same-repository `profile/*`
 branches with both `profile-update` and `auto-merge-profile` labels, or
 `project/*` branches with both `project-update` and `auto-merge-project` labels.
-It runs the full check suite and merges the PR only after the checks pass.
+Project PR branches use `project/<slug>`. Before merging a project PR, the
+workflow replays that project's detail JSON onto the latest `main`, regenerates
+`projects.json` and `manifest.json`, pushes the reconciled branch when needed,
+and waits for the next validation run. It merges only after the full check suite
+passes on the reconciled branch.
