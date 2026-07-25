@@ -19,6 +19,7 @@ interface ProjectManifestEntry {
 }
 
 const slug = process.argv[2]?.trim().toLowerCase();
+const shouldDelete = process.argv.includes('--delete');
 
 if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
   throw new Error('Usage: bun .github/scripts/reconcile-project-pr.ts <slug>');
@@ -50,6 +51,19 @@ function upsertProject(projects: unknown, project: Project): Project[] {
   return nextProjects.sort((left, right) =>
     left.title.localeCompare(right.title)
   );
+}
+
+function removeProject(projects: unknown, slug: string): Project[] {
+  const records = Array.isArray(projects) ? projects : [];
+  return records
+    .filter(
+      (record): record is Project =>
+        record !== null &&
+        typeof record === 'object' &&
+        !Array.isArray(record) &&
+        (record as { slug?: unknown }).slug !== slug
+    )
+    .sort((left, right) => left.title.localeCompare(right.title));
 }
 
 function manifestEntryForProject(project: Project): ProjectManifestEntry {
@@ -90,6 +104,48 @@ function upsertManifest(
       left.title.localeCompare(right.title)
     )
   };
+}
+
+function removeManifest(
+  manifest: unknown,
+  slug: string,
+  updatedAt = new Date().toISOString()
+): ProjectManifest {
+  const existing =
+    manifest !== null &&
+    typeof manifest === 'object' &&
+    !Array.isArray(manifest)
+      ? (manifest as Partial<ProjectManifest>)
+      : {};
+  const records = Array.isArray(existing.projects) ? existing.projects : [];
+  const nextProjects = records.filter(
+    (record): record is ProjectManifestEntry =>
+      record !== null &&
+      typeof record === 'object' &&
+      !Array.isArray(record) &&
+      (record as { slug?: unknown }).slug !== slug
+  );
+
+  return {
+    version: typeof existing.version === 'string' ? existing.version : '1',
+    updatedAt,
+    projects: nextProjects.sort((left, right) =>
+      left.title.localeCompare(right.title)
+    )
+  };
+}
+
+if (shouldDelete) {
+  await writeJson(
+    aggregatePath,
+    removeProject(await readJson(aggregatePath), slug)
+  );
+  await writeJson(
+    manifestPath,
+    removeManifest(await readJson(manifestPath), slug)
+  );
+  console.log(`Reconciled project deletion branch for ${slug}`);
+  process.exit(0);
 }
 
 const project = ProjectSchema.parse(await readJson(projectPath));
