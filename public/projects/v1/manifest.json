@@ -2,15 +2,6 @@
   "version": "v1",
   "projects": [
     {
-      "id": "prj-rainfall-trends",
-      "slug": "rainfall-trend-analysis-sri-lanka",
-      "title": "Rainfall Trend Analysis in Sri Lanka",
-      "projectType": "RESEARCH_PROJECT",
-      "status": "COMPLETED",
-      "academicYear": "2025/2026",
-      "lastUpdatedAt": "2026-05-31"
-    },
-    {
       "id": "prj-people-directory",
       "slug": "scs-people-directory",
       "title": "SCS People Directory",
