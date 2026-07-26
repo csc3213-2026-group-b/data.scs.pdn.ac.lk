@@ -2,15 +2,6 @@
   "version": "v1",
   "projects": [
     {
-      "id": "prj-public-schema-registry",
-      "slug": "public-json-schema-registry",
-      "title": "Public JSON Schema Registry",
-      "projectType": "OPEN_SOURCE",
-      "status": "ACTIVE",
-      "academicYear": "2025/2026",
-      "lastUpdatedAt": "2026-07-20"
-    },
-    {
       "id": "prj-rainfall-trends",
       "slug": "rainfall-trend-analysis-sri-lanka",
       "title": "Rainfall Trend Analysis in Sri Lanka",
