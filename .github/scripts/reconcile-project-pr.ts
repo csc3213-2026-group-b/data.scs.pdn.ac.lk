@@ -78,14 +78,14 @@ function manifestEntryForProject(project: Project): ProjectManifestEntry {
 function manifestUpdatedAt(
   existing: Partial<ProjectManifest>,
   updatedAt?: string
-): string {
+): string | undefined {
   if (updatedAt) {
     return updatedAt;
   }
 
   return typeof existing.updatedAt === 'string'
     ? existing.updatedAt
-    : new Date().toISOString();
+    : undefined;
 }
 
 function upsertManifest(
