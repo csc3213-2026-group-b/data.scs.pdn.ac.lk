@@ -130,7 +130,10 @@ jobs:
               git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
               git add public/projects/v1
               git commit -m "Reconcile project data for $slug"
-              git push origin "HEAD:$head_ref"
+              git push \
+                --force-with-lease="refs/heads/$head_ref:$original_head" \
+                origin \
+                "HEAD:$head_ref"
               echo "Updated PR #$pr_number with latest project indexes; waiting for the next validation run."
               exit 0
             fi
