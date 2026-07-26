@@ -75,10 +75,23 @@ function manifestEntryForProject(project: Project): ProjectManifestEntry {
   };
 }
 
+function manifestUpdatedAt(
+  existing: Partial<ProjectManifest>,
+  updatedAt?: string
+): string {
+  if (updatedAt) {
+    return updatedAt;
+  }
+
+  return typeof existing.updatedAt === 'string'
+    ? existing.updatedAt
+    : new Date().toISOString();
+}
+
 function upsertManifest(
   manifest: unknown,
   project: Project,
-  updatedAt = new Date().toISOString()
+  updatedAt?: string
 ): ProjectManifest {
   const existing =
     manifest !== null &&
@@ -99,7 +112,7 @@ function upsertManifest(
 
   return {
     version: typeof existing.version === 'string' ? existing.version : '1',
-    updatedAt,
+    updatedAt: manifestUpdatedAt(existing, updatedAt),
     projects: nextProjects.sort((left, right) =>
       left.title.localeCompare(right.title)
     )
@@ -109,7 +122,7 @@ function upsertManifest(
 function removeManifest(
   manifest: unknown,
   slug: string,
-  updatedAt = new Date().toISOString()
+  updatedAt?: string
 ): ProjectManifest {
   const existing =
     manifest !== null &&
@@ -128,7 +141,7 @@ function removeManifest(
 
   return {
     version: typeof existing.version === 'string' ? existing.version : '1',
-    updatedAt,
+    updatedAt: manifestUpdatedAt(existing, updatedAt),
     projects: nextProjects.sort((left, right) =>
       left.title.localeCompare(right.title)
     )
