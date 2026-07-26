@@ -2,15 +2,6 @@
   "version": "v1",
   "projects": [
     {
-      "id": "prj-health-risk-bayes",
-      "slug": "bayesian-disease-risk-modelling",
-      "title": "Bayesian Disease Risk Modelling",
-      "projectType": "FACULTY_COLLABORATION",
-      "status": "ACTIVE",
-      "academicYear": "2025/2026",
-      "lastUpdatedAt": "2026-07-01"
-    },
-    {
       "id": "prj-open-campus-map",
       "slug": "open-campus-map",
       "title": "Open Campus Map",

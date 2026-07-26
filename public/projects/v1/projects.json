@@ -1,42 +1,5 @@
 [
   {
-    "id": "prj-health-risk-bayes",
-    "slug": "bayesian-disease-risk-modelling",
-    "title": "Bayesian Disease Risk Modelling",
-    "shortDescription": "A public-health statistics project for communicating uncertainty in disease risk models.",
-    "description": "This project applies Bayesian modelling to public-health risk analysis. It emphasizes uncertainty, interpretable outputs, and reproducible statistical workflows for collaborative research.",
-    "projectType": "FACULTY_COLLABORATION",
-    "status": "ACTIVE",
-    "categories": ["research", "health", "statistics"],
-    "tags": ["Bayesian", "Public Health", "Statistics", "Risk Modelling"],
-    "academicYear": "2025/2026",
-    "people": [
-      {
-        "name": "Faculty of Science Collaborators",
-        "role": "collaborator"
-      },
-      {
-        "name": "SCS Statistics Staff",
-        "role": "supervisor"
-      }
-    ],
-    "links": {
-      "documentation": "https://sci.pdn.ac.lk"
-    },
-    "source": {
-      "kind": "MANUAL",
-      "curator": "SCS Project Registry"
-    },
-    "media": {
-      "icon": "HeartPulse",
-      "coverImage": "/images/science-projects-hero.png"
-    },
-    "dates": {
-      "startedAt": "2026-02-12",
-      "lastUpdatedAt": "2026-07-01"
-    }
-  },
-  {
     "id": "prj-open-campus-map",
     "slug": "open-campus-map",
     "title": "Open Campus Map",
@@ -44,8 +7,17 @@
     "description": "Open Campus Map is a student-led project for making university navigation easier. It can combine open data, user-contributed landmarks, accessibility information, and lightweight mobile-friendly interfaces.",
     "projectType": "STUDENT_INNOVATION",
     "status": "PLANNED",
-    "categories": ["student-innovation", "open-data", "campus-life"],
-    "tags": ["Maps", "Open Data", "UX", "Mobile Web"],
+    "categories": [
+      "student-innovation",
+      "open-data",
+      "campus-life"
+    ],
+    "tags": [
+      "Maps",
+      "Open Data",
+      "UX",
+      "Mobile Web"
+    ],
     "academicYear": "2025/2026",
     "people": [
       {
@@ -77,8 +49,17 @@
     "description": "The schema registry makes JSON submissions editor-friendly and reviewable. For project metadata, it gives student repositories a lightweight way to publish structured information without needing a database-backed admin system.",
     "projectType": "OPEN_SOURCE",
     "status": "ACTIVE",
-    "categories": ["open-source", "data-contracts", "developer-tools"],
-    "tags": ["JSON Schema", "Validation", "Metadata", "GitHub Pages"],
+    "categories": [
+      "open-source",
+      "data-contracts",
+      "developer-tools"
+    ],
+    "tags": [
+      "JSON Schema",
+      "Validation",
+      "Metadata",
+      "GitHub Pages"
+    ],
     "academicYear": "2025/2026",
     "people": [
       {
@@ -112,8 +93,17 @@
     "description": "This project studies long-term rainfall behavior using statistical models, visual summaries, and reproducible analysis pipelines. It can support teaching, public communication, and future environmental research.",
     "projectType": "RESEARCH_PROJECT",
     "status": "COMPLETED",
-    "categories": ["research", "statistics", "environment"],
-    "tags": ["Statistics", "Climate", "Time Series", "Visualization"],
+    "categories": [
+      "research",
+      "statistics",
+      "environment"
+    ],
+    "tags": [
+      "Statistics",
+      "Climate",
+      "Time Series",
+      "Visualization"
+    ],
     "academicYear": "2025/2026",
     "people": [
       {
@@ -149,8 +139,18 @@
     "description": "The people directory standardizes public profile data for the department and gives the SCS web ecosystem a reusable source for staff, student, alumni, and research-profile views.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": ["department-systems", "web-platforms", "open-data"],
-    "tags": ["People", "Profiles", "Next.js", "Public Data", "Academic Web"],
+    "categories": [
+      "department-systems",
+      "web-platforms",
+      "open-data"
+    ],
+    "tags": [
+      "People",
+      "Profiles",
+      "Next.js",
+      "Public Data",
+      "Academic Web"
+    ],
     "academicYear": "2025/2026",
     "people": [
       {
@@ -184,8 +184,18 @@
     "description": "This research artifact supports document processing experiments for Sinhala text. It focuses on dataset preparation, model evaluation, reproducible notebooks, and public documentation for future contributors.",
     "projectType": "PUBLICATION_ARTIFACT",
     "status": "ACTIVE",
-    "categories": ["research", "nlp", "datasets"],
-    "tags": ["OCR", "Sinhala", "NLP", "Datasets", "Evaluation"],
+    "categories": [
+      "research",
+      "nlp",
+      "datasets"
+    ],
+    "tags": [
+      "OCR",
+      "Sinhala",
+      "NLP",
+      "Datasets",
+      "Evaluation"
+    ],
     "academicYear": "2025/2026",
     "people": [
       {
@@ -222,8 +232,17 @@
     "description": "The dashboard demonstrates how academic data can be used responsibly for exploratory analysis, risk indicators, and decision support. It combines modelling, visualization, and explainability in a teaching-friendly interface.",
     "projectType": "COURSE_PROJECT",
     "status": "COMPLETED",
-    "categories": ["coursework", "machine-learning", "education"],
-    "tags": ["Machine Learning", "Dashboard", "Education", "Analytics"],
+    "categories": [
+      "coursework",
+      "machine-learning",
+      "education"
+    ],
+    "tags": [
+      "Machine Learning",
+      "Dashboard",
+      "Education",
+      "Analytics"
+    ],
     "academicYear": "2025/2026",
     "course": {
       "code": "CSC3213",
