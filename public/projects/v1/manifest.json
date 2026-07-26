@@ -2,15 +2,6 @@
   "version": "v1",
   "projects": [
     {
-      "id": "prj-open-campus-map",
-      "slug": "open-campus-map",
-      "title": "Open Campus Map",
-      "projectType": "STUDENT_INNOVATION",
-      "status": "PLANNED",
-      "academicYear": "2025/2026",
-      "lastUpdatedAt": "2026-07-23"
-    },
-    {
       "id": "prj-public-schema-registry",
       "slug": "public-json-schema-registry",
       "title": "Public JSON Schema Registry",
