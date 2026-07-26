@@ -26,14 +26,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-
       - name: Merge eligible public data PR
         env:
           HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
@@ -90,55 +82,6 @@ jobs:
           if [[ "$is_profile_pr" != "true" && "$is_project_pr" != "true" ]]; then
             echo "PR #$pr_number is not an eligible profile/* or project/* public data PR; skipping."
             exit 0
-          fi
-
-          if [[ "$is_project_pr" == "true" ]]; then
-            delete_project=false
-            if [[ "$head_ref" == project-delete/* ]]; then
-              slug="${head_ref#project-delete/}"
-              delete_project=true
-            else
-              slug="${head_ref#project/}"
-            fi
-            project_path="public/projects/v1/projects/$slug.json"
-            original_head="$(gh pr view "$pr_number" --repo "$GITHUB_REPOSITORY" --json headRefOid --jq '.headRefOid')"
-            tmp_project="$(mktemp)"
-
-            gh pr checkout "$pr_number" --repo "$GITHUB_REPOSITORY"
-            if [[ "$delete_project" != "true" ]]; then
-              cp "$project_path" "$tmp_project"
-            fi
-
-            git fetch origin main
-            git reset --hard origin/main
-            if [[ "$delete_project" == "true" ]]; then
-              rm -f "$project_path"
-            else
-              cp "$tmp_project" "$project_path"
-            fi
-
-            bun install --frozen-lockfile
-            if [[ "$delete_project" == "true" ]]; then
-              bun .github/scripts/reconcile-project-pr.ts "$slug" --delete
-            else
-              bun .github/scripts/reconcile-project-pr.ts "$slug"
-            fi
-            bun run validate:projects
-
-            if ! git diff --quiet "$original_head" -- public/projects/v1; then
-              git config user.name "github-actions[bot]"
-              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-              git add public/projects/v1
-              git commit -m "Reconcile project data for $slug"
-              git push \
-                --force-with-lease="refs/heads/$head_ref:$original_head" \
-                origin \
-                "HEAD:$head_ref"
-              echo "Updated PR #$pr_number with latest project indexes; waiting for the next validation run."
-              exit 0
-            fi
-
-            git reset --hard "$original_head"
           fi
 
           gh pr merge "$pr_number" \
