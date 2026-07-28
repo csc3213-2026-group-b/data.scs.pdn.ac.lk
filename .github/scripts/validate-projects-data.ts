@@ -2,6 +2,7 @@ import { ProjectSchema } from '@csc3213-2026-group-b/academic-domain-schemas';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { loadAcademicRegistry } from './validate-academic-data.js';
 
 type JsonRecord = Record<string, unknown>;
 
@@ -75,6 +76,7 @@ export async function validateProjectsData(
 
   const aggregatePath = 'public/projects/v1/projects.json';
   const manifestPath = 'public/projects/v1/manifest.json';
+  const academicRegistry = await loadAcademicRegistry(root, result);
   const aggregateValue = existsSync(path.join(root, aggregatePath))
     ? await readJson(root, aggregatePath)
     : [];
@@ -95,6 +97,26 @@ export async function validateProjectsData(
 
     if (aggregateProjects.has(project.slug)) {
       result.errors.push(`${aggregatePath}[${index}]: duplicate project slug`);
+    }
+
+    if (project.projectType === 'COURSE_PROJECT') {
+      const courseOffering = (value as JsonRecord).courseOffering;
+      const offeringId =
+        courseOffering &&
+        typeof courseOffering === 'object' &&
+        !Array.isArray(courseOffering)
+          ? (courseOffering as { id?: unknown }).id
+          : undefined;
+
+      if (typeof offeringId !== 'string' || !offeringId.trim()) {
+        result.errors.push(
+          `${aggregatePath}[${index}].courseOffering.id: required for course projects`
+        );
+      } else if (!academicRegistry.offerings.has(offeringId)) {
+        result.errors.push(
+          `${aggregatePath}[${index}].courseOffering.id: missing referenced offering`
+        );
+      }
     }
 
     aggregateProjects.set(project.slug, project);
