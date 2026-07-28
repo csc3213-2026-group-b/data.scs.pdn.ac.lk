@@ -6,10 +6,19 @@ const allowedPaths: string[] = [];
 
 const blockedExtensions: string[] = [];
 
-function setCORSHeadersToAll(headers: Headers): void {
-  headers.set('Access-Control-Allow-Origin', '*');
+function setCORSHeaders(headers: Headers, origin: string | null): void {
+  if (origin) {
+    headers.set('Access-Control-Allow-Origin', origin);
+    headers.set('Access-Control-Allow-Credentials', 'true');
+    headers.set('Vary', 'Origin');
+  } else {
+    headers.set('Access-Control-Allow-Origin', '*');
+  }
   headers.set('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
-  headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  headers.set(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, X-Client-Id'
+  );
 }
 
 export default {
@@ -19,7 +28,7 @@ export default {
 
     if (request.method === 'OPTIONS') {
       const headers = new Headers();
-      setCORSHeadersToAll(headers);
+      setCORSHeaders(headers, origin);
       return new Response(null, {
         status: 204,
         headers
@@ -30,21 +39,27 @@ export default {
       const isBlocked = blockedExtensions.some((ext) => pathname.endsWith(ext));
       const isAllowed = allowedPaths.includes(pathname);
       if (isBlocked && !isAllowed) {
+        const headers = new Headers();
+        setCORSHeaders(headers, origin);
         return new Response('Forbidden', {
-          status: 403
+          status: 403,
+          headers
         });
       }
       const assetResponse = await env.DATA_SCS_PDN_ASSETS.fetch(request);
       const headers = new Headers(assetResponse.headers);
-      setCORSHeadersToAll(headers);
+      setCORSHeaders(headers, origin);
       return new Response(assetResponse.body, {
         status: assetResponse.status,
         headers
       });
     } catch (err) {
       console.error('Asset not found:', err);
+      const headers = new Headers();
+      setCORSHeaders(headers, origin);
       return new Response('Not Found', {
-        status: 404
+        status: 404,
+        headers
       });
     }
   }
