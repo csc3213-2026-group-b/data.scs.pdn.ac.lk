@@ -1,6 +1,6 @@
 import {
-  AcademicYearSchema,
-  CourseCodeSchema
+  CourseOfferingSchema,
+  CourseSchema
 } from '@csc3213-2026-group-b/academic-domain-schemas';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
@@ -22,51 +22,6 @@ export interface AcademicRegistry {
   courses: Map<string, JsonRecord>;
   offerings: Map<string, JsonRecord>;
 }
-
-const idSchema = z
-  .string()
-  .trim()
-  .min(1)
-  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-
-const courseSchema = z
-  .object({
-    id: idSchema,
-    primaryCode: CourseCodeSchema,
-    codes: z.array(CourseCodeSchema).min(1),
-    title: z.string().trim().min(1),
-    credits: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(6)])
-  })
-  .refine((course) => course.codes.includes(course.primaryCode), {
-    message: 'primaryCode must be listed in codes',
-    path: ['primaryCode']
-  })
-  .refine((course) => new Set(course.codes).size === course.codes.length, {
-    message: 'codes must not contain duplicates',
-    path: ['codes']
-  });
-
-const courseStaffSchema = z.object({
-  staff: z
-    .string()
-    .trim()
-    .min(3)
-    .regex(/^[a-z0-9._-]+$/i),
-  role: z.enum([
-    'COURSE_COORDINATOR',
-    'LECTURER',
-    'INSTRUCTOR',
-    'TEACHING_ASSISTANT'
-  ])
-});
-
-const offeringSchema = z.object({
-  id: idSchema,
-  courseId: idSchema,
-  academicYear: AcademicYearSchema,
-  semester: z.enum(['SEM1', 'SEM2']),
-  staff: z.array(courseStaffSchema)
-});
 
 function toPosix(relativePath: string) {
   return relativePath.split(path.sep).join('/');
@@ -129,7 +84,7 @@ export async function loadAcademicRegistry(
     result?.errors.push(`${coursesPath}: expected a JSON array`);
   } else {
     for (const [index, value] of coursesValue.entries()) {
-      const course = courseSchema.safeParse(value);
+      const course = CourseSchema.safeParse(value);
       if (course.success) {
         courses.set(course.data.id, course.data);
       } else {
@@ -142,7 +97,7 @@ export async function loadAcademicRegistry(
     result?.errors.push(`${offeringsPath}: expected a JSON array`);
   } else {
     for (const [index, value] of offeringsValue.entries()) {
-      const offering = offeringSchema.safeParse(value);
+      const offering = CourseOfferingSchema.safeParse(value);
       if (offering.success) {
         offerings.set(offering.data.id, offering.data);
       } else {
@@ -204,7 +159,7 @@ export async function validateAcademicData(
       result,
       `${coursesPath}[${index}]`,
       value,
-      courseSchema
+      CourseSchema
     );
     if (!course) continue;
 
@@ -233,7 +188,7 @@ export async function validateAcademicData(
       result,
       `${offeringsPath}[${index}]`,
       value,
-      offeringSchema
+      CourseOfferingSchema
     );
     if (!offering) continue;
 
@@ -263,7 +218,7 @@ export async function validateAcademicData(
   const seenCourseFiles = new Set<string>();
   for (const coursePath of courseFiles) {
     const value = await readJson(root, coursePath);
-    const course = validateRecord(result, coursePath, value, courseSchema);
+    const course = validateRecord(result, coursePath, value, CourseSchema);
     if (!course) continue;
 
     seenCourseFiles.add(course.id);
@@ -301,7 +256,7 @@ export async function validateAcademicData(
       result,
       offeringPath,
       value,
-      offeringSchema
+      CourseOfferingSchema
     );
     if (!offering) continue;
 
