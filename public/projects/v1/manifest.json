@@ -1,4 +1,11 @@
 {
   "version": "v1",
-  "projects": []
+  "projects": [
+    {
+      "id": "prj-scs-people-directory",
+      "slug": "scs-people-directory",
+      "title": "SCS People Directory",
+      "href": "projects/scs-people-directory.json"
+    }
+  ]
 }
