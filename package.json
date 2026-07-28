@@ -10,8 +10,9 @@
     "test": "bun test tests",
     "typecheck": "tsc -b",
     "validate:people": "bun .github/scripts/validate-people-data.ts",
+    "validate:academic": "bun .github/scripts/validate-academic-data.ts",
     "validate:projects": "bun .github/scripts/validate-projects-data.ts",
-    "check": "bun run typecheck && bun run test && bun run validate:people && bun run validate:projects && bun run format:check && bunx wrangler build",
+    "check": "bun run typecheck && bun run test && bun run validate:people && bun run validate:academic && bun run validate:projects && bun run format:check && bunx wrangler build",
     "lint-staged": "lint-staged",
     "prepare": "husky",
     "dev": "wrangler dev --local"

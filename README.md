@@ -95,6 +95,29 @@ Project records use
 `projects/<project-slug>.json` must exactly match the corresponding aggregate
 record.
 
+## Academic Data
+
+Public academic course data lives under:
+
+```text
+public/
+  academic/
+    v1/
+      courses.json
+      offerings.json
+      courses/
+        <course-id>.json
+      offerings/
+        <offering-id>.json
+```
+
+Course records describe stable catalog entries with one `primaryCode` and one
+or more `codes`. Offering records describe a course taught in a specific
+academic year and semester with assigned staff.
+
+Course projects in the public project registry must reference an existing
+offering through `courseOffering.id`.
+
 ## Edit Flow
 
 Users edit their public profile and project metadata from SCS public sites. The
@@ -129,12 +152,23 @@ The projects-data validator checks:
 - every project detail file is named after its project slug
 - project detail files match the aggregate project record exactly
 - every aggregate project has a corresponding project detail file
+- course projects reference an existing academic offering
+
+The academic-data validator checks:
+
+- every course in `public/academic/v1/courses.json` has a unique id
+- course codes are unique across courses
+- every course detail file matches the aggregate course record
+- every offering references an existing course
+- offerings are unique by course, academic year, and semester
+- every offering detail file matches the aggregate offering record
 
 ## GitHub Actions
 
 `Validate Public Data` runs type checks, Bun tests, people-data validation,
-projects-data validation, format checks, and the Worker build for pull requests
-and `main` pushes that touch public data or validation code.
+academic-data validation, projects-data validation, format checks, and the
+Worker build for pull requests and `main` pushes that touch public data or
+validation code.
 
 `Auto Merge Public Data PR` is restricted to same-repository `profile/*`
 branches with both `profile-update` and `auto-merge-profile` labels, or

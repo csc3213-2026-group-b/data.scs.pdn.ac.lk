@@ -17,8 +17,15 @@ const project = {
   tags: ['Next.js', 'Workflow'],
   academicYear: '2025/2026',
   course: {
+    courseId: 'software-engineering-project',
+    offeringId: 'csc3213-2025-2026-sem2',
     code: 'CSC3213',
-    title: 'Software Systems Design Project'
+    title: 'Software Systems Design Project',
+    academicYear: '2025/2026',
+    semester: 'SEM2'
+  },
+  courseOffering: {
+    id: 'csc3213-2025-2026-sem2'
   },
   people: [
     {
@@ -53,6 +60,30 @@ async function makeRoot() {
   await mkdir(path.join(root, 'public/projects/v1/projects'), {
     recursive: true
   });
+  await mkdir(path.join(root, 'public/academic/v1/courses'), {
+    recursive: true
+  });
+  await mkdir(path.join(root, 'public/academic/v1/offerings'), {
+    recursive: true
+  });
+  await writeJson(root, 'public/academic/v1/courses.json', [
+    {
+      id: 'software-engineering-project',
+      primaryCode: 'CSC3213',
+      codes: ['CSC3213'],
+      title: 'Software Systems Design Project',
+      credits: 3
+    }
+  ]);
+  await writeJson(root, 'public/academic/v1/offerings.json', [
+    {
+      id: 'csc3213-2025-2026-sem2',
+      courseId: 'software-engineering-project',
+      academicYear: '2025/2026',
+      semester: 'SEM2',
+      staff: []
+    }
+  ]);
   return root;
 }
 
@@ -119,6 +150,27 @@ describe('validateProjectsData', () => {
 
     expect(result.errors).toContain(
       'public/projects/v1/projects/scholarship-management-system.json: differs from public/projects/v1/projects.json'
+    );
+  });
+
+  test('rejects course projects with missing offerings', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/academic/v1/offerings.json', []);
+    await writeJson(root, 'public/projects/v1/manifest.json', {
+      version: 'v1',
+      projects: []
+    });
+    await writeJson(root, 'public/projects/v1/projects.json', [
+      {
+        ...project,
+        projectType: 'COURSE_PROJECT'
+      }
+    ]);
+
+    const result = await validateProjectsData(root);
+
+    expect(result.errors).toContain(
+      'public/projects/v1/projects.json[0].courseOffering.id: missing referenced offering'
     );
   });
 });
