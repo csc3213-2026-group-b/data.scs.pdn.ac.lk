@@ -45,17 +45,22 @@ Staff profiles are stored in two places:
 - `public/people/v1/users/<username>.json`
 - one staff aggregate file under `public/people/v1/staff/`
 
-Normal student profiles are stored in two places:
+All student profiles are stored in two places:
 
 - `public/people/v1/users/<snumber>.json`
 - `public/people/v1/students/<batch>.json`
 
-Special student profiles are stored in three places because they are also normal
-students:
+Honours student profiles are still normal student profiles. When a student has
+`studentTrack: "HONOURS"`, the same record is also stored in the matching
+honours-stream aggregate:
 
 - `public/people/v1/users/<snumber>.json`
 - `public/people/v1/students/<batch>.json`
 - `public/people/v1/special/<cs|ds|stat|sor>/<batch>.json`
+
+Student records use `studentType` for undergraduate/postgraduate,
+`studentTrack` for general/honours, `level` for `1000` through `4000`, and
+`status` for current/alumni.
 
 The aggregate JSON files contain arrays. Empty aggregate files should contain:
 
@@ -140,8 +145,8 @@ data tree. Once profiles exist, it checks:
 - every JSON file under `public/people/v1/` parses correctly
 - staff and student profiles satisfy the domain schemas
 - `public/people/v1/users/<username>.json` matches the profile identity
-- staff, student, and special aggregate records match the corresponding user
-  file exactly
+- staff, student, and honours-stream aggregate records match the corresponding
+  user file exactly
 - aggregate files do not contain duplicate profile identities
 - required aggregate files exist when a user profile needs them
 
