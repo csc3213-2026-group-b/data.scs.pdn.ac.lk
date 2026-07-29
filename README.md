@@ -1,185 +1,97 @@
 # SCS PDN Public Data
 
-This repository stores static JSON data published for SCS public sites. The
-`public/` directory is the publishable root for Cloudflare CDN or public GitHub
-JSON URLs.
+Repository-backed JSON published for SCS public sites.
+
+This repo is the source of truth for public people-directory data, project
+registry data, and academic course/catalog data. Approved profile and project
+changes are committed here through GitHub pull requests and then served as
+static JSON by the data Worker.
+
+## Published Data Areas
+
+- `public/people/v1/**` - people-directory user files and aggregate lists.
+- `public/projects/v1/**` - project registry manifest, aggregate list, and
+  detail files.
+- `public/academic/v1/**` - courses, course offerings, and detail files.
 
 ## People Data
 
-Public people-directory data lives under:
+Every public people profile has one lookup file:
 
 ```text
-public/
-  people/
-    v1/
-      users/
-        <username>.json
-      staff/
-        academic.json
-        academic-support.json
-        non-academic.json
-      students/
-        <batch>.json
-      special/
-        cs/
-          <batch>.json
-        ds/
-          <batch>.json
-        stat/
-          <batch>.json
-        sor/
-          <batch>.json
+public/people/v1/users/<username>.json
 ```
 
-Examples:
+Staff profiles are also stored in one staff aggregate:
 
 ```text
-public/people/v1/users/s21513.json
-public/people/v1/users/ragel.json
-public/people/v1/students/s21.json
-public/people/v1/special/cs/s21.json
+public/people/v1/staff/academic.json
+public/people/v1/staff/academic-support.json
+public/people/v1/staff/non-academic.json
 ```
 
-Staff profiles are stored in two places:
+Student profiles are also stored in the batch aggregate:
 
-- `public/people/v1/users/<username>.json`
-- one staff aggregate file under `public/people/v1/staff/`
+```text
+public/people/v1/students/<batch>.json
+```
 
-All student profiles are stored in two places:
+Honours students are still student profiles. When `studentTrack` is `HONOURS`,
+the same record is also stored in the matching honours-stream aggregate:
 
-- `public/people/v1/users/<snumber>.json`
-- `public/people/v1/students/<batch>.json`
-
-Honours student profiles are still normal student profiles. When a student has
-`studentTrack: "HONOURS"`, the same record is also stored in the matching
-honours-stream aggregate:
-
-- `public/people/v1/users/<snumber>.json`
-- `public/people/v1/students/<batch>.json`
-- `public/people/v1/special/<cs|ds|stat|sor>/<batch>.json`
+```text
+public/people/v1/special/<cs|ds|stat|sor>/<batch>.json
+```
 
 Student records use `studentType` for undergraduate/postgraduate,
 `studentTrack` for general/honours, `level` for `1000` through `4000`, and
 `status` for current/alumni.
 
-The aggregate JSON files contain arrays. Empty aggregate files should contain:
+## Project Data
 
-```json
-[]
-```
-
-The `users/`, `students/`, and `special/*/` directories include `.gitkeep`
-placeholder files only so Git can track the empty directories before the first
-generated profile JSON is added.
-
-## Projects Data
-
-Public projects-registry data lives under:
-
-```text
-public/
-  projects/
-    v1/
-      manifest.json
-      projects.json
-      projects/
-        <project-slug>.json
-```
-
-Examples:
+Project registry data lives under:
 
 ```text
 public/projects/v1/manifest.json
 public/projects/v1/projects.json
-public/projects/v1/projects/scholarship-management-system.json
+public/projects/v1/projects/<project-slug>.json
 ```
 
-Project records use
-`@csc3213-2026-group-b/academic-domain-schemas` `ProjectSchema`. The aggregate
-`projects.json` file contains every project, and each file under
-`projects/<project-slug>.json` must exactly match the corresponding aggregate
-record.
+Project records must satisfy `ProjectSchema` from
+`@csc3213-2026-group-b/academic-domain-schemas`. The aggregate
+`projects.json` file and each detail file must match exactly.
+
+Course projects must reference an existing academic offering through
+`courseOffering.id`.
 
 ## Academic Data
 
-Public academic course data lives under:
+Academic data lives under:
 
 ```text
-public/
-  academic/
-    v1/
-      courses.json
-      offerings.json
-      courses/
-        <course-id>.json
-      offerings/
-        <offering-id>.json
+public/academic/v1/courses.json
+public/academic/v1/offerings.json
+public/academic/v1/courses/<course-id>.json
+public/academic/v1/offerings/<offering-id>.json
 ```
 
-Course records describe stable catalog entries with one `primaryCode` and one
-or more `codes`. Offering records describe a course taught in a specific
-academic year and semester with assigned staff.
+Courses are stable catalog entries. Offerings represent a course in a specific
+academic year and semester.
 
-Course projects in the public project registry must reference an existing
-offering through `courseOffering.id`.
+## Local Validation
 
-## Edit Flow
-
-Users edit their public profile and project metadata from SCS public sites. The
-API validates submitted JSON with
-`@csc3213-2026-group-b/academic-domain-schemas`, then the SCS Portal GitHub App
-creates or updates a pull request in this repository.
-
-## Validation
-
-Run the same checks locally with:
-
-```bash
+```sh
+bun install
 bun run check
 ```
 
-The people-data validator uses
-`@csc3213-2026-group-b/academic-domain-schemas` and accepts an empty initialized
-data tree. Once profiles exist, it checks:
+`bun run check` runs type checks, tests, people-data validation,
+academic-data validation, project-data validation, format checks, and the
+Worker build.
 
-- every JSON file under `public/people/v1/` parses correctly
-- staff and student profiles satisfy the domain schemas
-- `public/people/v1/users/<username>.json` matches the profile identity
-- staff, student, and honours-stream aggregate records match the corresponding
-  user file exactly
-- aggregate files do not contain duplicate profile identities
-- required aggregate files exist when a user profile needs them
+Useful focused checks:
 
-The projects-data validator checks:
-
-- `public/projects/v1/manifest.json` exists and has a project list
-- every project in `public/projects/v1/projects.json` satisfies `ProjectSchema`
-- every project detail file is named after its project slug
-- project detail files match the aggregate project record exactly
-- every aggregate project has a corresponding project detail file
-- course projects reference an existing academic offering
-
-The academic-data validator checks:
-
-- every course in `public/academic/v1/courses.json` has a unique id
-- course codes are unique across courses
-- every course detail file matches the aggregate course record
-- every offering references an existing course
-- offerings are unique by course, academic year, and semester
-- every offering detail file matches the aggregate offering record
-
-## GitHub Actions
-
-`Validate Public Data` runs type checks, Bun tests, people-data validation,
-academic-data validation, projects-data validation, format checks, and the
-Worker build for pull requests and `main` pushes that touch public data or
-validation code.
-
-`Auto Merge Public Data PR` is restricted to same-repository `profile/*`
-branches with both `profile-update` and `auto-merge-profile` labels, or
-`project/*` branches with both `project-update` and `auto-merge-project` labels.
-Project PR branches use `project/<slug>`. Before merging a project PR, the
-workflow replays that project's detail JSON onto the latest `main`, regenerates
-`projects.json` and `manifest.json`, pushes the reconciled branch when needed,
-and waits for the next validation run. It merges only after the full check suite
-passes on the reconciled branch.
+- `bun run validate:people`
+- `bun run validate:academic`
+- `bun run validate:projects`
+- `bun run format:check`
