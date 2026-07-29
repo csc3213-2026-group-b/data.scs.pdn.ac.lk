@@ -6,17 +6,8 @@
   "description": "Browse public profiles for students, alumni, academic staff, academic support staff, and non-academic staff of the Department of Statistics & Computer Science, University of Peradeniya.",
   "projectType": "DEPARTMENT_SYSTEM",
   "status": "ACTIVE",
-  "categories": [
-    "department-system",
-    "people-directory"
-  ],
-  "tags": [
-    "people directory",
-    "students",
-    "staff",
-    "alumni",
-    "Next.js"
-  ],
+  "categories": ["department-system", "people-directory"],
+  "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
   "academicYear": "2025/2026",
   "course": {
     "courseId": "software-engineering-project",

@@ -8,7 +8,10 @@ const student = {
   title: 'Mr',
   fullName: 'Jane Student',
   registrationNo: 'S21513',
-  level: 'UNDERGRADUATE'
+  studentType: 'UNDERGRADUATE',
+  studentTrack: 'HONOURS',
+  level: '4000',
+  status: 'CURRENT'
 };
 
 const academic = {

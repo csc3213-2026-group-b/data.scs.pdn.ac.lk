@@ -4,7 +4,10 @@
   "email": "s21513@sci.pdn.ac.lk",
   "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
   "registrationNo": "S21513",
-  "level": "UNDERGRADUATE",
+  "studentType": "UNDERGRADUATE",
+  "studentTrack": "HONOURS",
+  "level": "4000",
+  "status": "CURRENT",
   "researchInterests": [
     "AI/ ML",
     "Agentic AI",
