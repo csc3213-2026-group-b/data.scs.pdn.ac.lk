@@ -11,7 +11,23 @@ interface ValidationResult {
   warnings: string[];
   counts: {
     projects: number;
+    projectPeopleIndexes: number;
   };
+}
+
+interface ProjectByPersonEntry {
+  id: string;
+  slug: string;
+  title: string;
+  shortDescription: string;
+  projectType: string;
+  status: string;
+  categories: string[];
+  tags: string[];
+  academicYear?: string | number;
+  role: string;
+  href: string;
+  lastUpdatedAt: string;
 }
 
 function toPosix(relativePath: string) {
@@ -54,6 +70,116 @@ function stableJson(value: unknown) {
   return JSON.stringify(value);
 }
 
+function normalizeUsername(value: unknown) {
+  return typeof value === 'string' ? value.trim().toLowerCase() : '';
+}
+
+function byPersonEntry(
+  project: NonNullable<ReturnType<typeof validateProject>>,
+  role: string
+): ProjectByPersonEntry {
+  return {
+    id: project.id,
+    slug: project.slug,
+    title: project.title,
+    shortDescription: project.shortDescription,
+    projectType: project.projectType,
+    status: project.status,
+    categories: project.categories,
+    tags: project.tags,
+    ...(project.academicYear ? { academicYear: project.academicYear } : {}),
+    role,
+    href: `projects/${project.slug}.json`,
+    lastUpdatedAt: project.dates.lastUpdatedAt
+  };
+}
+
+function buildExpectedByPersonIndexes(
+  projects: Map<string, NonNullable<ReturnType<typeof validateProject>>>
+) {
+  const indexes = new Map<string, ProjectByPersonEntry[]>();
+
+  for (const project of projects.values()) {
+    for (const person of project.people) {
+      const username = normalizeUsername(person.username);
+      if (!username) continue;
+
+      const entries = indexes.get(username) ?? [];
+      entries.push(byPersonEntry(project, person.role));
+      indexes.set(username, entries);
+    }
+  }
+
+  for (const entries of indexes.values()) {
+    entries.sort(
+      (left, right) =>
+        left.title.localeCompare(right.title) ||
+        left.slug.localeCompare(right.slug)
+    );
+  }
+
+  return indexes;
+}
+
+function validateByPersonEntry(
+  result: ValidationResult,
+  relativePath: string,
+  value: unknown
+): ProjectByPersonEntry | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    result.errors.push(`${relativePath}: expected a JSON object`);
+    return null;
+  }
+
+  if ('email' in value) {
+    result.errors.push(`${relativePath}.email: must not be published`);
+  }
+
+  const record = value as Partial<ProjectByPersonEntry>;
+  const stringFields = [
+    'id',
+    'slug',
+    'title',
+    'shortDescription',
+    'projectType',
+    'status',
+    'role',
+    'href',
+    'lastUpdatedAt'
+  ] as const;
+
+  for (const field of stringFields) {
+    if (typeof record[field] !== 'string' || !record[field]?.trim()) {
+      result.errors.push(
+        `${relativePath}.${field}: expected a non-empty string`
+      );
+    }
+  }
+
+  for (const field of ['categories', 'tags'] as const) {
+    if (
+      !Array.isArray(record[field]) ||
+      !record[field]?.every((item) => typeof item === 'string' && item.trim())
+    ) {
+      result.errors.push(`${relativePath}.${field}: expected a string array`);
+    }
+  }
+
+  if (
+    record.academicYear !== undefined &&
+    !(
+      (typeof record.academicYear === 'string' && record.academicYear.trim()) ||
+      typeof record.academicYear === 'number'
+    )
+  ) {
+    result.errors.push(
+      `${relativePath}.academicYear: expected a string or number`
+    );
+  }
+
+  return record as ProjectByPersonEntry;
+}
+
 export async function validateProjectsData(
   root = process.cwd()
 ): Promise<ValidationResult> {
@@ -61,13 +187,15 @@ export async function validateProjectsData(
     errors: [],
     warnings: [],
     counts: {
-      projects: 0
+      projects: 0,
+      projectPeopleIndexes: 0
     }
   };
 
   for (const requiredPath of [
     'public/projects/v1',
-    'public/projects/v1/projects'
+    'public/projects/v1/projects',
+    'public/projects/v1/by-person'
   ]) {
     if (!existsSync(path.join(root, requiredPath))) {
       result.errors.push(`${requiredPath}: missing required directory`);
@@ -154,6 +282,58 @@ export async function validateProjectsData(
     }
   }
 
+  const expectedByPerson = buildExpectedByPersonIndexes(
+    aggregateProjects as Map<
+      string,
+      NonNullable<ReturnType<typeof validateProject>>
+    >
+  );
+  const byPersonFiles = await listJsonFiles(
+    root,
+    'public/projects/v1/by-person'
+  );
+  const seenByPersonUsernames = new Set<string>();
+
+  for (const byPersonPath of byPersonFiles) {
+    const username = path.basename(byPersonPath, '.json');
+    seenByPersonUsernames.add(username);
+
+    if (username !== normalizeUsername(username)) {
+      result.errors.push(
+        `${byPersonPath}: username filename must be lowercase`
+      );
+    }
+
+    const value = await readJson(root, byPersonPath);
+    if (!Array.isArray(value)) {
+      result.errors.push(`${byPersonPath}: expected a JSON array`);
+      continue;
+    }
+
+    const entries = value
+      .map((entry, index) =>
+        validateByPersonEntry(result, `${byPersonPath}[${index}]`, entry)
+      )
+      .filter((entry): entry is ProjectByPersonEntry => Boolean(entry));
+    const expected = expectedByPerson.get(username) ?? [];
+
+    if (stableJson(entries) !== stableJson(expected)) {
+      result.errors.push(
+        `${byPersonPath}: differs from generated project people index`
+      );
+    }
+
+    result.counts.projectPeopleIndexes += 1;
+  }
+
+  for (const username of expectedByPerson.keys()) {
+    if (!seenByPersonUsernames.has(username)) {
+      result.errors.push(
+        `public/projects/v1/by-person/${username}.json: missing project people index`
+      );
+    }
+  }
+
   if (existsSync(path.join(root, manifestPath))) {
     const manifest = await readJson(root, manifestPath);
     if (!manifest || typeof manifest !== 'object' || Array.isArray(manifest)) {
@@ -188,4 +368,5 @@ if (import.meta.main) {
 
   console.log('Projects data validation passed.');
   console.log(`projects=${result.counts.projects}`);
+  console.log(`projectPeopleIndexes=${result.counts.projectPeopleIndexes}`);
 }

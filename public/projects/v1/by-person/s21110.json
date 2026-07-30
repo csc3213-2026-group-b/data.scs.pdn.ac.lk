@@ -1,0 +1,56 @@
+[
+  {
+    "id": "prj-scs-pdn-api",
+    "slug": "scs-pdn-api",
+    "title": "SCS PDN API",
+    "shortDescription": "Backend API for SCS PDN authentication, permissions, profile workflows, proxy access, and project submissions.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-system", "api"],
+    "tags": [
+      "api",
+      "authentication",
+      "permissions",
+      "Cloudflare Workers",
+      "Hono"
+    ],
+    "academicYear": "2025/2026",
+    "role": "contributor",
+    "href": "projects/scs-pdn-api.json",
+    "lastUpdatedAt": "2026-07-30"
+  },
+  {
+    "id": "prj-scs-pdn-portal",
+    "slug": "scs-pdn-portal",
+    "title": "SCS PDN Portal",
+    "shortDescription": "Authenticated portal for SCS PDN accounts, profiles, proxy settings, admin tools, and project registry submissions.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-system", "portal"],
+    "tags": [
+      "portal",
+      "authentication",
+      "admin tools",
+      "project registry",
+      "Next.js"
+    ],
+    "academicYear": "2025/2026",
+    "role": "contributor",
+    "href": "projects/scs-pdn-portal.json",
+    "lastUpdatedAt": "2026-07-30"
+  },
+  {
+    "id": "prj-scs-people-directory",
+    "slug": "scs-people-directory",
+    "title": "SCS People Directory",
+    "shortDescription": "People directory for students, alumni, and staff of the Department of Statistics & Computer Science.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-system", "people-directory"],
+    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
+    "academicYear": "2025/2026",
+    "role": "contributor",
+    "href": "projects/scs-people-directory.json",
+    "lastUpdatedAt": "2026-07-30"
+  }
+]

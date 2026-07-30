@@ -30,7 +30,8 @@ const project = {
   people: [
     {
       name: 'CSC3213 Group B',
-      role: 'student'
+      role: 'student',
+      username: 's21sp001'
     }
   ],
   links: {
@@ -58,6 +59,9 @@ async function makeRoot() {
   );
   tempRoots.push(root);
   await mkdir(path.join(root, 'public/projects/v1/projects'), {
+    recursive: true
+  });
+  await mkdir(path.join(root, 'public/projects/v1/by-person'), {
     recursive: true
   });
   await mkdir(path.join(root, 'public/academic/v1/courses'), {
@@ -123,11 +127,28 @@ describe('validateProjectsData', () => {
       'public/projects/v1/projects/scholarship-management-system.json',
       project
     );
+    await writeJson(root, 'public/projects/v1/by-person/s21sp001.json', [
+      {
+        id: project.id,
+        slug: project.slug,
+        title: project.title,
+        shortDescription: project.shortDescription,
+        projectType: project.projectType,
+        status: project.status,
+        categories: project.categories,
+        tags: project.tags,
+        academicYear: project.academicYear,
+        role: project.people[0].role,
+        href: `projects/${project.slug}.json`,
+        lastUpdatedAt: project.dates.lastUpdatedAt
+      }
+    ]);
 
     const result = await validateProjectsData(root);
 
     expect(result.errors).toEqual([]);
     expect(result.counts.projects).toBe(1);
+    expect(result.counts.projectPeopleIndexes).toBe(1);
   });
 
   test('rejects stale project detail files', async () => {
