@@ -8,6 +8,7 @@ import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { ZodType } from 'zod';
+import { z } from 'zod';
 
 type ProfileKind = 'academic' | 'academic-support' | 'non-academic' | 'student';
 type JsonRecord = Record<string, unknown>;
@@ -24,6 +25,23 @@ interface ValidationResult {
     special: number;
   };
 }
+
+const PeopleSearchEntrySchema = z.object({
+  id: z.string().trim().min(1),
+  type: z.enum(['STAFF', 'STUDENT']),
+  identity: z.string().trim().toLowerCase().min(1),
+  href: z
+    .string()
+    .trim()
+    .regex(/^\/people\/[A-Za-z0-9._-]+$/),
+  name: z.string().trim().min(1),
+  subtitle: z.string().trim().min(1),
+  email: z.string().trim().toLowerCase().email().optional(),
+  keywords: z.array(z.string().trim().toLowerCase().min(1)).min(1)
+});
+
+const PeopleSearchIndexSchema = z.array(PeopleSearchEntrySchema);
+type PeopleSearchEntry = z.infer<typeof PeopleSearchEntrySchema>;
 
 const staffFiles = {
   academic: 'public/people/v1/staff/academic.json',
@@ -79,6 +97,63 @@ function stableJson(value: unknown) {
 
 function sameRecord(a: JsonRecord, b: JsonRecord) {
   return stableJson(a) === stableJson(b);
+}
+
+function uniqueStrings(values: Array<string | undefined>) {
+  return [
+    ...new Set(
+      values
+        .map((value) => value?.trim().toLowerCase())
+        .filter((value): value is string => Boolean(value))
+    )
+  ];
+}
+
+function searchSubtitle(kind: ProfileKind, record: JsonRecord) {
+  if (kind === 'academic') return 'Academic Staff';
+  if (kind === 'academic-support') return 'Academic Support Staff';
+  if (kind === 'non-academic') return 'Non-Academic Staff';
+  if (record.status === 'ALUMNI') return 'Alumni';
+  return 'Student';
+}
+
+function searchEntryForRecord(
+  key: string,
+  kind: ProfileKind,
+  record: JsonRecord
+): PeopleSearchEntry {
+  const type = kind === 'student' ? 'STUDENT' : 'STAFF';
+  const title = typeof record.title === 'string' ? record.title : '';
+  const fullName = typeof record.fullName === 'string' ? record.fullName : '';
+  const email = typeof record.email === 'string' ? record.email : undefined;
+  const personalEmail =
+    typeof record.personalEmail === 'string' ? record.personalEmail : undefined;
+  const displayName = [title, fullName].filter(Boolean).join(' ').trim();
+
+  return PeopleSearchEntrySchema.parse({
+    id: `${type.toLowerCase()}:${key}`,
+    type,
+    identity: key,
+    href: `/people/${key}`,
+    name: displayName || fullName,
+    subtitle: searchSubtitle(kind, record),
+    ...(email ? { email } : {}),
+    keywords: uniqueStrings([
+      key,
+      fullName,
+      displayName,
+      email,
+      email?.split('@')[0],
+      personalEmail,
+      typeof record.registrationNo === 'string'
+        ? record.registrationNo
+        : undefined
+    ])
+  });
+}
+
+function sortSearchEntries(entries: PeopleSearchEntry[]) {
+  return [...entries].sort((a, b) => a.id.localeCompare(b.id));
 }
 
 async function listJsonFiles(root: string, relativeDir: string) {
@@ -139,7 +214,8 @@ async function validateUserFiles(
   root: string,
   result: ValidationResult,
   users: Map<string, JsonRecord>,
-  expected: Map<string, Map<string, JsonRecord>>
+  expected: Map<string, Map<string, JsonRecord>>,
+  expectedSearchEntries: Map<string, PeopleSearchEntry>
 ) {
   const userFiles = await listJsonFiles(root, 'public/people/v1/users');
 
@@ -175,6 +251,7 @@ async function validateUserFiles(
 
     users.set(key, parsed);
     result.counts.users += 1;
+    expectedSearchEntries.set(key, searchEntryForRecord(key, kind, parsed));
 
     if (kind === 'academic') {
       result.counts.academic += 1;
@@ -347,6 +424,67 @@ async function validateSpecialAggregates(
   }
 }
 
+async function validateSearchIndex(
+  root: string,
+  result: ValidationResult,
+  expectedSearchEntries: Map<string, PeopleSearchEntry>
+) {
+  const searchPath = 'public/people/v1/search.json';
+  const exists = existsSync(path.join(root, searchPath));
+
+  if (!exists) {
+    result.errors.push(`${searchPath}: missing search index file`);
+    return;
+  }
+
+  const value = await readJson(root, searchPath);
+  const parsed = PeopleSearchIndexSchema.safeParse(value);
+  if (!parsed.success) {
+    for (const issue of parsed.error.issues) {
+      const issuePath = issue.path.length ? `[${issue.path.join('.')}]` : '';
+      result.errors.push(`${searchPath}${issuePath}: ${issue.message}`);
+    }
+    return;
+  }
+
+  const seen = new Set<string>();
+  for (const [index, entry] of parsed.data.entries()) {
+    const itemPath = `${searchPath}[${index}]`;
+    if (seen.has(entry.identity)) {
+      result.errors.push(
+        `${itemPath}: duplicate search identity "${entry.identity}"`
+      );
+    }
+    seen.add(entry.identity);
+
+    const expected = expectedSearchEntries.get(entry.identity);
+    if (!expected) {
+      result.errors.push(
+        `${itemPath}: missing public/people/v1/users/${entry.identity}.json`
+      );
+      continue;
+    }
+
+    if (!sameRecord(entry, expected)) {
+      result.errors.push(
+        `${itemPath}: search entry differs from public/people/v1/users/${entry.identity}.json`
+      );
+    }
+  }
+
+  for (const identity of expectedSearchEntries.keys()) {
+    if (!seen.has(identity)) {
+      result.errors.push(`${searchPath}: missing search entry "${identity}"`);
+    }
+  }
+
+  const actualIds = parsed.data.map((entry) => entry.id);
+  const sortedActualIds = [...actualIds].sort((a, b) => a.localeCompare(b));
+  if (stableJson(actualIds) !== stableJson(sortedActualIds)) {
+    result.errors.push(`${searchPath}: search entries must be sorted by id`);
+  }
+}
+
 export async function validatePeopleData(
   root = process.cwd()
 ): Promise<ValidationResult> {
@@ -364,6 +502,7 @@ export async function validatePeopleData(
   };
   const users = new Map<string, JsonRecord>();
   const expected = new Map<string, Map<string, JsonRecord>>();
+  const expectedSearchEntries = new Map<string, PeopleSearchEntry>();
 
   for (const requiredPath of [
     'public/people/v1/users',
@@ -376,7 +515,7 @@ export async function validatePeopleData(
     }
   }
 
-  await validateUserFiles(root, result, users, expected);
+  await validateUserFiles(root, result, users, expected, expectedSearchEntries);
 
   await validateAggregateFile(
     root,
@@ -404,6 +543,7 @@ export async function validatePeopleData(
   );
   await validateStudentAggregates(root, result, users, expected);
   await validateSpecialAggregates(root, result, users);
+  await validateSearchIndex(root, result, expectedSearchEntries);
 
   return result;
 }

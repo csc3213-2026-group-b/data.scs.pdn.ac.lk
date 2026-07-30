@@ -1,0 +1,32 @@
+[
+  {
+    "id": "student:s21368",
+    "type": "STUDENT",
+    "identity": "s21368",
+    "href": "/people/s21368",
+    "name": "Mr M.C.N. FERNANDO",
+    "subtitle": "Student",
+    "email": "s21368@sci.pdn.ac.lk",
+    "keywords": [
+      "s21368",
+      "m.c.n. fernando",
+      "mr m.c.n. fernando",
+      "s21368@sci.pdn.ac.lk"
+    ]
+  },
+  {
+    "id": "student:s21513",
+    "type": "STUDENT",
+    "identity": "s21513",
+    "href": "/people/s21513",
+    "name": "Mr Sivothayan Sivasiva",
+    "subtitle": "Student",
+    "email": "s21513@sci.pdn.ac.lk",
+    "keywords": [
+      "s21513",
+      "sivothayan sivasiva",
+      "mr sivothayan sivasiva",
+      "s21513@sci.pdn.ac.lk"
+    ]
+  }
+]
