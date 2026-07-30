@@ -2,6 +2,12 @@
   "version": "v1",
   "projects": [
     {
+      "id": "prj-scs-pdn-portal",
+      "slug": "scs-pdn-portal",
+      "title": "SCS PDN Portal",
+      "href": "projects/scs-pdn-portal.json"
+    },
+    {
       "id": "prj-scs-people-directory",
       "slug": "scs-people-directory",
       "title": "SCS People Directory",

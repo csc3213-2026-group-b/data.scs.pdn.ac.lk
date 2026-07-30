@@ -1,5 +1,73 @@
 [
   {
+    "id": "prj-scs-pdn-portal",
+    "slug": "scs-pdn-portal",
+    "title": "SCS PDN Portal",
+    "shortDescription": "Authenticated portal for SCS PDN accounts, profiles, proxy settings, admin tools, and project registry submissions.",
+    "description": "The SCS PDN Portal provides the authenticated frontend for account access, public profile management, proxy configuration, administrative workflows, and GitHub-backed public project registry updates for the Department of Statistics & Computer Science.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": [
+      "department-system",
+      "portal"
+    ],
+    "tags": [
+      "portal",
+      "authentication",
+      "admin tools",
+      "project registry",
+      "Next.js"
+    ],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Hashni Kavindhya",
+        "role": "contributor",
+        "username": "s21084",
+        "email": "s21084@sci.pdn.ac.lk",
+        "sNumber": "S21084"
+      },
+      {
+        "name": "Janani Thathsara",
+        "role": "contributor",
+        "username": "s21110",
+        "email": "s21110@sci.pdn.ac.lk",
+        "sNumber": "S21110"
+      },
+      {
+        "name": "Chamod Nishantha",
+        "role": "contributor",
+        "username": "s21368",
+        "email": "s21368@sci.pdn.ac.lk",
+        "sNumber": "S21368"
+      },
+      {
+        "name": "Sivothayan Sivasiva",
+        "role": "maintainer",
+        "username": "s21513",
+        "email": "s21513@sci.pdn.ac.lk",
+        "sNumber": "S21513"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b/portal.scs.pdn.ac.lk",
+      "website": "https://portal.scs-pdn.space",
+      "documentation": "https://github.com/csc3213-2026-group-b/portal.scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "GITHUB_REPO",
+      "repositoryName": "portal.scs.pdn.ac.lk",
+      "repositoryOwner": "csc3213-2026-group-b"
+    },
+    "media": {
+      "icon": "LayoutDashboard"
+    },
+    "dates": {
+      "startedAt": "2026-01-29",
+      "lastUpdatedAt": "2026-07-30"
+    }
+  },
+  {
     "id": "prj-scs-people-directory",
     "slug": "scs-people-directory",
     "title": "SCS People Directory",
@@ -7,8 +75,17 @@
     "description": "Browse public profiles for students, alumni, academic staff, academic support staff, and non-academic staff of the Department of Statistics & Computer Science, University of Peradeniya.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": ["department-system", "people-directory"],
-    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
+    "categories": [
+      "department-system",
+      "people-directory"
+    ],
+    "tags": [
+      "people directory",
+      "students",
+      "staff",
+      "alumni",
+      "Next.js"
+    ],
     "academicYear": "2025/2026",
     "course": {
       "courseId": "software-engineering-project",
