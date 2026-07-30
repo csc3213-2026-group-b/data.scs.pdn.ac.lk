@@ -1,0 +1,25 @@
+[
+  {
+    "id": "prj-scs-pdn-api",
+    "slug": "scs-pdn-api",
+    "title": "SCS PDN API",
+    "shortDescription": "Backend API for SCS PDN authentication, permissions, profile workflows, proxy access, and project submissions.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": [
+      "department-system",
+      "api"
+    ],
+    "tags": [
+      "api",
+      "authentication",
+      "permissions",
+      "Cloudflare Workers",
+      "Hono"
+    ],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/scs-pdn-api.json",
+    "lastUpdatedAt": "2026-07-30"
+  }
+]
