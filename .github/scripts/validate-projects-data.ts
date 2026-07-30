@@ -24,7 +24,7 @@ interface ProjectByPersonEntry {
   status: string;
   categories: string[];
   tags: string[];
-  academicYear?: string;
+  academicYear?: string | number;
   role: string;
   href: string;
   lastUpdatedAt: string;
@@ -167,9 +167,14 @@ function validateByPersonEntry(
 
   if (
     record.academicYear !== undefined &&
-    (typeof record.academicYear !== 'string' || !record.academicYear.trim())
+    !(
+      (typeof record.academicYear === 'string' && record.academicYear.trim()) ||
+      typeof record.academicYear === 'number'
+    )
   ) {
-    result.errors.push(`${relativePath}.academicYear: expected a string`);
+    result.errors.push(
+      `${relativePath}.academicYear: expected a string or number`
+    );
   }
 
   return record as ProjectByPersonEntry;
