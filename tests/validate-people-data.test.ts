@@ -52,6 +52,7 @@ async function makeRoot() {
   }
 
   for (const file of [
+    'public/people/v1/search.json',
     'public/people/v1/staff/academic.json',
     'public/people/v1/staff/academic-support.json',
     'public/people/v1/staff/non-academic.json'
@@ -89,6 +90,18 @@ describe('validatePeopleData', () => {
     const root = await makeRoot();
     await writeJson(root, 'public/people/v1/users/s21513.json', student);
     await writeJson(root, 'public/people/v1/students/s21.json', [student]);
+    await writeJson(root, 'public/people/v1/search.json', [
+      {
+        id: 'student:s21513',
+        type: 'STUDENT',
+        identity: 's21513',
+        href: '/people/s21513',
+        name: 'Mr Jane Student',
+        subtitle: 'Student',
+        email: undefined,
+        keywords: ['s21513', 'jane student', 'mr jane student']
+      }
+    ]);
 
     const result = await validatePeopleData(root);
 
@@ -135,6 +148,17 @@ describe('validatePeopleData', () => {
       updatedStudent
     ]);
     await writeJson(root, 'public/people/v1/special/cs/s21.json', []);
+    await writeJson(root, 'public/people/v1/search.json', [
+      {
+        id: 'student:s21513',
+        type: 'STUDENT',
+        identity: 's21513',
+        href: '/people/s21513',
+        name: 'Mr Jane Normal Student',
+        subtitle: 'Student',
+        keywords: ['s21513', 'jane normal student', 'mr jane normal student']
+      }
+    ]);
 
     const result = await validatePeopleData(root);
 
@@ -163,9 +187,59 @@ describe('validatePeopleData', () => {
       academicSupport
     ]);
     await writeJson(root, 'public/people/v1/staff/academic.json', []);
+    await writeJson(root, 'public/people/v1/search.json', [
+      {
+        id: 'staff:jane',
+        type: 'STAFF',
+        identity: 'jane',
+        href: '/people/jane',
+        name: 'Mr Jane Academic',
+        subtitle: 'Academic Support Staff',
+        email: 'jane@pdn.ac.lk',
+        keywords: [
+          'jane',
+          'jane academic',
+          'mr jane academic',
+          'jane@pdn.ac.lk'
+        ]
+      }
+    ]);
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toEqual([]);
+  });
+
+  test('rejects a missing search entry for a user', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/v1/users/s21513.json', student);
+    await writeJson(root, 'public/people/v1/students/s21.json', [student]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/v1/search.json: missing search entry "s21513"'
+    );
+  });
+
+  test('rejects a stale search entry without a matching user', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/v1/search.json', [
+      {
+        id: 'student:s21513',
+        type: 'STUDENT',
+        identity: 's21513',
+        href: '/people/s21513',
+        name: 'Mr Jane Student',
+        subtitle: 'Student',
+        keywords: ['s21513']
+      }
+    ]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/v1/search.json[0]: missing public/people/v1/users/s21513.json'
+    );
   });
 });
