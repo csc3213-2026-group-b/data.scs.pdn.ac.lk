@@ -2,6 +2,12 @@
   "version": "v1",
   "projects": [
     {
+      "id": "prj-scs-pdn-api",
+      "slug": "scs-pdn-api",
+      "title": "SCS PDN API",
+      "href": "projects/scs-pdn-api.json"
+    },
+    {
       "id": "prj-scs-pdn-portal",
       "slug": "scs-pdn-portal",
       "title": "SCS PDN Portal",
