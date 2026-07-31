@@ -1,0 +1,56 @@
+{
+  "id": "prj-csc3213-20-group-b",
+  "slug": "csc3213-20-group-b",
+  "title": "Unified Academic Portfolio & Project Management System",
+  "shortDescription": "Unified Academic Portfolio & Project Management System",
+  "description": "Unified Academic Portfolio & Project Management System",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": [
+    "coursework"
+  ],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_B",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "Sivothajan",
+      "role": "student",
+      "sNumber": "S21513"
+    },
+    {
+      "name": "HashniKavindhya",
+      "role": "student",
+      "sNumber": "S21084"
+    },
+    {
+      "name": "JananiThathsara",
+      "role": "student",
+      "sNumber": "S21110"
+    },
+    {
+      "name": "ChamodNishantha",
+      "role": "student",
+      "sNumber": "S21368"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_B"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}
