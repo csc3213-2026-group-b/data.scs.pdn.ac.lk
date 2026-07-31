@@ -626,24 +626,19 @@
         "username": "shamilaw"
       },
       {
-        "name": "HanaRafai",
+        "name": "s21063",
         "role": "student",
-        "sNumber": "S21063"
+        "username": "s21063"
       },
       {
-        "name": "AnshafAkram",
+        "name": "s21315",
         "role": "student",
-        "sNumber": "S21315"
+        "username": "s21315"
       },
       {
         "name": "sahamatharik",
         "role": "student",
         "sNumber": "S21490"
-      },
-      {
-        "name": "dilina13219",
-        "role": "student",
-        "sNumber": "S21501"
       }
     ],
     "links": {
