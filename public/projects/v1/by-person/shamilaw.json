@@ -16,6 +16,22 @@
     "lastUpdatedAt": "2026-07-31"
   },
   {
+    "id": "prj-csc3213-20-group-g",
+    "slug": "csc3213-20-group-g",
+    "title": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+    "shortDescription": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/csc3213-20-group-g.json",
+    "lastUpdatedAt": "2026-07-31"
+  },
+  {
     "id": "prj-csc3213-20-group-d",
     "slug": "csc3213-20-group-d",
     "title": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
