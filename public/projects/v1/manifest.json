@@ -30,6 +30,12 @@
       "slug": "csc3213-20-group-b",
       "title": "Unified Academic Portfolio & Project Management System",
       "href": "projects/csc3213-20-group-b.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-c",
+      "slug": "csc3213-20-group-c",
+      "title": "VetsForFuture - Integrated Management System (IMS)",
+      "href": "projects/csc3213-20-group-c.json"
     }
   ]
 }

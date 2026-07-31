@@ -1,0 +1,56 @@
+{
+  "id": "prj-csc3213-20-group-c",
+  "slug": "csc3213-20-group-c",
+  "title": "VetsForFuture - Integrated Management System (IMS)",
+  "shortDescription": "VetsForFuture - Integrated Management System (IMS)",
+  "description": "VetsForFuture - Integrated Management System (IMS)",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": [
+    "coursework"
+  ],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_C",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "odnagahawatte",
+      "role": "student",
+      "sNumber": "S21444"
+    },
+    {
+      "name": "pamuditha-senanayake",
+      "role": "student",
+      "sNumber": "S21145"
+    },
+    {
+      "name": "yash-bhagya",
+      "role": "student",
+      "sNumber": "S21029"
+    },
+    {
+      "name": "PalindaAbayakoon",
+      "role": "student",
+      "sNumber": "S21301"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_C"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}
