@@ -794,23 +794,27 @@
         "username": "shamilaw"
       },
       {
-        "name": "Sivothajan",
+        "name": "Sivothayan Sivasiva",
         "role": "student",
+        "username": "s21513",
+        "email": "s21513@sci.pdn.ac.lk",
         "sNumber": "S21513"
       },
       {
-        "name": "HashniKavindhya",
+        "name": "s21084",
         "role": "student",
-        "sNumber": "S21084"
+        "username": "s21084"
       },
       {
-        "name": "JananiThathsara",
+        "name": "s21110",
         "role": "student",
-        "sNumber": "S21110"
+        "username": "s21110"
       },
       {
-        "name": "ChamodNishantha",
+        "name": "M.C.N. FERNANDO",
         "role": "student",
+        "username": "s21368",
+        "email": "s21368@sci.pdn.ac.lk",
         "sNumber": "S21368"
       }
     ],
