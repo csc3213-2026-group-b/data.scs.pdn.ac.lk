@@ -224,6 +224,62 @@
     }
   },
   {
+    "id": "prj-csc3213-20-group-j",
+    "slug": "csc3213-20-group-j",
+    "title": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+    "shortDescription": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+    "description": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_J",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "VinodRangana",
+        "role": "student",
+        "sNumber": "S21155"
+      },
+      {
+        "name": "Kusal-Kariyapperuma",
+        "role": "student",
+        "sNumber": "S21409"
+      },
+      {
+        "name": "shalika-s2",
+        "role": "student",
+        "sNumber": "S21500"
+      },
+      {
+        "name": "ShashikaAdithya",
+        "role": "student",
+        "sNumber": "S21512"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_J"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
     "id": "prj-scs-pdn-api",
     "slug": "scs-pdn-api",
     "title": "SCS PDN API",
