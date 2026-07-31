@@ -1,0 +1,56 @@
+{
+  "id": "prj-csc3213-20-group-f",
+  "slug": "csc3213-20-group-f",
+  "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+  "shortDescription": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+  "description": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": [
+    "coursework"
+  ],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_F",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "thanukavishal",
+      "role": "student",
+      "sNumber": "S21372"
+    },
+    {
+      "name": "PathumGunawardhana",
+      "role": "student",
+      "sNumber": "S21060"
+    },
+    {
+      "name": "Sakindu99",
+      "role": "student",
+      "sNumber": "S21486"
+    },
+    {
+      "name": "rashwije18",
+      "role": "student",
+      "sNumber": "S21558"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_F"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

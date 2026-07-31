@@ -32,6 +32,12 @@
       "href": "projects/scs-people-directory.json"
     },
     {
+      "id": "prj-csc3213-20-group-f",
+      "slug": "csc3213-20-group-f",
+      "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+      "href": "projects/csc3213-20-group-f.json"
+    },
+    {
       "id": "prj-csc3213-20-group-e",
       "slug": "csc3213-20-group-e",
       "title": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
