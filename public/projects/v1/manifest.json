@@ -2,6 +2,12 @@
   "version": "v1",
   "projects": [
     {
+      "id": "prj-csc3213-20-group-a",
+      "slug": "csc3213-20-group-a",
+      "title": "A Financial Reconciliation and Workflow Support System",
+      "href": "projects/csc3213-20-group-a.json"
+    },
+    {
       "id": "prj-scs-pdn-api",
       "slug": "scs-pdn-api",
       "title": "SCS PDN API",
