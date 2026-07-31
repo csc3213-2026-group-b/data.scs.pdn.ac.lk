@@ -26,6 +26,12 @@
       "href": "projects/csc3213-20-group-h.json"
     },
     {
+      "id": "prj-csc3213-20-group-j",
+      "slug": "csc3213-20-group-j",
+      "title": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+      "href": "projects/csc3213-20-group-j.json"
+    },
+    {
       "id": "prj-scs-pdn-api",
       "slug": "scs-pdn-api",
       "title": "SCS PDN API",
