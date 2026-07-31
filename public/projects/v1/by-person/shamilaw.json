@@ -6,9 +6,7 @@
     "shortDescription": "A Financial Reconciliation and Workflow Support System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -22,9 +20,7 @@
     "shortDescription": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -38,9 +34,7 @@
     "shortDescription": "AI-Based Career Path Recommendation System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -54,9 +48,7 @@
     "shortDescription": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -70,9 +62,7 @@
     "shortDescription": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -86,9 +76,7 @@
     "shortDescription": "Development of a Computerized System for the University of Peradeniya Medical Center",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -102,9 +90,7 @@
     "shortDescription": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -118,10 +104,7 @@
     "shortDescription": "Backend API for SCS PDN authentication, permissions, profile workflows, proxy access, and project submissions.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "api"
-    ],
+    "categories": ["department-system", "api"],
     "tags": [
       "api",
       "authentication",
@@ -141,10 +124,7 @@
     "shortDescription": "Authenticated portal for SCS PDN accounts, profiles, proxy settings, admin tools, and project registry submissions.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "portal"
-    ],
+    "categories": ["department-system", "portal"],
     "tags": [
       "portal",
       "authentication",
@@ -164,17 +144,8 @@
     "shortDescription": "People directory for students, alumni, and staff of the Department of Statistics & Computer Science.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "people-directory"
-    ],
-    "tags": [
-      "people directory",
-      "students",
-      "staff",
-      "alumni",
-      "Next.js"
-    ],
+    "categories": ["department-system", "people-directory"],
+    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
     "academicYear": "2025/2026",
     "role": "supervisor",
     "href": "projects/scs-people-directory.json",
@@ -187,9 +158,7 @@
     "shortDescription": "Smart  Digital Fitting Room",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -203,9 +172,7 @@
     "shortDescription": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -219,9 +186,7 @@
     "shortDescription": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -235,9 +200,7 @@
     "shortDescription": "Unified Academic Portfolio & Project Management System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",
@@ -251,9 +214,7 @@
     "shortDescription": "VetsForFuture - Integrated Management System (IMS)",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "supervisor",

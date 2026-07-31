@@ -6,10 +6,7 @@
   "description": "The SCS PDN Portal provides the authenticated frontend for account access, public profile management, proxy configuration, administrative workflows, and GitHub-backed public project registry updates for the Department of Statistics & Computer Science.",
   "projectType": "DEPARTMENT_SYSTEM",
   "status": "ACTIVE",
-  "categories": [
-    "department-system",
-    "portal"
-  ],
+  "categories": ["department-system", "portal"],
   "tags": [
     "portal",
     "authentication",

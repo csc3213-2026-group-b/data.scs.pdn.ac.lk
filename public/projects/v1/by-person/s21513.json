@@ -6,10 +6,7 @@
     "shortDescription": "Backend API for SCS PDN authentication, permissions, profile workflows, proxy access, and project submissions.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "api"
-    ],
+    "categories": ["department-system", "api"],
     "tags": [
       "api",
       "authentication",
@@ -29,10 +26,7 @@
     "shortDescription": "Authenticated portal for SCS PDN accounts, profiles, proxy settings, admin tools, and project registry submissions.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "portal"
-    ],
+    "categories": ["department-system", "portal"],
     "tags": [
       "portal",
       "authentication",
@@ -52,17 +46,8 @@
     "shortDescription": "People directory for students, alumni, and staff of the Department of Statistics & Computer Science.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "people-directory"
-    ],
-    "tags": [
-      "people directory",
-      "students",
-      "staff",
-      "alumni",
-      "Next.js"
-    ],
+    "categories": ["department-system", "people-directory"],
+    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
     "academicYear": "2025/2026",
     "role": "maintainer",
     "href": "projects/scs-people-directory.json",
@@ -75,9 +60,7 @@
     "shortDescription": "Unified Academic Portfolio & Project Management System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "role": "student",

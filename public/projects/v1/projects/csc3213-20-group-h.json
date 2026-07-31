@@ -6,9 +6,7 @@
   "description": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
   "projectType": "OTHER",
   "status": "PLANNED",
-  "categories": [
-    "coursework"
-  ],
+  "categories": ["coursework"],
   "tags": [],
   "academicYear": "2025/2026",
   "batch": "2021",

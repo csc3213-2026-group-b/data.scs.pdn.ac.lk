@@ -7,9 +7,7 @@
     "description": "A Financial Reconciliation and Workflow Support System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -63,9 +61,7 @@
     "description": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -119,9 +115,7 @@
     "description": "AI-Based Career Path Recommendation System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -170,9 +164,7 @@
     "description": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -226,9 +218,7 @@
     "description": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -282,9 +272,7 @@
     "description": "Development of a Computerized System for the University of Peradeniya Medical Center",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -338,9 +326,7 @@
     "description": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -394,10 +380,7 @@
     "description": "The SCS PDN API provides the protected backend for portal sign-in, session verification, role and permission checks, proxy configuration access, public profile submissions, and public project registry PR automation integration.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "api"
-    ],
+    "categories": ["department-system", "api"],
     "tags": [
       "api",
       "authentication",
@@ -467,10 +450,7 @@
     "description": "The SCS PDN Portal provides the authenticated frontend for account access, public profile management, proxy configuration, administrative workflows, and GitHub-backed public project registry updates for the Department of Statistics & Computer Science.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "portal"
-    ],
+    "categories": ["department-system", "portal"],
     "tags": [
       "portal",
       "authentication",
@@ -540,17 +520,8 @@
     "description": "Browse public profiles for students, alumni, academic staff, academic support staff, and non-academic staff of the Department of Statistics & Computer Science, University of Peradeniya.",
     "projectType": "DEPARTMENT_SYSTEM",
     "status": "ACTIVE",
-    "categories": [
-      "department-system",
-      "people-directory"
-    ],
-    "tags": [
-      "people directory",
-      "students",
-      "staff",
-      "alumni",
-      "Next.js"
-    ],
+    "categories": ["department-system", "people-directory"],
+    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
     "academicYear": "2025/2026",
     "people": [
       {
@@ -612,9 +583,7 @@
     "description": "Smart  Digital Fitting Room",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -668,9 +637,7 @@
     "description": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -724,9 +691,7 @@
     "description": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -780,9 +745,7 @@
     "description": "Unified Academic Portfolio & Project Management System",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",
@@ -840,9 +803,7 @@
     "description": "VetsForFuture - Integrated Management System (IMS)",
     "projectType": "OTHER",
     "status": "PLANNED",
-    "categories": [
-      "coursework"
-    ],
+    "categories": ["coursework"],
     "tags": [],
     "academicYear": "2025/2026",
     "batch": "2021",

@@ -1,0 +1,129 @@
+name: Deploy Cloudflare Worker
+
+on:
+  # Every 12 hours: 00:00 UTC and 12:00 UTC
+  schedule:
+    - cron: '0 */12 * * *'
+
+  # Manual deployment from GitHub Actions UI
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  HUSKY: 0
+
+concurrency:
+  group: cloudflare-deploy-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  check-changes:
+    name: Check Recent Changes
+    runs-on: ubuntu-latest
+
+    outputs:
+      should-deploy: ${{ steps.check.outputs.should-deploy }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Check whether deployment is needed
+        id: check
+        shell: bash
+        run: |
+          # Manual deployments should always continue.
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Manual deployment requested."
+            echo "should-deploy=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          LAST_COMMIT_TIME=$(git log -1 --format=%ct)
+          CURRENT_TIME=$(date +%s)
+          AGE_SECONDS=$((CURRENT_TIME - LAST_COMMIT_TIME))
+          EIGHT_HOURS=$((8 * 60 * 60))
+
+          echo "Latest commit age: $((AGE_SECONDS / 60)) minutes"
+
+          if (( AGE_SECONDS <= EIGHT_HOURS )); then
+            echo "Changes were made within the last 8 hours."
+            echo "should-deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No changes within the last 8 hours. Deployment will be skipped."
+            echo "should-deploy=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  validate:
+    name: Validate Public Data
+    runs-on: ubuntu-latest
+    needs: check-changes
+
+    # Do not spend time validating when a scheduled deployment is unnecessary.
+    if: needs.check-changes.outputs.should-deploy == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Run tests
+        run: bun run test
+
+      - name: Validate people data
+        run: bun run validate:people
+
+      - name: Validate academic data
+        run: bun run validate:academic
+
+      - name: Validate projects data
+        run: bun run validate:projects
+
+      - name: Check formatting
+        run: bun run format:check
+
+      - name: Build worker
+        run: bunx wrangler build
+
+  deploy:
+    name: >-
+      ${{ github.event_name == 'workflow_dispatch'
+          && 'Manual Deployment'
+          || 'Scheduled Deployment' }}
+
+    runs-on: ubuntu-latest
+    needs:
+      - check-changes
+      - validate
+
+    if: >-
+      needs.check-changes.outputs.should-deploy == 'true' &&
+      needs.validate.result == 'success'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Deploy Cloudflare Worker
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

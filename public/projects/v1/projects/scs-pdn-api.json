@@ -6,10 +6,7 @@
   "description": "The SCS PDN API provides the protected backend for portal sign-in, session verification, role and permission checks, proxy configuration access, public profile submissions, and public project registry PR automation integration.",
   "projectType": "DEPARTMENT_SYSTEM",
   "status": "ACTIVE",
-  "categories": [
-    "department-system",
-    "api"
-  ],
+  "categories": ["department-system", "api"],
   "tags": [
     "api",
     "authentication",
