@@ -1,0 +1,18 @@
+[
+  {
+    "id": "prj-csc3213-20-group-i",
+    "slug": "csc3213-20-group-i",
+    "title": "Smart  Digital Fitting Room",
+    "shortDescription": "Smart  Digital Fitting Room",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "contributor",
+    "href": "projects/csc3213-20-group-i.json",
+    "lastUpdatedAt": "2026-07-31"
+  }
+]
