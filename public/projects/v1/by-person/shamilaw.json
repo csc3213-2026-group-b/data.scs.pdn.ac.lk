@@ -32,6 +32,22 @@
     "lastUpdatedAt": "2026-07-31"
   },
   {
+    "id": "prj-csc3213-20-group-k",
+    "slug": "csc3213-20-group-k",
+    "title": "AI-Based Career Path Recommendation System",
+    "shortDescription": "AI-Based Career Path Recommendation System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/csc3213-20-group-k.json",
+    "lastUpdatedAt": "2026-07-31"
+  },
+  {
     "id": "prj-csc3213-20-group-d",
     "slug": "csc3213-20-group-d",
     "title": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
