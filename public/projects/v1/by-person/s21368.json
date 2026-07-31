@@ -67,5 +67,21 @@
     "role": "contributor",
     "href": "projects/scs-people-directory.json",
     "lastUpdatedAt": "2026-07-30"
+  },
+  {
+    "id": "prj-csc3213-20-group-b",
+    "slug": "csc3213-20-group-b",
+    "title": "Unified Academic Portfolio & Project Management System",
+    "shortDescription": "Unified Academic Portfolio & Project Management System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "student",
+    "href": "projects/csc3213-20-group-b.json",
+    "lastUpdatedAt": "2026-07-31"
   }
 ]
