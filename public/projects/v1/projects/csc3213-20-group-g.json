@@ -1,0 +1,56 @@
+{
+  "id": "prj-csc3213-20-group-g",
+  "slug": "csc3213-20-group-g",
+  "title": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+  "shortDescription": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+  "description": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": [
+    "coursework"
+  ],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_G",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "isurusasangaetam",
+      "role": "student",
+      "sNumber": "S21367"
+    },
+    {
+      "name": "isurudissanayake15",
+      "role": "student",
+      "sNumber": "S21363"
+    },
+    {
+      "name": "pathumfdo",
+      "role": "student",
+      "sNumber": "S21369"
+    },
+    {
+      "name": "kushan-dulmina",
+      "role": "student",
+      "sNumber": "S21579"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_G"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}
