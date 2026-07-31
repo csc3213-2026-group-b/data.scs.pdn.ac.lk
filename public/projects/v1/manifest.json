@@ -24,6 +24,12 @@
       "slug": "scs-people-directory",
       "title": "SCS People Directory",
       "href": "projects/scs-people-directory.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-b",
+      "slug": "csc3213-20-group-b",
+      "title": "Unified Academic Portfolio & Project Management System",
+      "href": "projects/csc3213-20-group-b.json"
     }
   ]
 }
