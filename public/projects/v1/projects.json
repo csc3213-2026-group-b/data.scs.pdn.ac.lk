@@ -1,5 +1,61 @@
 [
   {
+    "id": "prj-csc3213-20-group-a",
+    "slug": "csc3213-20-group-a",
+    "title": "A Financial Reconciliation and Workflow Support System",
+    "shortDescription": "A Financial Reconciliation and Workflow Support System",
+    "description": "A Financial Reconciliation and Workflow Support System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_A",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "Prabuddha-B",
+        "role": "student",
+        "sNumber": "S21324"
+      },
+      {
+        "name": "n-rajamanthri",
+        "role": "student",
+        "sNumber": "S21468"
+      },
+      {
+        "name": "Ruvish990",
+        "role": "student",
+        "sNumber": "S21347"
+      },
+      {
+        "name": "NikhilaEranda123",
+        "role": "student",
+        "sNumber": "S21348"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_A"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
     "id": "prj-scs-pdn-api",
     "slug": "scs-pdn-api",
     "title": "SCS PDN API",
