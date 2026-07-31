@@ -44,6 +44,12 @@
       "href": "projects/scs-people-directory.json"
     },
     {
+      "id": "prj-csc3213-20-group-i",
+      "slug": "csc3213-20-group-i",
+      "title": "Smart  Digital Fitting Room",
+      "href": "projects/csc3213-20-group-i.json"
+    },
+    {
       "id": "prj-csc3213-20-group-f",
       "slug": "csc3213-20-group-f",
       "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",

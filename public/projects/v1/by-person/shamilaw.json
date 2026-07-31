@@ -133,6 +133,22 @@
     "lastUpdatedAt": "2026-07-30"
   },
   {
+    "id": "prj-csc3213-20-group-i",
+    "slug": "csc3213-20-group-i",
+    "title": "Smart  Digital Fitting Room",
+    "shortDescription": "Smart  Digital Fitting Room",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/csc3213-20-group-i.json",
+    "lastUpdatedAt": "2026-07-31"
+  },
+  {
     "id": "prj-csc3213-20-group-f",
     "slug": "csc3213-20-group-f",
     "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",

@@ -442,6 +442,62 @@
     }
   },
   {
+    "id": "prj-csc3213-20-group-i",
+    "slug": "csc3213-20-group-i",
+    "title": "Smart  Digital Fitting Room",
+    "shortDescription": "Smart  Digital Fitting Room",
+    "description": "Smart  Digital Fitting Room",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_I",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "HanaRafai",
+        "role": "student",
+        "sNumber": "S21063"
+      },
+      {
+        "name": "AnshafAkram",
+        "role": "student",
+        "sNumber": "S21315"
+      },
+      {
+        "name": "sahamatharik",
+        "role": "student",
+        "sNumber": "S21490"
+      },
+      {
+        "name": "dilina13219",
+        "role": "student",
+        "sNumber": "S21501"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_I"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
     "id": "prj-csc3213-20-group-f",
     "slug": "csc3213-20-group-f",
     "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
