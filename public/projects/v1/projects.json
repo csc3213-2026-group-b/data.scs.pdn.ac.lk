@@ -850,24 +850,19 @@
         "username": "shamilaw"
       },
       {
-        "name": "odnagahawatte",
+        "name": "s21145",
         "role": "student",
-        "sNumber": "S21444"
+        "username": "s21145"
       },
       {
-        "name": "pamuditha-senanayake",
+        "name": "s21029",
         "role": "student",
-        "sNumber": "S21145"
+        "username": "s21029"
       },
       {
-        "name": "yash-bhagya",
+        "name": "s21301",
         "role": "student",
-        "sNumber": "S21029"
-      },
-      {
-        "name": "PalindaAbayakoon",
-        "role": "student",
-        "sNumber": "S21301"
+        "username": "s21301"
       }
     ],
     "links": {
