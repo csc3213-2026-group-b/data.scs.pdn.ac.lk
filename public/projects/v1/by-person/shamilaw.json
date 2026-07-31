@@ -48,6 +48,22 @@
     "lastUpdatedAt": "2026-07-31"
   },
   {
+    "id": "prj-csc3213-20-group-h",
+    "slug": "csc3213-20-group-h",
+    "title": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "shortDescription": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/csc3213-20-group-h.json",
+    "lastUpdatedAt": "2026-07-31"
+  },
+  {
     "id": "prj-scs-pdn-api",
     "slug": "scs-pdn-api",
     "title": "SCS PDN API",

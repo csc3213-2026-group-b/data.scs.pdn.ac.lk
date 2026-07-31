@@ -168,6 +168,62 @@
     }
   },
   {
+    "id": "prj-csc3213-20-group-h",
+    "slug": "csc3213-20-group-h",
+    "title": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "shortDescription": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "description": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_H",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "thishanjay",
+        "role": "student",
+        "sNumber": "S21401"
+      },
+      {
+        "name": "nimesh-costa",
+        "role": "student",
+        "sNumber": "S21337"
+      },
+      {
+        "name": "HirushiPiyumalee",
+        "role": "student",
+        "sNumber": "S21424"
+      },
+      {
+        "name": "neopasindu",
+        "role": "student",
+        "sNumber": "S21017"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_H"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
     "id": "prj-scs-pdn-api",
     "slug": "scs-pdn-api",
     "title": "SCS PDN API",
