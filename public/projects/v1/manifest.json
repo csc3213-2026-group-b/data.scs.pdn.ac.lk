@@ -32,6 +32,12 @@
       "href": "projects/scs-people-directory.json"
     },
     {
+      "id": "prj-csc3213-20-group-e",
+      "slug": "csc3213-20-group-e",
+      "title": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+      "href": "projects/csc3213-20-group-e.json"
+    },
+    {
       "id": "prj-csc3213-20-group-b",
       "slug": "csc3213-20-group-b",
       "title": "Unified Academic Portfolio & Project Management System",
