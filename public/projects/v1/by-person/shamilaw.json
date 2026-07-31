@@ -99,5 +99,21 @@
     "role": "supervisor",
     "href": "projects/csc3213-20-group-b.json",
     "lastUpdatedAt": "2026-07-31"
+  },
+  {
+    "id": "prj-csc3213-20-group-c",
+    "slug": "csc3213-20-group-c",
+    "title": "VetsForFuture - Integrated Management System (IMS)",
+    "shortDescription": "VetsForFuture - Integrated Management System (IMS)",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/csc3213-20-group-c.json",
+    "lastUpdatedAt": "2026-07-31"
   }
 ]
