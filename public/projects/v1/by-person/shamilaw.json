@@ -1,5 +1,21 @@
 [
   {
+    "id": "prj-csc3213-20-group-a",
+    "slug": "csc3213-20-group-a",
+    "title": "A Financial Reconciliation and Workflow Support System",
+    "shortDescription": "A Financial Reconciliation and Workflow Support System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": [
+      "coursework"
+    ],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "role": "supervisor",
+    "href": "projects/csc3213-20-group-a.json",
+    "lastUpdatedAt": "2026-07-31"
+  },
+  {
     "id": "prj-scs-pdn-api",
     "slug": "scs-pdn-api",
     "title": "SCS PDN API",
