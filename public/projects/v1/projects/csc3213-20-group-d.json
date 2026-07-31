@@ -1,0 +1,56 @@
+{
+  "id": "prj-csc3213-20-group-d",
+  "slug": "csc3213-20-group-d",
+  "title": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+  "shortDescription": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+  "description": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": [
+    "coursework"
+  ],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_D",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "UdayakumaraDMTL",
+      "role": "student",
+      "sNumber": "S21166"
+    },
+    {
+      "name": "Wasana-Karunanayaka",
+      "role": "student",
+      "sNumber": "S21081"
+    },
+    {
+      "name": "lasithaSanuth",
+      "role": "student",
+      "sNumber": "S21389"
+    },
+    {
+      "name": "pamudikaabayarathna",
+      "role": "student",
+      "sNumber": "S21001"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_D"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}
