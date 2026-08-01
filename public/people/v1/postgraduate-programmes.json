@@ -1,0 +1,47 @@
+[
+  {
+    "programme": "POSTGRADUATE_CERTIFICATE",
+    "label": "Postgraduate Certificate",
+    "slqfLevel": "L7"
+  },
+  {
+    "programme": "POSTGRADUATE_DIPLOMA",
+    "label": "Postgraduate Diploma",
+    "slqfLevel": "L8"
+  },
+  {
+    "programme": "MASTERS_COURSEWORK",
+    "label": "Master's Degree (Coursework only)",
+    "slqfLevel": "L9"
+  },
+  {
+    "programme": "MSC",
+    "label": "Master of Science (MSc)",
+    "slqfLevel": "L10"
+  },
+  {
+    "programme": "MPHIL",
+    "label": "Master of Philosophy (MPhil)",
+    "slqfLevel": "L11"
+  },
+  {
+    "programme": "MPHIL_UPGRADE_FROM_MSC",
+    "label": "MPhil (Upgrade from MSc)",
+    "slqfLevel": "L11"
+  },
+  {
+    "programme": "PHD",
+    "label": "Doctor of Philosophy (PhD)",
+    "slqfLevel": "L12"
+  },
+  {
+    "programme": "PHD_UPGRADE_FROM_MSC",
+    "label": "PhD (Upgrade from MSc)",
+    "slqfLevel": "L12"
+  },
+  {
+    "programme": "PHD_UPGRADE_FROM_MPHIL",
+    "label": "PhD (Upgrade from MPhil)",
+    "slqfLevel": "L12"
+  }
+]

@@ -55,10 +55,20 @@ async function makeRoot() {
     'public/people/v1/search.json',
     'public/people/v1/staff/academic.json',
     'public/people/v1/staff/academic-support.json',
-    'public/people/v1/staff/non-academic.json'
+    'public/people/v1/staff/non-academic.json',
+    'public/people/v1/student-placement.json',
+    'public/people/v1/alumni.json'
   ]) {
     await writeJson(root, file, []);
   }
+
+  await writeJson(root, 'public/people/v1/postgraduate-programmes.json', [
+    {
+      programme: 'POSTGRADUATE_CERTIFICATE',
+      label: 'Postgraduate Certificate',
+      slqfLevel: 'L7'
+    }
+  ]);
 
   return root;
 }
