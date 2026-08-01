@@ -1,0 +1,26 @@
+[
+  {
+    "stream": "cs",
+    "label": "Computer Science",
+    "directory": "cs",
+    "publicDirectory": true
+  },
+  {
+    "stream": "ds",
+    "label": "Data Science",
+    "directory": "ds",
+    "publicDirectory": true
+  },
+  {
+    "stream": "stat",
+    "label": "Statistics",
+    "directory": "stat",
+    "publicDirectory": true
+  },
+  {
+    "stream": "sor",
+    "label": "Statistics and Operations Research",
+    "directory": "sor",
+    "publicDirectory": false
+  }
+]

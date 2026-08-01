@@ -57,7 +57,8 @@ async function makeRoot() {
     'public/people/v1/staff/academic-support.json',
     'public/people/v1/staff/non-academic.json',
     'public/people/v1/student-placement.json',
-    'public/people/v1/alumni.json'
+    'public/people/v1/alumni.json',
+    'public/people/v1/student-streams.json'
   ]) {
     await writeJson(root, file, []);
   }
