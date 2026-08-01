@@ -50,6 +50,7 @@ const staffFiles = {
 } as const satisfies Record<Exclude<ProfileKind, 'student'>, string>;
 
 const specialStreams = ['cs', 'ds', 'stat', 'sor'] as const;
+const StudentStreamSchema = z.enum(specialStreams);
 const StudentTrackSchema = z.enum(['GENERAL', 'HONOURS']);
 const StudentLevelSchema = z.enum(['1000', '2000', '3000', '4000']);
 const PostgraduateProgrammeSchema = z.enum([
@@ -90,6 +91,14 @@ const PostgraduateProgrammeDefinitionListSchema = z.array(
     programme: PostgraduateProgrammeSchema,
     label: z.string().trim().min(1),
     slqfLevel: SlqfLevelSchema
+  })
+);
+const StudentStreamDefinitionListSchema = z.array(
+  z.object({
+    stream: StudentStreamSchema,
+    label: z.string().trim().min(1),
+    directory: z.string().trim().min(1).optional(),
+    publicDirectory: z.boolean().default(true)
   })
 );
 
@@ -248,8 +257,14 @@ async function validateTrustedStudentMetadata(
   const placementPath = 'public/people/v1/student-placement.json';
   const alumniPath = 'public/people/v1/alumni.json';
   const programmesPath = 'public/people/v1/postgraduate-programmes.json';
+  const streamsPath = 'public/people/v1/student-streams.json';
 
-  for (const requiredPath of [placementPath, alumniPath, programmesPath]) {
+  for (const requiredPath of [
+    placementPath,
+    alumniPath,
+    programmesPath,
+    streamsPath
+  ]) {
     if (!existsSync(path.join(root, requiredPath))) {
       result.errors.push(`${requiredPath}: missing trusted student metadata`);
     }
@@ -326,6 +341,28 @@ async function validateTrustedStudentMetadata(
           );
         }
         seen.add(programme.programme);
+      }
+    }
+  }
+
+  if (existsSync(path.join(root, streamsPath))) {
+    const parsed = StudentStreamDefinitionListSchema.safeParse(
+      await readJson(root, streamsPath)
+    );
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        const issuePath = issue.path.length ? `[${issue.path.join('.')}]` : '';
+        result.errors.push(`${streamsPath}${issuePath}: ${issue.message}`);
+      }
+    } else {
+      const seen = new Set<string>();
+      for (const [index, stream] of parsed.data.entries()) {
+        if (seen.has(stream.stream)) {
+          result.errors.push(
+            `${streamsPath}[${index}]: duplicate ${stream.stream}`
+          );
+        }
+        seen.add(stream.stream);
       }
     }
   }
