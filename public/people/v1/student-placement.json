@@ -1,5 +1,15 @@
 [
   {
+    "batch": "s20",
+    "studentTrack": "GENERAL",
+    "level": "3000"
+  },
+  {
+    "batch": "s20",
+    "studentTrack": "HONOURS",
+    "level": "4000"
+  },
+  {
     "batch": "s21",
     "studentTrack": "GENERAL",
     "level": "3000"
@@ -7,6 +17,21 @@
   {
     "batch": "s21",
     "studentTrack": "HONOURS",
-    "level": "4000"
+    "level": "3000"
+  },
+  {
+    "batch": "s22",
+    "studentTrack": "GENERAL",
+    "level": "2000"
+  },
+  {
+    "batch": "s23",
+    "studentTrack": "GENERAL",
+    "level": "1000"
+  },
+  {
+    "batch": "s24",
+    "studentTrack": "GENERAL",
+    "level": "1000"
   }
 ]
