@@ -97,6 +97,33 @@ describe('validatePeopleData', () => {
     expect(result.counts.users).toBe(0);
   });
 
+  test('accepts alumni metadata with matching placement rules', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/v1/student-placement.json', [
+      { batch: 's21', studentTrack: 'GENERAL', level: '3000' }
+    ]);
+    await writeJson(root, 'public/people/v1/alumni.json', [
+      { batch: 's21', studentTracks: ['GENERAL'] }
+    ]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toEqual([]);
+  });
+
+  test('rejects alumni metadata without matching placement rules', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/v1/alumni.json', [
+      { batch: 's21', studentTracks: ['GENERAL'] }
+    ]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/v1/alumni.json[0]: missing placement rule for s21:GENERAL'
+    );
+  });
+
   test('accepts a consistent student user and aggregate record', async () => {
     const root = await makeRoot();
     await writeJson(root, 'public/people/v1/users/s21513.json', student);
