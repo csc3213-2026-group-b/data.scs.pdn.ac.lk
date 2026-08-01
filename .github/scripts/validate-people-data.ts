@@ -2,6 +2,7 @@ import {
   AcademicSupportStaffSchema,
   AcademicTeachingStaffSchema,
   NonAcademicStaffSchema,
+  StudentPlacementListSchema,
   StudentSchema
 } from '@csc3213-2026-group-b/academic-domain-schemas';
 import { existsSync } from 'node:fs';
@@ -52,7 +53,6 @@ const staffFiles = {
 const specialStreams = ['cs', 'ds', 'stat', 'sor'] as const;
 const StudentStreamSchema = z.enum(specialStreams);
 const StudentTrackSchema = z.enum(['GENERAL', 'HONOURS']);
-const StudentLevelSchema = z.enum(['1000', '2000', '3000', '4000']);
 const PostgraduateProgrammeSchema = z.enum([
   'POSTGRADUATE_CERTIFICATE',
   'POSTGRADUATE_DIPLOMA',
@@ -65,17 +65,6 @@ const PostgraduateProgrammeSchema = z.enum([
   'PHD_UPGRADE_FROM_MPHIL'
 ]);
 const SlqfLevelSchema = z.enum(['L7', 'L8', 'L9', 'L10', 'L11', 'L12']);
-const StudentPlacementListSchema = z.array(
-  z.object({
-    batch: z
-      .string()
-      .trim()
-      .toLowerCase()
-      .regex(/^s\d{2}$/),
-    studentTrack: StudentTrackSchema,
-    level: StudentLevelSchema
-  })
-);
 const AlumniBatchListSchema = z.array(
   z.object({
     batch: z

@@ -124,6 +124,19 @@ describe('validatePeopleData', () => {
     );
   });
 
+  test('rejects general placement at 4000 level', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/v1/student-placement.json', [
+      { batch: 's21', studentTrack: 'GENERAL', level: '4000' }
+    ]);
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/v1/student-placement.json[0.level]: General students cannot be assigned to 4000 level'
+    );
+  });
+
   test('accepts a consistent student user and aggregate record', async () => {
     const root = await makeRoot();
     await writeJson(root, 'public/people/v1/users/s21513.json', student);
