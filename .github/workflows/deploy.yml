@@ -121,6 +121,9 @@ jobs:
         with:
           ref: main
 
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
       - name: Deploy Cloudflare Worker
         uses: cloudflare/wrangler-action@v4
         with:
