@@ -50,6 +50,48 @@ const staffFiles = {
 } as const satisfies Record<Exclude<ProfileKind, 'student'>, string>;
 
 const specialStreams = ['cs', 'ds', 'stat', 'sor'] as const;
+const StudentTrackSchema = z.enum(['GENERAL', 'HONOURS']);
+const StudentLevelSchema = z.enum(['1000', '2000', '3000', '4000']);
+const PostgraduateProgrammeSchema = z.enum([
+  'POSTGRADUATE_CERTIFICATE',
+  'POSTGRADUATE_DIPLOMA',
+  'MASTERS_COURSEWORK',
+  'MSC',
+  'MPHIL',
+  'MPHIL_UPGRADE_FROM_MSC',
+  'PHD',
+  'PHD_UPGRADE_FROM_MSC',
+  'PHD_UPGRADE_FROM_MPHIL'
+]);
+const SlqfLevelSchema = z.enum(['L7', 'L8', 'L9', 'L10', 'L11', 'L12']);
+const StudentPlacementListSchema = z.array(
+  z.object({
+    batch: z
+      .string()
+      .trim()
+      .toLowerCase()
+      .regex(/^s\d{2}$/),
+    studentTrack: StudentTrackSchema,
+    level: StudentLevelSchema
+  })
+);
+const AlumniBatchListSchema = z.array(
+  z.object({
+    batch: z
+      .string()
+      .trim()
+      .toLowerCase()
+      .regex(/^s\d{2}$/),
+    studentTracks: z.array(StudentTrackSchema).min(1).max(2)
+  })
+);
+const PostgraduateProgrammeDefinitionListSchema = z.array(
+  z.object({
+    programme: PostgraduateProgrammeSchema,
+    label: z.string().trim().min(1),
+    slqfLevel: SlqfLevelSchema
+  })
+);
 
 const schemas = {
   academic: AcademicTeachingStaffSchema,
@@ -197,6 +239,96 @@ function expectArray(
   if (Array.isArray(value)) return value;
   result.errors.push(`${relativePath}: expected a JSON array`);
   return null;
+}
+
+async function validateTrustedStudentMetadata(
+  root: string,
+  result: ValidationResult
+) {
+  const placementPath = 'public/people/v1/student-placement.json';
+  const alumniPath = 'public/people/v1/alumni.json';
+  const programmesPath = 'public/people/v1/postgraduate-programmes.json';
+
+  for (const requiredPath of [placementPath, alumniPath, programmesPath]) {
+    if (!existsSync(path.join(root, requiredPath))) {
+      result.errors.push(`${requiredPath}: missing trusted student metadata`);
+    }
+  }
+
+  if (existsSync(path.join(root, placementPath))) {
+    const parsed = StudentPlacementListSchema.safeParse(
+      await readJson(root, placementPath)
+    );
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        const issuePath = issue.path.length ? `[${issue.path.join('.')}]` : '';
+        result.errors.push(`${placementPath}${issuePath}: ${issue.message}`);
+      }
+    } else {
+      const seen = new Set<string>();
+      for (const [index, placement] of parsed.data.entries()) {
+        const key = `${placement.batch}:${placement.studentTrack}`;
+        if (seen.has(key)) {
+          result.errors.push(`${placementPath}[${index}]: duplicate ${key}`);
+        }
+        seen.add(key);
+      }
+    }
+  }
+
+  if (existsSync(path.join(root, alumniPath))) {
+    const parsed = AlumniBatchListSchema.safeParse(
+      await readJson(root, alumniPath)
+    );
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        const issuePath = issue.path.length ? `[${issue.path.join('.')}]` : '';
+        result.errors.push(`${alumniPath}${issuePath}: ${issue.message}`);
+      }
+    } else {
+      const seenBatches = new Set<string>();
+      for (const [index, alumni] of parsed.data.entries()) {
+        if (seenBatches.has(alumni.batch)) {
+          result.errors.push(
+            `${alumniPath}[${index}]: duplicate ${alumni.batch}`
+          );
+        }
+        seenBatches.add(alumni.batch);
+
+        const seenTracks = new Set<string>();
+        for (const track of alumni.studentTracks) {
+          if (seenTracks.has(track)) {
+            result.errors.push(
+              `${alumniPath}[${index}]: duplicate ${track} track`
+            );
+          }
+          seenTracks.add(track);
+        }
+      }
+    }
+  }
+
+  if (existsSync(path.join(root, programmesPath))) {
+    const parsed = PostgraduateProgrammeDefinitionListSchema.safeParse(
+      await readJson(root, programmesPath)
+    );
+    if (!parsed.success) {
+      for (const issue of parsed.error.issues) {
+        const issuePath = issue.path.length ? `[${issue.path.join('.')}]` : '';
+        result.errors.push(`${programmesPath}${issuePath}: ${issue.message}`);
+      }
+    } else {
+      const seen = new Set<string>();
+      for (const [index, programme] of parsed.data.entries()) {
+        if (seen.has(programme.programme)) {
+          result.errors.push(
+            `${programmesPath}[${index}]: duplicate ${programme.programme}`
+          );
+        }
+        seen.add(programme.programme);
+      }
+    }
+  }
 }
 
 function addExpectedAggregate(
@@ -544,6 +676,7 @@ export async function validatePeopleData(
   await validateStudentAggregates(root, result, users, expected);
   await validateSpecialAggregates(root, result, users);
   await validateSearchIndex(root, result, expectedSearchEntries);
+  await validateTrustedStudentMetadata(root, result);
 
   return result;
 }
