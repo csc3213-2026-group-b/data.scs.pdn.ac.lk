@@ -258,6 +258,7 @@ async function validateTrustedStudentMetadata(
   const alumniPath = 'public/people/v1/alumni.json';
   const programmesPath = 'public/people/v1/postgraduate-programmes.json';
   const streamsPath = 'public/people/v1/student-streams.json';
+  const placementKeys = new Set<string>();
 
   for (const requiredPath of [
     placementPath,
@@ -287,6 +288,7 @@ async function validateTrustedStudentMetadata(
           result.errors.push(`${placementPath}[${index}]: duplicate ${key}`);
         }
         seen.add(key);
+        placementKeys.add(key);
       }
     }
   }
@@ -318,6 +320,11 @@ async function validateTrustedStudentMetadata(
             );
           }
           seenTracks.add(track);
+          if (!placementKeys.has(`${alumni.batch}:${track}`)) {
+            result.errors.push(
+              `${alumniPath}[${index}]: missing placement rule for ${alumni.batch}:${track}`
+            );
+          }
         }
       }
     }
