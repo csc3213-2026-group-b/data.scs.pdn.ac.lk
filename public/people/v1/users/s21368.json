@@ -7,5 +7,10 @@
   "studentType": "UNDERGRADUATE",
   "studentTrack": "GENERAL",
   "level": "3000",
-  "status": "CURRENT"
+  "status": "CURRENT",
+  "socialLinks": {
+    "urls": {
+      "facebook": "https://www.facebook.com/chamod.franando.7"
+    }
+  }
 }
