@@ -33,10 +33,10 @@ async function makeRoot() {
     `data-scs-academic-validation-${crypto.randomUUID()}`
   );
   tempRoots.push(root);
-  await mkdir(path.join(root, 'public/academic/v1/courses'), {
+  await mkdir(path.join(root, 'public/academic/v2/courses'), {
     recursive: true
   });
-  await mkdir(path.join(root, 'public/academic/v1/offerings'), {
+  await mkdir(path.join(root, 'public/academic/v2/offerings'), {
     recursive: true
   });
   return root;
@@ -58,16 +58,16 @@ afterEach(async () => {
 describe('validateAcademicData', () => {
   test('accepts consistent course and offering data', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/academic/v1/courses.json', [course]);
-    await writeJson(root, 'public/academic/v1/offerings.json', [offering]);
+    await writeJson(root, 'public/academic/v2/courses.json', [course]);
+    await writeJson(root, 'public/academic/v2/offerings.json', [offering]);
     await writeJson(
       root,
-      'public/academic/v1/courses/software-engineering-project.json',
+      'public/academic/v2/courses/software-engineering-project.json',
       course
     );
     await writeJson(
       root,
-      'public/academic/v1/offerings/csc3213-2025-2026-sem2.json',
+      'public/academic/v2/offerings/csc3213-2025-2026-sem2.json',
       offering
     );
 
@@ -80,18 +80,18 @@ describe('validateAcademicData', () => {
 
   test('rejects an offering that references a missing course', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/academic/v1/courses.json', []);
-    await writeJson(root, 'public/academic/v1/offerings.json', [offering]);
+    await writeJson(root, 'public/academic/v2/courses.json', []);
+    await writeJson(root, 'public/academic/v2/offerings.json', [offering]);
     await writeJson(
       root,
-      'public/academic/v1/offerings/csc3213-2025-2026-sem2.json',
+      'public/academic/v2/offerings/csc3213-2025-2026-sem2.json',
       offering
     );
 
     const result = await validateAcademicData(root);
 
     expect(result.errors).toContain(
-      'public/academic/v1/offerings.json[0].courseId: missing referenced course'
+      'public/academic/v2/offerings.json[0].courseId: missing referenced course'
     );
   });
 });

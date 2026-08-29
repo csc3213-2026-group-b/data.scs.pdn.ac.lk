@@ -1,0 +1,95 @@
+{
+  "version": "v2",
+  "projects": [
+    {
+      "id": "prj-csc3213-20-group-a",
+      "slug": "csc3213-20-group-a",
+      "title": "A Financial Reconciliation and Workflow Support System",
+      "href": "projects/csc3213-20-group-a.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-g",
+      "slug": "csc3213-20-group-g",
+      "title": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+      "href": "projects/csc3213-20-group-g.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-k",
+      "slug": "csc3213-20-group-k",
+      "title": "AI-Based Career Path Recommendation System",
+      "href": "projects/csc3213-20-group-k.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-d",
+      "slug": "csc3213-20-group-d",
+      "title": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+      "href": "projects/csc3213-20-group-d.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-h",
+      "slug": "csc3213-20-group-h",
+      "title": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+      "href": "projects/csc3213-20-group-h.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-l",
+      "slug": "csc3213-20-group-l",
+      "title": "Development of a Computerized System for the University of Peradeniya Medical Center",
+      "href": "projects/csc3213-20-group-l.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-j",
+      "slug": "csc3213-20-group-j",
+      "title": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+      "href": "projects/csc3213-20-group-j.json"
+    },
+    {
+      "id": "prj-scs-pdn-api",
+      "slug": "scs-pdn-api",
+      "title": "SCS PDN API",
+      "href": "projects/scs-pdn-api.json"
+    },
+    {
+      "id": "prj-scs-pdn-portal",
+      "slug": "scs-pdn-portal",
+      "title": "SCS PDN Portal",
+      "href": "projects/scs-pdn-portal.json"
+    },
+    {
+      "id": "prj-scs-people-directory",
+      "slug": "scs-people-directory",
+      "title": "SCS People Directory",
+      "href": "projects/scs-people-directory.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-i",
+      "slug": "csc3213-20-group-i",
+      "title": "Smart  Digital Fitting Room",
+      "href": "projects/csc3213-20-group-i.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-f",
+      "slug": "csc3213-20-group-f",
+      "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+      "href": "projects/csc3213-20-group-f.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-e",
+      "slug": "csc3213-20-group-e",
+      "title": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+      "href": "projects/csc3213-20-group-e.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-b",
+      "slug": "csc3213-20-group-b",
+      "title": "Unified Academic Portfolio & Project Management System",
+      "href": "projects/csc3213-20-group-b.json"
+    },
+    {
+      "id": "prj-csc3213-20-group-c",
+      "slug": "csc3213-20-group-c",
+      "title": "VetsForFuture - Integrated Management System (IMS)",
+      "href": "projects/csc3213-20-group-c.json"
+    }
+  ]
+}

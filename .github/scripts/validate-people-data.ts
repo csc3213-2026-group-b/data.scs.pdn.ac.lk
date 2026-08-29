@@ -45,12 +45,37 @@ const PeopleSearchIndexSchema = z.array(PeopleSearchEntrySchema);
 type PeopleSearchEntry = z.infer<typeof PeopleSearchEntrySchema>;
 
 const staffFiles = {
-  academic: 'public/people/v1/staff/academic.json',
-  'academic-support': 'public/people/v1/staff/academic-support.json',
-  'non-academic': 'public/people/v1/staff/non-academic.json'
+  academic: 'public/people/v2/staff/academic.json',
+  'academic-support': 'public/people/v2/staff/academic-support.json',
+  'non-academic': 'public/people/v2/staff/non-academic.json'
 } as const satisfies Record<Exclude<ProfileKind, 'student'>, string>;
 
-const specialStreams = ['cs', 'ds', 'stat', 'sor'] as const;
+const specialStreams = [
+  'biomedical-science',
+  'botany',
+  'computer-science',
+  'data-science',
+  'geology',
+  'mathematics',
+  'microbiology',
+  'molecular-biology',
+  'physics',
+  'statistics',
+  'zoology',
+  'applied-science',
+  'statistics-and-operations-research'
+] as const;
+const staffDepartments = [
+  'botany',
+  'chemistry',
+  'environmental-and-industrial-sciences',
+  'geology',
+  'mathematics',
+  'molecular-biology-and-biotechnology',
+  'physics',
+  'statistics-and-computer-science',
+  'zoology'
+] as const;
 const StudentStreamSchema = z.enum(specialStreams);
 const StudentTrackSchema = z.enum(['GENERAL', 'HONOURS']);
 const PostgraduateProgrammeSchema = z.enum([
@@ -149,6 +174,12 @@ function uniqueStrings(values: Array<string | undefined>) {
   ];
 }
 
+function departmentSlug(record: JsonRecord): string | null {
+  const department = record.department;
+  if (typeof department !== 'string' || !department.trim()) return null;
+  return department.trim().toLowerCase().replaceAll('_', '-');
+}
+
 function searchSubtitle(kind: ProfileKind, record: JsonRecord) {
   if (kind === 'academic') return 'Academic Staff';
   if (kind === 'academic-support') return 'Academic Support Staff';
@@ -243,10 +274,10 @@ async function validateTrustedStudentMetadata(
   root: string,
   result: ValidationResult
 ) {
-  const placementPath = 'public/people/v1/student-placement.json';
-  const alumniPath = 'public/people/v1/alumni.json';
-  const programmesPath = 'public/people/v1/postgraduate-programmes.json';
-  const streamsPath = 'public/people/v1/student-streams.json';
+  const placementPath = 'public/people/v2/student-placement.json';
+  const alumniPath = 'public/people/v2/alumni.json';
+  const programmesPath = 'public/people/v2/postgraduate-programmes.json';
+  const streamsPath = 'public/people/v2/student-streams.json';
   const placementKeys = new Set<string>();
 
   for (const requiredPath of [
@@ -382,7 +413,7 @@ async function validateUserFiles(
   expected: Map<string, Map<string, JsonRecord>>,
   expectedSearchEntries: Map<string, PeopleSearchEntry>
 ) {
-  const userFiles = await listJsonFiles(root, 'public/people/v1/users');
+  const userFiles = await listJsonFiles(root, 'public/people/v2/users');
 
   for (const userPath of userFiles) {
     const value = await readJson(root, userPath);
@@ -421,6 +452,15 @@ async function validateUserFiles(
     if (kind === 'academic') {
       result.counts.academic += 1;
       addExpectedAggregate(expected, staffFiles.academic, key, parsed);
+      const department = departmentSlug(parsed);
+      if (department) {
+        addExpectedAggregate(
+          expected,
+          `public/people/v2/staff/${department}/academic.json`,
+          key,
+          parsed
+        );
+      }
     } else if (kind === 'academic-support') {
       result.counts.academicSupport += 1;
       addExpectedAggregate(
@@ -429,9 +469,27 @@ async function validateUserFiles(
         key,
         parsed
       );
+      const department = departmentSlug(parsed);
+      if (department) {
+        addExpectedAggregate(
+          expected,
+          `public/people/v2/staff/${department}/academic-support.json`,
+          key,
+          parsed
+        );
+      }
     } else if (kind === 'non-academic') {
       result.counts.nonAcademic += 1;
       addExpectedAggregate(expected, staffFiles['non-academic'], key, parsed);
+      const department = departmentSlug(parsed);
+      if (department) {
+        addExpectedAggregate(
+          expected,
+          `public/people/v2/staff/${department}/non-academic.json`,
+          key,
+          parsed
+        );
+      }
     } else {
       result.counts.students += 1;
       const batch = studentBatch(parsed);
@@ -440,7 +498,7 @@ async function validateUserFiles(
       } else {
         addExpectedAggregate(
           expected,
-          `public/people/v1/students/${batch}.json`,
+          `public/people/v2/students/${batch}.json`,
           key,
           parsed
         );
@@ -489,11 +547,11 @@ async function validateAggregateFile(
     const userRecord = users.get(key);
     if (!userRecord) {
       result.errors.push(
-        `${itemPath}: missing public/people/v1/users/${key}.json`
+        `${itemPath}: missing public/people/v2/users/${key}.json`
       );
     } else if (!sameRecord(parsed, userRecord)) {
       result.errors.push(
-        `${itemPath}: aggregate record differs from public/people/v1/users/${key}.json`
+        `${itemPath}: aggregate record differs from public/people/v2/users/${key}.json`
       );
     }
   }
@@ -518,7 +576,7 @@ async function validateStudentAggregates(
   users: Map<string, JsonRecord>,
   expected: Map<string, Map<string, JsonRecord>>
 ) {
-  const studentFiles = await listJsonFiles(root, 'public/people/v1/students');
+  const studentFiles = await listJsonFiles(root, 'public/people/v2/students');
   for (const file of studentFiles) {
     const batch = path.basename(file, '.json');
     if (!/^s\d{2}$/.test(batch)) {
@@ -529,7 +587,7 @@ async function validateStudentAggregates(
 
   for (const aggregatePath of expected.keys()) {
     if (
-      aggregatePath.startsWith('public/people/v1/students/') &&
+      aggregatePath.startsWith('public/people/v2/students/') &&
       !studentFiles.includes(aggregatePath)
     ) {
       result.errors.push(`${aggregatePath}: missing aggregate file`);
@@ -543,7 +601,7 @@ async function validateSpecialAggregates(
   users: Map<string, JsonRecord>
 ) {
   for (const stream of specialStreams) {
-    const dir = `public/people/v1/special/${stream}`;
+    const dir = `public/people/v2/special/${stream}`;
     const files = await listJsonFiles(root, dir);
 
     for (const file of files) {
@@ -577,11 +635,11 @@ async function validateSpecialAggregates(
         const userRecord = users.get(key);
         if (!userRecord) {
           result.errors.push(
-            `${itemPath}: missing public/people/v1/users/${key}.json`
+            `${itemPath}: missing public/people/v2/users/${key}.json`
           );
         } else if (!sameRecord(parsed, userRecord)) {
           result.errors.push(
-            `${itemPath}: special record differs from public/people/v1/users/${key}.json`
+            `${itemPath}: special record differs from public/people/v2/users/${key}.json`
           );
         }
       }
@@ -594,7 +652,7 @@ async function validateSearchIndex(
   result: ValidationResult,
   expectedSearchEntries: Map<string, PeopleSearchEntry>
 ) {
-  const searchPath = 'public/people/v1/search.json';
+  const searchPath = 'public/people/v2/search.json';
   const exists = existsSync(path.join(root, searchPath));
 
   if (!exists) {
@@ -625,14 +683,14 @@ async function validateSearchIndex(
     const expected = expectedSearchEntries.get(entry.identity);
     if (!expected) {
       result.errors.push(
-        `${itemPath}: missing public/people/v1/users/${entry.identity}.json`
+        `${itemPath}: missing public/people/v2/users/${entry.identity}.json`
       );
       continue;
     }
 
     if (!sameRecord(entry, expected)) {
       result.errors.push(
-        `${itemPath}: search entry differs from public/people/v1/users/${entry.identity}.json`
+        `${itemPath}: search entry differs from public/people/v2/users/${entry.identity}.json`
       );
     }
   }
@@ -670,10 +728,10 @@ export async function validatePeopleData(
   const expectedSearchEntries = new Map<string, PeopleSearchEntry>();
 
   for (const requiredPath of [
-    'public/people/v1/users',
-    'public/people/v1/staff',
-    'public/people/v1/students',
-    ...specialStreams.map((stream) => `public/people/v1/special/${stream}`)
+    'public/people/v2/users',
+    'public/people/v2/staff',
+    'public/people/v2/students',
+    ...specialStreams.map((stream) => `public/people/v2/special/${stream}`)
   ]) {
     if (!existsSync(path.join(root, requiredPath))) {
       result.errors.push(`${requiredPath}: missing required directory`);
@@ -706,6 +764,32 @@ export async function validatePeopleData(
     users,
     expected
   );
+  for (const department of staffDepartments) {
+    await validateAggregateFile(
+      root,
+      result,
+      `public/people/v2/staff/${department}/academic.json`,
+      'academic',
+      users,
+      expected
+    );
+    await validateAggregateFile(
+      root,
+      result,
+      `public/people/v2/staff/${department}/academic-support.json`,
+      'academic-support',
+      users,
+      expected
+    );
+    await validateAggregateFile(
+      root,
+      result,
+      `public/people/v2/staff/${department}/non-academic.json`,
+      'non-academic',
+      users,
+      expected
+    );
+  }
   await validateStudentAggregates(root, result, users, expected);
   await validateSpecialAggregates(root, result, users);
   await validateSearchIndex(root, result, expectedSearchEntries);

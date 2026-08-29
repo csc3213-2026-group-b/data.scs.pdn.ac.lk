@@ -1,0 +1,852 @@
+[
+  {
+    "id": "prj-csc3213-20-group-a",
+    "slug": "csc3213-20-group-a",
+    "title": "A Financial Reconciliation and Workflow Support System",
+    "shortDescription": "A Financial Reconciliation and Workflow Support System",
+    "description": "A Financial Reconciliation and Workflow Support System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_A",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21324",
+        "role": "student",
+        "username": "s21324"
+      },
+      {
+        "name": "s21468",
+        "role": "student",
+        "username": "s21468"
+      },
+      {
+        "name": "s21347",
+        "role": "student",
+        "username": "s21347"
+      },
+      {
+        "name": "s21348",
+        "role": "student",
+        "username": "s21348"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_A"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-g",
+    "slug": "csc3213-20-group-g",
+    "title": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+    "shortDescription": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+    "description": "A Modern Digital Transformation Suite for the Kandyan Art Association (Kandy Cultural Center)",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_G",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21367",
+        "role": "student",
+        "username": "s21367"
+      },
+      {
+        "name": "s21363",
+        "role": "student",
+        "username": "s21363"
+      },
+      {
+        "name": "s21369",
+        "role": "student",
+        "username": "s21369"
+      },
+      {
+        "name": "s21579",
+        "role": "student",
+        "username": "s21579"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_G"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-k",
+    "slug": "csc3213-20-group-k",
+    "title": "AI-Based Career Path Recommendation System",
+    "shortDescription": "AI-Based Career Path Recommendation System",
+    "description": "AI-Based Career Path Recommendation System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_K",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21387",
+        "role": "student",
+        "username": "s21387"
+      },
+      {
+        "name": "s21449",
+        "role": "student",
+        "username": "s21449"
+      },
+      {
+        "name": "s21357",
+        "role": "student",
+        "username": "s21357"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_K"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-d",
+    "slug": "csc3213-20-group-d",
+    "title": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+    "shortDescription": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+    "description": "Care4U - A Centralized Patient-Centric Healthcare Ecosystem for Sri Lanka",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_D",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21166",
+        "role": "student",
+        "username": "s21166"
+      },
+      {
+        "name": "s21081",
+        "role": "student",
+        "username": "s21081"
+      },
+      {
+        "name": "s21389",
+        "role": "student",
+        "username": "s21389"
+      },
+      {
+        "name": "s21001",
+        "role": "student",
+        "username": "s21001"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_D"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-h",
+    "slug": "csc3213-20-group-h",
+    "title": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "shortDescription": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "description": "CareBridge: An Emergency Response and Secure Appointment Booking Platform for Mental Health Counselling Support.",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_H",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21401",
+        "role": "student",
+        "username": "s21401"
+      },
+      {
+        "name": "s21337",
+        "role": "student",
+        "username": "s21337"
+      },
+      {
+        "name": "s21424",
+        "role": "student",
+        "username": "s21424"
+      },
+      {
+        "name": "s21017",
+        "role": "student",
+        "username": "s21017"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_H"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-l",
+    "slug": "csc3213-20-group-l",
+    "title": "Development of a Computerized System for the University of Peradeniya Medical Center",
+    "shortDescription": "Development of a Computerized System for the University of Peradeniya Medical Center",
+    "description": "Development of a Computerized System for the University of Peradeniya Medical Center",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_L",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21415",
+        "role": "student",
+        "username": "s21415"
+      },
+      {
+        "name": "s21433",
+        "role": "student",
+        "username": "s21433"
+      },
+      {
+        "name": "s21470",
+        "role": "student",
+        "username": "s21470"
+      },
+      {
+        "name": "s21537",
+        "role": "student",
+        "username": "s21537"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_L"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-j",
+    "slug": "csc3213-20-group-j",
+    "title": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+    "shortDescription": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+    "description": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_J",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21155",
+        "role": "student",
+        "username": "s21155"
+      },
+      {
+        "name": "s21409",
+        "role": "student",
+        "username": "s21409"
+      },
+      {
+        "name": "s21500",
+        "role": "student",
+        "username": "s21500"
+      },
+      {
+        "name": "s21512",
+        "role": "student",
+        "username": "s21512"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_J"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-scs-pdn-api",
+    "slug": "scs-pdn-api",
+    "title": "SCS PDN API",
+    "shortDescription": "Backend API for SCS PDN authentication, permissions, profile workflows, proxy access, and project submissions.",
+    "description": "The SCS PDN API provides the protected backend for portal sign-in, session verification, role and permission checks, proxy configuration access, public profile submissions, and public project registry PR automation integration.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-system", "api"],
+    "tags": [
+      "api",
+      "authentication",
+      "permissions",
+      "Cloudflare Workers",
+      "Hono"
+    ],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Hashni Kavindhya",
+        "role": "contributor",
+        "username": "s21084",
+        "email": "s21084@sci.pdn.ac.lk",
+        "sNumber": "S21084"
+      },
+      {
+        "name": "Janani Thathsara",
+        "role": "contributor",
+        "username": "s21110",
+        "email": "s21110@sci.pdn.ac.lk",
+        "sNumber": "S21110"
+      },
+      {
+        "name": "Chamod Nishantha",
+        "role": "contributor",
+        "username": "s21368",
+        "email": "s21368@sci.pdn.ac.lk",
+        "sNumber": "S21368"
+      },
+      {
+        "name": "Sivothayan Sivasiva",
+        "role": "maintainer",
+        "username": "s21513",
+        "email": "s21513@sci.pdn.ac.lk",
+        "sNumber": "S21513"
+      },
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b/api.scs.pdn.ac.lk",
+      "website": "https://api.scs-pdn.space",
+      "documentation": "https://github.com/csc3213-2026-group-b/api.scs.pdn.ac.lk/blob/main/docs/api-reference.md"
+    },
+    "source": {
+      "kind": "GITHUB_REPO",
+      "repositoryName": "api.scs.pdn.ac.lk",
+      "repositoryOwner": "csc3213-2026-group-b"
+    },
+    "media": {
+      "icon": "ServerCog"
+    },
+    "dates": {
+      "startedAt": "2026-01-29",
+      "lastUpdatedAt": "2026-07-30"
+    }
+  },
+  {
+    "id": "prj-scs-pdn-portal",
+    "slug": "scs-pdn-portal",
+    "title": "SCS PDN Portal",
+    "shortDescription": "Authenticated portal for SCS PDN accounts, profiles, proxy settings, admin tools, and project registry submissions.",
+    "description": "The SCS PDN Portal provides the authenticated frontend for account access, public profile management, proxy configuration, administrative workflows, and GitHub-backed public project registry updates for the Department of Statistics & Computer Science.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-system", "portal"],
+    "tags": [
+      "portal",
+      "authentication",
+      "admin tools",
+      "project registry",
+      "Next.js"
+    ],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Hashni Kavindhya",
+        "role": "contributor",
+        "username": "s21084",
+        "email": "s21084@sci.pdn.ac.lk",
+        "sNumber": "S21084"
+      },
+      {
+        "name": "Janani Thathsara",
+        "role": "contributor",
+        "username": "s21110",
+        "email": "s21110@sci.pdn.ac.lk",
+        "sNumber": "S21110"
+      },
+      {
+        "name": "Chamod Nishantha",
+        "role": "contributor",
+        "username": "s21368",
+        "email": "s21368@sci.pdn.ac.lk",
+        "sNumber": "S21368"
+      },
+      {
+        "name": "Sivothayan Sivasiva",
+        "role": "maintainer",
+        "username": "s21513",
+        "email": "s21513@sci.pdn.ac.lk",
+        "sNumber": "S21513"
+      },
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b/portal.scs.pdn.ac.lk",
+      "website": "https://portal.scs-pdn.space",
+      "documentation": "https://github.com/csc3213-2026-group-b/portal.scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "GITHUB_REPO",
+      "repositoryName": "portal.scs.pdn.ac.lk",
+      "repositoryOwner": "csc3213-2026-group-b"
+    },
+    "media": {
+      "icon": "LayoutDashboard"
+    },
+    "dates": {
+      "startedAt": "2026-01-29",
+      "lastUpdatedAt": "2026-07-30"
+    }
+  },
+  {
+    "id": "prj-scs-people-directory",
+    "slug": "scs-people-directory",
+    "title": "SCS People Directory",
+    "shortDescription": "People directory for students, alumni, and staff of the Department of Statistics & Computer Science.",
+    "description": "Browse public profiles for students, alumni, academic staff, academic support staff, and non-academic staff of the Department of Statistics & Computer Science, University of Peradeniya.",
+    "projectType": "DEPARTMENT_SYSTEM",
+    "status": "ACTIVE",
+    "categories": ["department-system", "people-directory"],
+    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
+    "academicYear": "2025/2026",
+    "people": [
+      {
+        "name": "Hashni Kavindhya",
+        "role": "contributor",
+        "username": "s21084",
+        "email": "s21084@sci.pdn.ac.lk",
+        "sNumber": "S21084"
+      },
+      {
+        "name": "Janani Thathsara",
+        "role": "contributor",
+        "username": "s21110",
+        "email": "s21110@sci.pdn.ac.lk",
+        "sNumber": "S21110"
+      },
+      {
+        "name": "Chamod Nishantha",
+        "role": "contributor",
+        "username": "s21368",
+        "email": "s21368@sci.pdn.ac.lk",
+        "sNumber": "S21368"
+      },
+      {
+        "name": "Sivothayan Sivasiva",
+        "role": "maintainer",
+        "username": "s21513",
+        "email": "s21513@sci.pdn.ac.lk",
+        "sNumber": "S21513"
+      },
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/csc3213-2026-group-b/people.scs.pdn.ac.lk",
+      "website": "https://people.scs-pdn.space",
+      "documentation": "https://github.com/csc3213-2026-group-b/people.scs.pdn.ac.lk"
+    },
+    "source": {
+      "kind": "GITHUB_REPO",
+      "repositoryName": "people.scs.pdn.ac.lk",
+      "repositoryOwner": "csc3213-2026-group-b"
+    },
+    "media": {
+      "icon": "UsersRound"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-30"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-i",
+    "slug": "csc3213-20-group-i",
+    "title": "Smart  Digital Fitting Room",
+    "shortDescription": "Smart  Digital Fitting Room",
+    "description": "Smart  Digital Fitting Room",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_I",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21063",
+        "role": "student",
+        "username": "s21063"
+      },
+      {
+        "name": "s21315",
+        "role": "student",
+        "username": "s21315"
+      },
+      {
+        "name": "s21490",
+        "role": "student",
+        "username": "s21490"
+      },
+      {
+        "name": "s21501",
+        "role": "student",
+        "username": "s21501"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_I"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-f",
+    "slug": "csc3213-20-group-f",
+    "title": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+    "shortDescription": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+    "description": "Smart Tuition LMS: A learning platform with tracking student attendance, payment history and messaging notification system",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_F",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21372",
+        "role": "student",
+        "username": "s21372"
+      },
+      {
+        "name": "s21060",
+        "role": "student",
+        "username": "s21060"
+      },
+      {
+        "name": "s21486",
+        "role": "student",
+        "username": "s21486"
+      },
+      {
+        "name": "s21558",
+        "role": "student",
+        "username": "s21558"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_F"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-e",
+    "slug": "csc3213-20-group-e",
+    "title": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+    "shortDescription": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+    "description": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_E",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21461",
+        "role": "student",
+        "username": "s21461"
+      },
+      {
+        "name": "s21516",
+        "role": "student",
+        "username": "s21516"
+      },
+      {
+        "name": "s21421",
+        "role": "student",
+        "username": "s21421"
+      },
+      {
+        "name": "s21439",
+        "role": "student",
+        "username": "s21439"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_E"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-b",
+    "slug": "csc3213-20-group-b",
+    "title": "Unified Academic Portfolio & Project Management System",
+    "shortDescription": "Unified Academic Portfolio & Project Management System",
+    "description": "Unified Academic Portfolio & Project Management System",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_B",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "Sivothayan Sivasiva",
+        "role": "student",
+        "username": "s21513",
+        "email": "s21513@sci.pdn.ac.lk",
+        "sNumber": "S21513"
+      },
+      {
+        "name": "s21084",
+        "role": "student",
+        "username": "s21084"
+      },
+      {
+        "name": "s21110",
+        "role": "student",
+        "username": "s21110"
+      },
+      {
+        "name": "M.C.N. FERNANDO",
+        "role": "student",
+        "username": "s21368",
+        "email": "s21368@sci.pdn.ac.lk",
+        "sNumber": "S21368"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_B"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  },
+  {
+    "id": "prj-csc3213-20-group-c",
+    "slug": "csc3213-20-group-c",
+    "title": "VetsForFuture - Integrated Management System (IMS)",
+    "shortDescription": "VetsForFuture - Integrated Management System (IMS)",
+    "description": "VetsForFuture - Integrated Management System (IMS)",
+    "projectType": "OTHER",
+    "status": "PLANNED",
+    "categories": ["coursework"],
+    "tags": [],
+    "academicYear": "2025/2026",
+    "batch": "2021",
+    "groupNumber": "CSC3213_20_Group_C",
+    "people": [
+      {
+        "name": "shamilaw",
+        "role": "supervisor",
+        "username": "shamilaw"
+      },
+      {
+        "name": "s21145",
+        "role": "student",
+        "username": "s21145"
+      },
+      {
+        "name": "s21029",
+        "role": "student",
+        "username": "s21029"
+      },
+      {
+        "name": "s21301",
+        "role": "student",
+        "username": "s21301"
+      },
+      {
+        "name": "s21444",
+        "role": "student",
+        "username": "s21444"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_C"
+    },
+    "source": {
+      "kind": "MANUAL",
+      "curator": "s21513@sci.pdn.ac.lk"
+    },
+    "media": {
+      "icon": "FolderKanban"
+    },
+    "dates": {
+      "lastUpdatedAt": "2026-07-31"
+    }
+  }
+]

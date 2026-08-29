@@ -1,0 +1,49 @@
+{
+  "id": "prj-csc3213-20-group-k",
+  "slug": "csc3213-20-group-k",
+  "title": "AI-Based Career Path Recommendation System",
+  "shortDescription": "AI-Based Career Path Recommendation System",
+  "description": "AI-Based Career Path Recommendation System",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": ["coursework"],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_K",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "s21387",
+      "role": "student",
+      "username": "s21387"
+    },
+    {
+      "name": "s21449",
+      "role": "student",
+      "username": "s21449"
+    },
+    {
+      "name": "s21357",
+      "role": "student",
+      "username": "s21357"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_K"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

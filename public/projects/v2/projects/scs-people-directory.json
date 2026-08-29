@@ -1,0 +1,63 @@
+{
+  "id": "prj-scs-people-directory",
+  "slug": "scs-people-directory",
+  "title": "SCS People Directory",
+  "shortDescription": "People directory for students, alumni, and staff of the Department of Statistics & Computer Science.",
+  "description": "Browse public profiles for students, alumni, academic staff, academic support staff, and non-academic staff of the Department of Statistics & Computer Science, University of Peradeniya.",
+  "projectType": "DEPARTMENT_SYSTEM",
+  "status": "ACTIVE",
+  "categories": ["department-system", "people-directory"],
+  "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
+  "academicYear": "2025/2026",
+  "people": [
+    {
+      "name": "Hashni Kavindhya",
+      "role": "contributor",
+      "username": "s21084",
+      "email": "s21084@sci.pdn.ac.lk",
+      "sNumber": "S21084"
+    },
+    {
+      "name": "Janani Thathsara",
+      "role": "contributor",
+      "username": "s21110",
+      "email": "s21110@sci.pdn.ac.lk",
+      "sNumber": "S21110"
+    },
+    {
+      "name": "Chamod Nishantha",
+      "role": "contributor",
+      "username": "s21368",
+      "email": "s21368@sci.pdn.ac.lk",
+      "sNumber": "S21368"
+    },
+    {
+      "name": "Sivothayan Sivasiva",
+      "role": "maintainer",
+      "username": "s21513",
+      "email": "s21513@sci.pdn.ac.lk",
+      "sNumber": "S21513"
+    },
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/csc3213-2026-group-b/people.scs.pdn.ac.lk",
+    "website": "https://people.scs-pdn.space",
+    "documentation": "https://github.com/csc3213-2026-group-b/people.scs.pdn.ac.lk"
+  },
+  "source": {
+    "kind": "GITHUB_REPO",
+    "repositoryName": "people.scs.pdn.ac.lk",
+    "repositoryOwner": "csc3213-2026-group-b"
+  },
+  "media": {
+    "icon": "UsersRound"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-30"
+  }
+}

@@ -25,9 +25,9 @@ if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
   throw new Error('Usage: bun .github/scripts/reconcile-project-pr.ts <slug>');
 }
 
-const projectPath = `public/projects/v1/projects/${slug}.json`;
-const aggregatePath = 'public/projects/v1/projects.json';
-const manifestPath = 'public/projects/v1/manifest.json';
+const projectPath = `public/projects/v2/projects/${slug}.json`;
+const aggregatePath = 'public/projects/v2/projects.json';
+const manifestPath = 'public/projects/v2/manifest.json';
 
 async function readJson(path: string): Promise<unknown> {
   return JSON.parse(await readFile(path, 'utf8')) as unknown;

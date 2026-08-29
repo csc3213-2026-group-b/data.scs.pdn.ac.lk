@@ -1,0 +1,54 @@
+{
+  "id": "prj-csc3213-20-group-i",
+  "slug": "csc3213-20-group-i",
+  "title": "Smart  Digital Fitting Room",
+  "shortDescription": "Smart  Digital Fitting Room",
+  "description": "Smart  Digital Fitting Room",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": ["coursework"],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_I",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "s21063",
+      "role": "student",
+      "username": "s21063"
+    },
+    {
+      "name": "s21315",
+      "role": "student",
+      "username": "s21315"
+    },
+    {
+      "name": "s21490",
+      "role": "student",
+      "username": "s21490"
+    },
+    {
+      "name": "s21501",
+      "role": "student",
+      "username": "s21501"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_I"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

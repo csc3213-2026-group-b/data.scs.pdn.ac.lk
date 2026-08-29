@@ -1,0 +1,54 @@
+{
+  "id": "prj-csc3213-20-group-j",
+  "slug": "csc3213-20-group-j",
+  "title": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+  "shortDescription": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+  "description": "E-Commerce Web Application with business analysis system for iCrowd Mobile Accessories",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": ["coursework"],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_J",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "s21155",
+      "role": "student",
+      "username": "s21155"
+    },
+    {
+      "name": "s21409",
+      "role": "student",
+      "username": "s21409"
+    },
+    {
+      "name": "s21500",
+      "role": "student",
+      "username": "s21500"
+    },
+    {
+      "name": "s21512",
+      "role": "student",
+      "username": "s21512"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_J"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

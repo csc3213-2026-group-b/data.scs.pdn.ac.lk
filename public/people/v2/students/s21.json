@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Mr",
+    "fullName": "Sivothayan Sivasiva",
+    "email": "s21513@sci.pdn.ac.lk",
+    "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
+    "registrationNo": "S21513",
+    "studentType": "UNDERGRADUATE",
+    "studentTrack": "HONOURS",
+    "level": "3000",
+    "status": "CURRENT",
+    "researchInterests": [
+      "AI/ ML",
+      "Agentic AI",
+      "Computer Networks",
+      "Quantum Computing"
+    ],
+    "socialLinks": {
+      "urls": {
+        "linkedin": "https://www.linkedin.com/in/sivothajan",
+        "github": "https://github.com/sivothajan",
+        "x": "https://x.com/sivothajan",
+        "facebook": "https://www.facebook.com/sivothajan",
+        "instagram": "https://www.instagram.com/sivothajan"
+      }
+    }
+  },
+  {
+    "title": "Mr",
+    "fullName": "M.C.N. FERNANDO",
+    "email": "s21368@sci.pdn.ac.lk",
+    "mobilePhone": "0785121174",
+    "registrationNo": "S21368",
+    "studentType": "UNDERGRADUATE",
+    "studentTrack": "GENERAL",
+    "level": "3000",
+    "status": "CURRENT",
+    "socialLinks": {
+      "urls": {
+        "facebook": "https://www.facebook.com/chamod.franando.7"
+      }
+    }
+  }
+]

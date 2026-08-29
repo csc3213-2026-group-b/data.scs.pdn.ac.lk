@@ -1,0 +1,54 @@
+{
+  "id": "prj-csc3213-20-group-e",
+  "slug": "csc3213-20-group-e",
+  "title": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+  "shortDescription": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+  "description": "Thirasara Property Management System: An Automated Sales Solution with Geospatial Discovery and Buyer-Advisory Tools",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": ["coursework"],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_E",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "s21461",
+      "role": "student",
+      "username": "s21461"
+    },
+    {
+      "name": "s21516",
+      "role": "student",
+      "username": "s21516"
+    },
+    {
+      "name": "s21421",
+      "role": "student",
+      "username": "s21421"
+    },
+    {
+      "name": "s21439",
+      "role": "student",
+      "username": "s21439"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_E"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

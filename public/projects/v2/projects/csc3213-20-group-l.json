@@ -1,0 +1,54 @@
+{
+  "id": "prj-csc3213-20-group-l",
+  "slug": "csc3213-20-group-l",
+  "title": "Development of a Computerized System for the University of Peradeniya Medical Center",
+  "shortDescription": "Development of a Computerized System for the University of Peradeniya Medical Center",
+  "description": "Development of a Computerized System for the University of Peradeniya Medical Center",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": ["coursework"],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_L",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "s21415",
+      "role": "student",
+      "username": "s21415"
+    },
+    {
+      "name": "s21433",
+      "role": "student",
+      "username": "s21433"
+    },
+    {
+      "name": "s21470",
+      "role": "student",
+      "username": "s21470"
+    },
+    {
+      "name": "s21537",
+      "role": "student",
+      "username": "s21537"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_L"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

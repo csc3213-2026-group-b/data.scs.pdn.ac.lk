@@ -68,8 +68,8 @@ export async function loadAcademicRegistry(
   root = process.cwd(),
   result?: Pick<ValidationResult, 'errors'>
 ): Promise<AcademicRegistry> {
-  const coursesPath = 'public/academic/v1/courses.json';
-  const offeringsPath = 'public/academic/v1/offerings.json';
+  const coursesPath = 'public/academic/v2/courses.json';
+  const offeringsPath = 'public/academic/v2/offerings.json';
   const coursesValue = existsSync(path.join(root, coursesPath))
     ? await readJson(root, coursesPath)
     : [];
@@ -124,17 +124,17 @@ export async function validateAcademicData(
   };
 
   for (const requiredPath of [
-    'public/academic/v1',
-    'public/academic/v1/courses',
-    'public/academic/v1/offerings'
+    'public/academic/v2',
+    'public/academic/v2/courses',
+    'public/academic/v2/offerings'
   ]) {
     if (!existsSync(path.join(root, requiredPath))) {
       result.errors.push(`${requiredPath}: missing required directory`);
     }
   }
 
-  const coursesPath = 'public/academic/v1/courses.json';
-  const offeringsPath = 'public/academic/v1/offerings.json';
+  const coursesPath = 'public/academic/v2/courses.json';
+  const offeringsPath = 'public/academic/v2/offerings.json';
   const coursesValue = existsSync(path.join(root, coursesPath))
     ? await readJson(root, coursesPath)
     : [];
@@ -214,7 +214,7 @@ export async function validateAcademicData(
     result.counts.offerings += 1;
   }
 
-  const courseFiles = await listJsonFiles(root, 'public/academic/v1/courses');
+  const courseFiles = await listJsonFiles(root, 'public/academic/v2/courses');
   const seenCourseFiles = new Set<string>();
   for (const coursePath of courseFiles) {
     const value = await readJson(root, coursePath);
@@ -222,7 +222,7 @@ export async function validateAcademicData(
     if (!course) continue;
 
     seenCourseFiles.add(course.id);
-    const expectedPath = `public/academic/v1/courses/${course.id}.json`;
+    const expectedPath = `public/academic/v2/courses/${course.id}.json`;
     if (coursePath !== expectedPath) {
       result.errors.push(
         `${coursePath}: filename does not match course id "${course.id}"`
@@ -240,14 +240,14 @@ export async function validateAcademicData(
   for (const courseId of courses.keys()) {
     if (!seenCourseFiles.has(courseId)) {
       result.errors.push(
-        `public/academic/v1/courses/${courseId}.json: missing course file`
+        `public/academic/v2/courses/${courseId}.json: missing course file`
       );
     }
   }
 
   const offeringFiles = await listJsonFiles(
     root,
-    'public/academic/v1/offerings'
+    'public/academic/v2/offerings'
   );
   const seenOfferingFiles = new Set<string>();
   for (const offeringPath of offeringFiles) {
@@ -261,7 +261,7 @@ export async function validateAcademicData(
     if (!offering) continue;
 
     seenOfferingFiles.add(offering.id);
-    const expectedPath = `public/academic/v1/offerings/${offering.id}.json`;
+    const expectedPath = `public/academic/v2/offerings/${offering.id}.json`;
     if (offeringPath !== expectedPath) {
       result.errors.push(
         `${offeringPath}: filename does not match offering id "${offering.id}"`
@@ -279,7 +279,7 @@ export async function validateAcademicData(
   for (const offeringId of offerings.keys()) {
     if (!seenOfferingFiles.has(offeringId)) {
       result.errors.push(
-        `public/academic/v1/offerings/${offeringId}.json: missing offering file`
+        `public/academic/v2/offerings/${offeringId}.json: missing offering file`
       );
     }
   }

@@ -1,0 +1,104 @@
+{
+  "version": "v2",
+  "batches": [
+    {
+      "id": "s21",
+      "displayName": "S21",
+      "defaultCategory": "CURRENT",
+      "intakeYear": 2021
+    }
+  ],
+  "programmes": [
+    {
+      "slug": "biomedical-science",
+      "directory": "biomedical-science",
+      "name": "Biomedical Science",
+      "icon": "microscope",
+      "batches": []
+    },
+    {
+      "slug": "botany",
+      "directory": "botany",
+      "name": "Botany",
+      "icon": "leaf",
+      "batches": []
+    },
+    {
+      "slug": "computer-science",
+      "directory": "computer-science",
+      "name": "Computer Science",
+      "icon": "computer",
+      "batches": ["s21"]
+    },
+    {
+      "slug": "data-science",
+      "directory": "data-science",
+      "name": "Data Science",
+      "icon": "data",
+      "batches": ["s21"]
+    },
+    {
+      "slug": "geology",
+      "directory": "geology",
+      "name": "Geology",
+      "icon": "mountain",
+      "batches": []
+    },
+    {
+      "slug": "mathematics",
+      "directory": "mathematics",
+      "name": "Mathematics",
+      "icon": "sigma",
+      "batches": []
+    },
+    {
+      "slug": "microbiology",
+      "directory": "microbiology",
+      "name": "Microbiology",
+      "icon": "microscope",
+      "batches": []
+    },
+    {
+      "slug": "molecular-biology",
+      "directory": "molecular-biology",
+      "name": "Molecular Biology and Biotechnology",
+      "icon": "dna",
+      "batches": []
+    },
+    {
+      "slug": "physics",
+      "directory": "physics",
+      "name": "Physics",
+      "icon": "atom",
+      "batches": []
+    },
+    {
+      "slug": "statistics",
+      "directory": "statistics",
+      "name": "Statistics",
+      "icon": "statistics",
+      "batches": ["s21"]
+    },
+    {
+      "slug": "zoology",
+      "directory": "zoology",
+      "name": "Zoology",
+      "icon": "paw-print",
+      "batches": []
+    },
+    {
+      "slug": "applied-science",
+      "directory": "applied-science",
+      "name": "Applied Science",
+      "icon": "flask",
+      "batches": []
+    },
+    {
+      "slug": "statistics-and-operations-research",
+      "directory": "statistics-and-operations-research",
+      "name": "Statistics and Operations Research",
+      "icon": "chart",
+      "batches": ["s21"]
+    }
+  ]
+}

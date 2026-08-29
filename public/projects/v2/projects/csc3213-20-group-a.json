@@ -1,0 +1,54 @@
+{
+  "id": "prj-csc3213-20-group-a",
+  "slug": "csc3213-20-group-a",
+  "title": "A Financial Reconciliation and Workflow Support System",
+  "shortDescription": "A Financial Reconciliation and Workflow Support System",
+  "description": "A Financial Reconciliation and Workflow Support System",
+  "projectType": "OTHER",
+  "status": "PLANNED",
+  "categories": ["coursework"],
+  "tags": [],
+  "academicYear": "2025/2026",
+  "batch": "2021",
+  "groupNumber": "CSC3213_20_Group_A",
+  "people": [
+    {
+      "name": "shamilaw",
+      "role": "supervisor",
+      "username": "shamilaw"
+    },
+    {
+      "name": "s21324",
+      "role": "student",
+      "username": "s21324"
+    },
+    {
+      "name": "s21468",
+      "role": "student",
+      "username": "s21468"
+    },
+    {
+      "name": "s21347",
+      "role": "student",
+      "username": "s21347"
+    },
+    {
+      "name": "s21348",
+      "role": "student",
+      "username": "s21348"
+    }
+  ],
+  "links": {
+    "repository": "https://github.com/shamilaw-sci/CSC3213_20_Group_A"
+  },
+  "source": {
+    "kind": "MANUAL",
+    "curator": "s21513@sci.pdn.ac.lk"
+  },
+  "media": {
+    "icon": "FolderKanban"
+  },
+  "dates": {
+    "lastUpdatedAt": "2026-07-31"
+  }
+}

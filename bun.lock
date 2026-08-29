@@ -6,7 +6,7 @@
       "name": "data.scs.pdn.ac.lk",
       "devDependencies": {
         "@cloudflare/workers-types": "^4.20260702.1",
-        "@csc3213-2026-group-b/academic-domain-schemas": "5.0.0",
+        "@csc3213-2026-group-b/academic-domain-schemas": "5.1.0",
         "@types/bun": "^1.4.0",
         "husky": "^9.1.7",
         "lint-staged": "^17.3.0",
@@ -34,7 +34,7 @@
 
     "@cloudflare/workers-types": ["@cloudflare/workers-types@4.20260702.1", "", {}, "sha512-mOhf5TUEB1m2vPrxtqoIGfz0fUC9xyxRDx5gWHy5s+OCo6dcV+g7wI1R7gYCMFohhqF/2y2xeKVwMwCJjfn/WA=="],
 
-    "@csc3213-2026-group-b/academic-domain-schemas": ["@csc3213-2026-group-b/academic-domain-schemas@5.0.0", "", { "dependencies": { "zod": "^4.4.3" } }, "sha512-36Gw4S6u1ZtkDkYufZ9Y+SSXM7h5uHSeEnEvORUbJXsDeOYK+qiBCTZd9nttvzUbMHgql55gOUeo0m3HqBsA6w=="],
+    "@csc3213-2026-group-b/academic-domain-schemas": ["@csc3213-2026-group-b/academic-domain-schemas@5.1.0", "", { "dependencies": { "zod": "^4.4.3" } }, "sha512-6YgRvyri8+p10kBwnW8dmY+z4qvN1DR0jt+fE7ohm1i+8pAJTLup4sqXhkDeGK+RfpTMeDPs+7UYHr1gliQR8g=="],
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 

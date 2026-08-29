@@ -193,17 +193,17 @@ export async function validateProjectsData(
   };
 
   for (const requiredPath of [
-    'public/projects/v1',
-    'public/projects/v1/projects',
-    'public/projects/v1/by-person'
+    'public/projects/v2',
+    'public/projects/v2/projects',
+    'public/projects/v2/by-person'
   ]) {
     if (!existsSync(path.join(root, requiredPath))) {
       result.errors.push(`${requiredPath}: missing required directory`);
     }
   }
 
-  const aggregatePath = 'public/projects/v1/projects.json';
-  const manifestPath = 'public/projects/v1/manifest.json';
+  const aggregatePath = 'public/projects/v2/projects.json';
+  const manifestPath = 'public/projects/v2/manifest.json';
   const academicRegistry = await loadAcademicRegistry(root, result);
   const aggregateValue = existsSync(path.join(root, aggregatePath))
     ? await readJson(root, aggregatePath)
@@ -251,14 +251,14 @@ export async function validateProjectsData(
     result.counts.projects += 1;
   }
 
-  const projectFiles = await listJsonFiles(root, 'public/projects/v1/projects');
+  const projectFiles = await listJsonFiles(root, 'public/projects/v2/projects');
   const seenProjectFiles = new Set<string>();
   for (const projectPath of projectFiles) {
     const value = await readJson(root, projectPath);
     const project = validateProject(result, projectPath, value);
     if (!project) continue;
 
-    const expectedPath = `public/projects/v1/projects/${project.slug}.json`;
+    const expectedPath = `public/projects/v2/projects/${project.slug}.json`;
     seenProjectFiles.add(project.slug);
     if (projectPath !== expectedPath) {
       result.errors.push(
@@ -277,7 +277,7 @@ export async function validateProjectsData(
   for (const slug of aggregateProjects.keys()) {
     if (!seenProjectFiles.has(slug)) {
       result.errors.push(
-        `public/projects/v1/projects/${slug}.json: missing project file`
+        `public/projects/v2/projects/${slug}.json: missing project file`
       );
     }
   }
@@ -290,7 +290,7 @@ export async function validateProjectsData(
   );
   const byPersonFiles = await listJsonFiles(
     root,
-    'public/projects/v1/by-person'
+    'public/projects/v2/by-person'
   );
   const seenByPersonUsernames = new Set<string>();
 
@@ -329,7 +329,7 @@ export async function validateProjectsData(
   for (const username of expectedByPerson.keys()) {
     if (!seenByPersonUsernames.has(username)) {
       result.errors.push(
-        `public/projects/v1/by-person/${username}.json: missing project people index`
+        `public/projects/v2/by-person/${username}.json: missing project people index`
       );
     }
   }

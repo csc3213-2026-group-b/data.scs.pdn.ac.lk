@@ -40,30 +40,39 @@ async function makeRoot() {
   tempRoots.push(root);
 
   for (const dir of [
-    'public/people/v1/users',
-    'public/people/v1/staff',
-    'public/people/v1/students',
-    'public/people/v1/special/cs',
-    'public/people/v1/special/ds',
-    'public/people/v1/special/stat',
-    'public/people/v1/special/sor'
+    'public/people/v2/users',
+    'public/people/v2/staff',
+    'public/people/v2/students',
+    'public/people/v2/special/biomedical-science',
+    'public/people/v2/special/botany',
+    'public/people/v2/special/computer-science',
+    'public/people/v2/special/data-science',
+    'public/people/v2/special/geology',
+    'public/people/v2/special/mathematics',
+    'public/people/v2/special/microbiology',
+    'public/people/v2/special/molecular-biology',
+    'public/people/v2/special/physics',
+    'public/people/v2/special/statistics',
+    'public/people/v2/special/zoology',
+    'public/people/v2/special/applied-science',
+    'public/people/v2/special/statistics-and-operations-research'
   ]) {
     await mkdir(path.join(root, dir), { recursive: true });
   }
 
   for (const file of [
-    'public/people/v1/search.json',
-    'public/people/v1/staff/academic.json',
-    'public/people/v1/staff/academic-support.json',
-    'public/people/v1/staff/non-academic.json',
-    'public/people/v1/student-placement.json',
-    'public/people/v1/alumni.json',
-    'public/people/v1/student-streams.json'
+    'public/people/v2/search.json',
+    'public/people/v2/staff/academic.json',
+    'public/people/v2/staff/academic-support.json',
+    'public/people/v2/staff/non-academic.json',
+    'public/people/v2/student-placement.json',
+    'public/people/v2/alumni.json',
+    'public/people/v2/student-streams.json'
   ]) {
     await writeJson(root, file, []);
   }
 
-  await writeJson(root, 'public/people/v1/postgraduate-programmes.json', [
+  await writeJson(root, 'public/people/v2/postgraduate-programmes.json', [
     {
       programme: 'POSTGRADUATE_CERTIFICATE',
       label: 'Postgraduate Certificate',
@@ -99,10 +108,10 @@ describe('validatePeopleData', () => {
 
   test('accepts alumni metadata with matching placement rules', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/student-placement.json', [
+    await writeJson(root, 'public/people/v2/student-placement.json', [
       { batch: 's21', studentTrack: 'GENERAL', level: '3000' }
     ]);
-    await writeJson(root, 'public/people/v1/alumni.json', [
+    await writeJson(root, 'public/people/v2/alumni.json', [
       { batch: 's21', studentTracks: ['GENERAL'] }
     ]);
 
@@ -113,35 +122,35 @@ describe('validatePeopleData', () => {
 
   test('rejects alumni metadata without matching placement rules', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/alumni.json', [
+    await writeJson(root, 'public/people/v2/alumni.json', [
       { batch: 's21', studentTracks: ['GENERAL'] }
     ]);
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/alumni.json[0]: missing placement rule for s21:GENERAL'
+      'public/people/v2/alumni.json[0]: missing placement rule for s21:GENERAL'
     );
   });
 
   test('rejects general placement at 4000 level', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/student-placement.json', [
+    await writeJson(root, 'public/people/v2/student-placement.json', [
       { batch: 's21', studentTrack: 'GENERAL', level: '4000' }
     ]);
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/student-placement.json[0.level]: General students cannot be assigned to 4000 level'
+      'public/people/v2/student-placement.json[0.level]: General students cannot be assigned to 4000 level'
     );
   });
 
   test('accepts a consistent student user and aggregate record', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/users/s21513.json', student);
-    await writeJson(root, 'public/people/v1/students/s21.json', [student]);
-    await writeJson(root, 'public/people/v1/search.json', [
+    await writeJson(root, 'public/people/v2/users/s21513.json', student);
+    await writeJson(root, 'public/people/v2/students/s21.json', [student]);
+    await writeJson(root, 'public/people/v2/search.json', [
       {
         id: 'student:s21513',
         type: 'STUDENT',
@@ -163,43 +172,51 @@ describe('validatePeopleData', () => {
 
   test('rejects aggregate records that do not match their user file', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/users/s21513.json', student);
-    await writeJson(root, 'public/people/v1/students/s21.json', [
+    await writeJson(root, 'public/people/v2/users/s21513.json', student);
+    await writeJson(root, 'public/people/v2/students/s21.json', [
       { ...student, fullName: 'Different Name' }
     ]);
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/students/s21.json[0]: aggregate record differs from public/people/v1/users/s21513.json'
+      'public/people/v2/students/s21.json[0]: aggregate record differs from public/people/v2/users/s21513.json'
     );
   });
 
   test('rejects stale special aggregate records after a student becomes normal', async () => {
     const root = await makeRoot();
     const updatedStudent = { ...student, fullName: 'Jane Normal Student' };
-    await writeJson(root, 'public/people/v1/users/s21513.json', updatedStudent);
-    await writeJson(root, 'public/people/v1/students/s21.json', [
+    await writeJson(root, 'public/people/v2/users/s21513.json', updatedStudent);
+    await writeJson(root, 'public/people/v2/students/s21.json', [
       updatedStudent
     ]);
-    await writeJson(root, 'public/people/v1/special/cs/s21.json', [student]);
+    await writeJson(
+      root,
+      'public/people/v2/special/computer-science/s21.json',
+      [student]
+    );
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/special/cs/s21.json[0]: special record differs from public/people/v1/users/s21513.json'
+      'public/people/v2/special/computer-science/s21.json[0]: special record differs from public/people/v2/users/s21513.json'
     );
   });
 
   test('accepts cleaned special aggregate files after a student becomes normal', async () => {
     const root = await makeRoot();
     const updatedStudent = { ...student, fullName: 'Jane Normal Student' };
-    await writeJson(root, 'public/people/v1/users/s21513.json', updatedStudent);
-    await writeJson(root, 'public/people/v1/students/s21.json', [
+    await writeJson(root, 'public/people/v2/users/s21513.json', updatedStudent);
+    await writeJson(root, 'public/people/v2/students/s21.json', [
       updatedStudent
     ]);
-    await writeJson(root, 'public/people/v1/special/cs/s21.json', []);
-    await writeJson(root, 'public/people/v1/search.json', [
+    await writeJson(
+      root,
+      'public/people/v2/special/computer-science/s21.json',
+      []
+    );
+    await writeJson(root, 'public/people/v2/search.json', [
       {
         id: 'student:s21513',
         type: 'STUDENT',
@@ -218,27 +235,27 @@ describe('validatePeopleData', () => {
 
   test('rejects stale staff aggregate records after a staff kind changes', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/users/jane.json', academicSupport);
-    await writeJson(root, 'public/people/v1/staff/academic-support.json', [
+    await writeJson(root, 'public/people/v2/users/jane.json', academicSupport);
+    await writeJson(root, 'public/people/v2/staff/academic-support.json', [
       academicSupport
     ]);
-    await writeJson(root, 'public/people/v1/staff/academic.json', [academic]);
+    await writeJson(root, 'public/people/v2/staff/academic.json', [academic]);
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/staff/academic.json[0]: aggregate record differs from public/people/v1/users/jane.json'
+      'public/people/v2/staff/academic.json[0]: aggregate record differs from public/people/v2/users/jane.json'
     );
   });
 
   test('accepts cleaned staff aggregate files after a staff kind changes', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/users/jane.json', academicSupport);
-    await writeJson(root, 'public/people/v1/staff/academic-support.json', [
+    await writeJson(root, 'public/people/v2/users/jane.json', academicSupport);
+    await writeJson(root, 'public/people/v2/staff/academic-support.json', [
       academicSupport
     ]);
-    await writeJson(root, 'public/people/v1/staff/academic.json', []);
-    await writeJson(root, 'public/people/v1/search.json', [
+    await writeJson(root, 'public/people/v2/staff/academic.json', []);
+    await writeJson(root, 'public/people/v2/search.json', [
       {
         id: 'staff:jane',
         type: 'STAFF',
@@ -263,19 +280,19 @@ describe('validatePeopleData', () => {
 
   test('rejects a missing search entry for a user', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/users/s21513.json', student);
-    await writeJson(root, 'public/people/v1/students/s21.json', [student]);
+    await writeJson(root, 'public/people/v2/users/s21513.json', student);
+    await writeJson(root, 'public/people/v2/students/s21.json', [student]);
 
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/search.json: missing search entry "s21513"'
+      'public/people/v2/search.json: missing search entry "s21513"'
     );
   });
 
   test('rejects a stale search entry without a matching user', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/people/v1/search.json', [
+    await writeJson(root, 'public/people/v2/search.json', [
       {
         id: 'student:s21513',
         type: 'STUDENT',
@@ -290,7 +307,7 @@ describe('validatePeopleData', () => {
     const result = await validatePeopleData(root);
 
     expect(result.errors).toContain(
-      'public/people/v1/search.json[0]: missing public/people/v1/users/s21513.json'
+      'public/people/v2/search.json[0]: missing public/people/v2/users/s21513.json'
     );
   });
 });

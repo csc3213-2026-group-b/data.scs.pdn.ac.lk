@@ -1,0 +1,80 @@
+[
+  {
+    "stream": "biomedical-science",
+    "label": "Biomedical Science",
+    "directory": "biomedical-science",
+    "publicDirectory": true
+  },
+  {
+    "stream": "botany",
+    "label": "Botany",
+    "directory": "botany",
+    "publicDirectory": true
+  },
+  {
+    "stream": "computer-science",
+    "label": "Computer Science",
+    "directory": "computer-science",
+    "publicDirectory": true
+  },
+  {
+    "stream": "data-science",
+    "label": "Data Science",
+    "directory": "data-science",
+    "publicDirectory": true
+  },
+  {
+    "stream": "geology",
+    "label": "Geology",
+    "directory": "geology",
+    "publicDirectory": true
+  },
+  {
+    "stream": "mathematics",
+    "label": "Mathematics",
+    "directory": "mathematics",
+    "publicDirectory": true
+  },
+  {
+    "stream": "microbiology",
+    "label": "Microbiology",
+    "directory": "microbiology",
+    "publicDirectory": true
+  },
+  {
+    "stream": "molecular-biology",
+    "label": "Molecular Biology and Biotechnology",
+    "directory": "molecular-biology",
+    "publicDirectory": true
+  },
+  {
+    "stream": "physics",
+    "label": "Physics",
+    "directory": "physics",
+    "publicDirectory": true
+  },
+  {
+    "stream": "statistics",
+    "label": "Statistics",
+    "directory": "statistics",
+    "publicDirectory": true
+  },
+  {
+    "stream": "zoology",
+    "label": "Zoology",
+    "directory": "zoology",
+    "publicDirectory": true
+  },
+  {
+    "stream": "applied-science",
+    "label": "Applied Science",
+    "directory": "applied-science",
+    "publicDirectory": true
+  },
+  {
+    "stream": "statistics-and-operations-research",
+    "label": "Statistics and Operations Research",
+    "directory": "statistics-and-operations-research",
+    "publicDirectory": true
+  }
+]

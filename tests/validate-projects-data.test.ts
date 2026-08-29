@@ -58,19 +58,19 @@ async function makeRoot() {
     `data-scs-projects-validation-${crypto.randomUUID()}`
   );
   tempRoots.push(root);
-  await mkdir(path.join(root, 'public/projects/v1/projects'), {
+  await mkdir(path.join(root, 'public/projects/v2/projects'), {
     recursive: true
   });
-  await mkdir(path.join(root, 'public/projects/v1/by-person'), {
+  await mkdir(path.join(root, 'public/projects/v2/by-person'), {
     recursive: true
   });
-  await mkdir(path.join(root, 'public/academic/v1/courses'), {
+  await mkdir(path.join(root, 'public/academic/v2/courses'), {
     recursive: true
   });
-  await mkdir(path.join(root, 'public/academic/v1/offerings'), {
+  await mkdir(path.join(root, 'public/academic/v2/offerings'), {
     recursive: true
   });
-  await writeJson(root, 'public/academic/v1/courses.json', [
+  await writeJson(root, 'public/academic/v2/courses.json', [
     {
       id: 'software-engineering-project',
       primaryCode: 'CSC3213',
@@ -79,7 +79,7 @@ async function makeRoot() {
       credits: 3
     }
   ]);
-  await writeJson(root, 'public/academic/v1/offerings.json', [
+  await writeJson(root, 'public/academic/v2/offerings.json', [
     {
       id: 'csc3213-2025-2026-sem2',
       courseId: 'software-engineering-project',
@@ -107,7 +107,7 @@ afterEach(async () => {
 describe('validateProjectsData', () => {
   test('accepts consistent project aggregate and detail files', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/projects/v1/manifest.json', {
+    await writeJson(root, 'public/projects/v2/manifest.json', {
       version: 'v1',
       projects: [
         {
@@ -121,13 +121,13 @@ describe('validateProjectsData', () => {
         }
       ]
     });
-    await writeJson(root, 'public/projects/v1/projects.json', [project]);
+    await writeJson(root, 'public/projects/v2/projects.json', [project]);
     await writeJson(
       root,
-      'public/projects/v1/projects/scholarship-management-system.json',
+      'public/projects/v2/projects/scholarship-management-system.json',
       project
     );
-    await writeJson(root, 'public/projects/v1/by-person/s21sp001.json', [
+    await writeJson(root, 'public/projects/v2/by-person/s21sp001.json', [
       {
         id: project.id,
         slug: project.slug,
@@ -153,14 +153,14 @@ describe('validateProjectsData', () => {
 
   test('rejects stale project detail files', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/projects/v1/manifest.json', {
+    await writeJson(root, 'public/projects/v2/manifest.json', {
       version: 'v1',
       projects: []
     });
-    await writeJson(root, 'public/projects/v1/projects.json', [project]);
+    await writeJson(root, 'public/projects/v2/projects.json', [project]);
     await writeJson(
       root,
-      'public/projects/v1/projects/scholarship-management-system.json',
+      'public/projects/v2/projects/scholarship-management-system.json',
       {
         ...project,
         title: 'Different title'
@@ -170,18 +170,18 @@ describe('validateProjectsData', () => {
     const result = await validateProjectsData(root);
 
     expect(result.errors).toContain(
-      'public/projects/v1/projects/scholarship-management-system.json: differs from public/projects/v1/projects.json'
+      'public/projects/v2/projects/scholarship-management-system.json: differs from public/projects/v2/projects.json'
     );
   });
 
   test('rejects course projects with missing offerings', async () => {
     const root = await makeRoot();
-    await writeJson(root, 'public/academic/v1/offerings.json', []);
-    await writeJson(root, 'public/projects/v1/manifest.json', {
+    await writeJson(root, 'public/academic/v2/offerings.json', []);
+    await writeJson(root, 'public/projects/v2/manifest.json', {
       version: 'v1',
       projects: []
     });
-    await writeJson(root, 'public/projects/v1/projects.json', [
+    await writeJson(root, 'public/projects/v2/projects.json', [
       {
         ...project,
         projectType: 'COURSE_PROJECT'
@@ -191,7 +191,7 @@ describe('validateProjectsData', () => {
     const result = await validateProjectsData(root);
 
     expect(result.errors).toContain(
-      'public/projects/v1/projects.json[0].courseOffering.id: missing referenced offering'
+      'public/projects/v2/projects.json[0].courseOffering.id: missing referenced offering'
     );
   });
 });
