@@ -3,15 +3,6 @@ name: Validate Public Data
 on:
   workflow_dispatch:
   pull_request:
-    paths:
-      - 'public/**'
-      - '.github/scripts/**'
-      - '.github/workflows/auto-merge-profile-pr.yml'
-      - '.github/workflows/validate-public-data.yml'
-      - 'package.json'
-      - 'bun.lock'
-      - 'tsconfig*.json'
-      - 'wrangler.jsonc'
   push:
     branches:
       - main
