@@ -25,6 +25,7 @@ env:
 
 jobs:
   validate-public-data:
+    name: Validate Public Data
     runs-on: ubuntu-latest
 
     steps:
