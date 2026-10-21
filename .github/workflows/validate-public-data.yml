@@ -11,6 +11,7 @@ on:
       - 'public/**'
       - '.github/scripts/**'
       - 'tests/**'
+      - '.github/workflows/deploy.yml'
       - '.github/workflows/publish-public-projections.yml'
       - '.github/workflows/auto-merge-profile-pr.yml'
       - '.github/workflows/validate-public-data.yml'
