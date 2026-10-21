@@ -35,7 +35,7 @@
       "directory": "data-science",
       "name": "Data Science",
       "icon": "data",
-      "batches": ["s21"]
+      "batches": []
     },
     {
       "slug": "geology",
@@ -77,7 +77,7 @@
       "directory": "statistics",
       "name": "Statistics",
       "icon": "statistics",
-      "batches": ["s21"]
+      "batches": []
     },
     {
       "slug": "zoology",
@@ -98,7 +98,7 @@
       "directory": "statistics-and-operations-research",
       "name": "Statistics and Operations Research",
       "icon": "chart",
-      "batches": ["s21"]
+      "batches": []
     }
   ]
 }

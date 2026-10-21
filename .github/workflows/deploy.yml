@@ -1,6 +1,12 @@
 name: Deploy Cloudflare Worker
 
 on:
+  workflow_run:
+    workflows:
+      - Validate Public Data
+    types:
+      - completed
+
   # Every 12 hours: 00:00 UTC and 12:00 UTC
   schedule:
     - cron: '0 */12 * * *'
@@ -13,15 +19,23 @@ permissions:
 
 env:
   HUSKY: 0
+  DEPLOY_REF: >-
+    ${{ github.event_name == 'workflow_run'
+        && github.event.workflow_run.head_sha
+        || 'main' }}
 
 concurrency:
-  group: cloudflare-deploy-${{ github.event_name }}
+  group: cloudflare-deploy
   cancel-in-progress: false
 
 jobs:
   check-changes:
     name: Check Recent Changes
     runs-on: ubuntu-latest
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main')
 
     outputs:
       should-deploy: ${{ steps.check.outputs.should-deploy }}
@@ -30,16 +44,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          ref: main
+          ref: ${{ env.DEPLOY_REF }}
           fetch-depth: 1
 
       - name: Check whether deployment is needed
         id: check
         shell: bash
         run: |
-          # Manual deployments should always continue.
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "Manual deployment requested."
+          # Verified main runs and manual recovery runs should always continue.
+          if [[ "${{ github.event_name }}" != "schedule" ]]; then
+            echo "Event-driven deployment requested."
             echo "should-deploy=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -71,7 +85,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          ref: main
+          ref: ${{ env.DEPLOY_REF }}
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
@@ -84,6 +98,9 @@ jobs:
 
       - name: Run tests
         run: bun run test
+
+      - name: Check generated projections
+        run: bun run generate:check
 
       - name: Validate people data
         run: bun run validate:people
@@ -104,7 +121,9 @@ jobs:
     name: >-
       ${{ github.event_name == 'workflow_dispatch'
           && 'Manual Deployment'
-          || 'Scheduled Deployment' }}
+          || (github.event_name == 'workflow_run'
+              && 'Verified Main Deployment'
+              || 'Scheduled Recovery Deployment') }}
 
     runs-on: ubuntu-latest
     needs:
@@ -119,7 +138,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
-          ref: main
+          ref: ${{ env.DEPLOY_REF }}
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2

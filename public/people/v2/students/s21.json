@@ -1,6 +1,20 @@
 [
   {
     "title": "Mr",
+    "fullName": "M.C.N. FERNANDO",
+    "email": "s21368@sci.pdn.ac.lk",
+    "mobilePhone": "0785121174",
+    "registrationNo": "S21368",
+    "studentType": "UNDERGRADUATE",
+    "studentTrack": "GENERAL",
+    "level": "3000",
+    "status": "CURRENT",
+    "socialLinks": {
+      "urls": { "facebook": "https://www.facebook.com/chamod.franando.7" }
+    }
+  },
+  {
+    "title": "Mr",
     "fullName": "Sivothayan Sivasiva",
     "email": "s21513@sci.pdn.ac.lk",
     "profileImageUrl": "https://sivothayan.com/images/me-at-shq.jpeg",
@@ -22,22 +36,6 @@
         "x": "https://x.com/sivothajan",
         "facebook": "https://www.facebook.com/sivothajan",
         "instagram": "https://www.instagram.com/sivothajan"
-      }
-    }
-  },
-  {
-    "title": "Mr",
-    "fullName": "M.C.N. FERNANDO",
-    "email": "s21368@sci.pdn.ac.lk",
-    "mobilePhone": "0785121174",
-    "registrationNo": "S21368",
-    "studentType": "UNDERGRADUATE",
-    "studentTrack": "GENERAL",
-    "level": "3000",
-    "status": "CURRENT",
-    "socialLinks": {
-      "urls": {
-        "facebook": "https://www.facebook.com/chamod.franando.7"
       }
     }
   }

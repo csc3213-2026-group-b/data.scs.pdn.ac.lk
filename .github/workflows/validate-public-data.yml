@@ -2,6 +2,7 @@ name: Validate Public Data
 
 on:
   workflow_dispatch:
+  merge_group:
   pull_request:
   push:
     branches:
@@ -9,6 +10,8 @@ on:
     paths:
       - 'public/**'
       - '.github/scripts/**'
+      - 'tests/**'
+      - '.github/workflows/publish-public-projections.yml'
       - '.github/workflows/auto-merge-profile-pr.yml'
       - '.github/workflows/validate-public-data.yml'
       - 'package.json'
@@ -22,6 +25,9 @@ concurrency:
 
 env:
   HUSKY: 0
+
+permissions:
+  contents: read
 
 jobs:
   validate-public-data:
@@ -44,6 +50,9 @@ jobs:
       - name: Run tests
         run: bun run test
 
+      - name: Check generated projections
+        run: bun run generate:check
+
       - name: Validate people data
         run: bun run validate:people
 
@@ -52,9 +61,6 @@ jobs:
 
       - name: Validate projects data
         run: bun run validate:projects
-
-      - name: Format files
-        run: bun run format
 
       - name: Check formatting
         run: bun run format:check
