@@ -7,11 +7,6 @@ on:
     types:
       - completed
 
-  # Every 12 hours: 00:00 UTC and 12:00 UTC
-  schedule:
-    - cron: '0 */12 * * *'
-
-  # Manual deployment from GitHub Actions UI
   workflow_dispatch:
 
 permissions:
@@ -29,57 +24,13 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  check-changes:
-    name: Check Recent Changes
+  validate:
+    name: Validate Public Data
     runs-on: ubuntu-latest
     if: >-
       github.event_name != 'workflow_run' ||
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.head_branch == 'main')
-
-    outputs:
-      should-deploy: ${{ steps.check.outputs.should-deploy }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          ref: ${{ env.DEPLOY_REF }}
-          fetch-depth: 1
-
-      - name: Check whether deployment is needed
-        id: check
-        shell: bash
-        run: |
-          # Verified main runs and manual recovery runs should always continue.
-          if [[ "${{ github.event_name }}" != "schedule" ]]; then
-            echo "Event-driven deployment requested."
-            echo "should-deploy=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          LAST_COMMIT_TIME=$(git log -1 --format=%ct)
-          CURRENT_TIME=$(date +%s)
-          AGE_SECONDS=$((CURRENT_TIME - LAST_COMMIT_TIME))
-          EIGHT_HOURS=$((8 * 60 * 60))
-
-          echo "Latest commit age: $((AGE_SECONDS / 60)) minutes"
-
-          if (( AGE_SECONDS <= EIGHT_HOURS )); then
-            echo "Changes were made within the last 8 hours."
-            echo "should-deploy=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "No changes within the last 8 hours. Deployment will be skipped."
-            echo "should-deploy=false" >> "$GITHUB_OUTPUT"
-          fi
-
-  validate:
-    name: Validate Public Data
-    runs-on: ubuntu-latest
-    needs: check-changes
-
-    # Do not spend time validating when a scheduled deployment is unnecessary.
-    if: needs.check-changes.outputs.should-deploy == 'true'
 
     steps:
       - name: Checkout repository
@@ -121,18 +72,11 @@ jobs:
     name: >-
       ${{ github.event_name == 'workflow_dispatch'
           && 'Manual Deployment'
-          || (github.event_name == 'workflow_run'
-              && 'Verified Main Deployment'
-              || 'Scheduled Recovery Deployment') }}
+          || 'Verified Main Deployment' }}
 
     runs-on: ubuntu-latest
-    needs:
-      - check-changes
-      - validate
-
-    if: >-
-      needs.check-changes.outputs.should-deploy == 'true' &&
-      needs.validate.result == 'success'
+    needs: validate
+    if: needs.validate.result == 'success'
 
     steps:
       - name: Checkout repository

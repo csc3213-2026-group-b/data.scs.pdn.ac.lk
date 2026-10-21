@@ -29,9 +29,9 @@ Pull requests and merge-queue candidates only check generated output; CI does
 not silently format or rewrite a contributor's branch. A serialized recovery
 workflow opens one `automation/public-projections` pull request if an
 authoritative change reaches `main` without matching projections. Deployment
-runs against the exact successful `Validate Public Data` commit. The scheduled
-deployment remains temporarily as a recovery path until the event-driven path
-has been observed in production.
+runs against the exact successful `Validate Public Data` commit. Manual
+dispatch remains the recovery path; the polling schedule was removed after the
+event-driven production deployment succeeded.
 
 ## Development
 
