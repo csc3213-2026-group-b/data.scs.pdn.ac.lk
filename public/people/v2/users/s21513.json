@@ -6,9 +6,10 @@
   "registrationNo": "S21513",
   "studentType": "UNDERGRADUATE",
   "studentTrack": "HONOURS",
-  "honoursProgramme": "COMPUTER_SCIENCE",
   "level": "3000",
+  "honoursProgramme": "COMPUTER_SCIENCE",
   "status": "CURRENT",
+  "personalEmail": "hi@sivothayan.com",
   "researchInterests": [
     "AI/ ML",
     "Agentic AI",
