@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   merge_group:
   pull_request:
+    types: [opened, reopened, synchronize]
   push:
     branches:
       - main
@@ -11,10 +12,7 @@ on:
       - 'public/**'
       - '.github/scripts/**'
       - 'tests/**'
-      - '.github/workflows/deploy.yml'
-      - '.github/workflows/publish-public-projections.yml'
-      - '.github/workflows/auto-merge-profile-pr.yml'
-      - '.github/workflows/validate-public-data.yml'
+      - '.github/workflows/**'
       - 'package.json'
       - 'bun.lock'
       - 'tsconfig*.json'
@@ -35,9 +33,15 @@ jobs:
     name: Validate Public Data
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: ${{ github.event_name == 'pull_request' && 'write' || 'read' }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: true
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
@@ -50,6 +54,39 @@ jobs:
 
       - name: Run tests
         run: bun run test
+
+      - name: Generate public projections
+        if: >
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.user.login == 'scs-portal-github-app[bot]'
+        run: bun run generate
+
+      - name: Commit generated projections
+        if: >
+          github.event_name == 'pull_request' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          github.event.pull_request.user.login == 'scs-portal-github-app[bot]'
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+
+          git add -A -- public/people/v2 public/projects/v2 public/academic/v2
+
+          if git diff --cached --quiet; then
+            echo "Generated projections are already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git commit -m "chore(data): regenerate public projections"
+
+          git push origin "HEAD:refs/heads/$HEAD_REF" \
+            --force-with-lease="refs/heads/$HEAD_REF:$HEAD_SHA"
 
       - name: Check generated projections
         run: bun run generate:check
