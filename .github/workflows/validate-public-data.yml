@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: ${{ github.event_name == 'pull_request' && 'write' || 'read' }}
+      contents: write
 
     steps:
       - name: Checkout repository
