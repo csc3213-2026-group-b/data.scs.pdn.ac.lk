@@ -53,8 +53,12 @@ describe('GitHub Actions trust boundaries', () => {
       const source = await workflow(workflowName);
       expect(source).toContain('packages: read');
       expect(source).toContain('NODE_AUTH_TOKEN: ${{ github.token }}');
-      expect(source).toContain('--ignore-scripts');
-      expect(source).toContain('--config "$RUNNER_TEMP/bunfig.toml"');
+      expect(source).toContain(
+        'bun --config="$RUNNER_TEMP/bunfig.toml" install --frozen-lockfile --ignore-scripts'
+      );
+      expect(source).not.toContain(
+        'bun install --frozen-lockfile --ignore-scripts'
+      );
       expect(source).not.toContain('submodules: recursive');
     }
   });

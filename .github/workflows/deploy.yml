@@ -52,8 +52,7 @@ jobs:
           [install.scopes]
           "@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }
           EOF
-          bun install --frozen-lockfile --ignore-scripts \
-            --config "$RUNNER_TEMP/bunfig.toml"
+          bun --config="$RUNNER_TEMP/bunfig.toml" install --frozen-lockfile --ignore-scripts
 
       - name: Typecheck
         run: bun run typecheck
