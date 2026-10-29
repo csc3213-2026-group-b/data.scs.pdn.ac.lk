@@ -140,13 +140,13 @@ already declares explicit job or workflow permissions.
   from GitHub Actions and forbids force pushes and deletion. No repository
   ruleset is currently configured.
 
-The repository still permits GitHub Actions to create and approve pull requests
-so the current `main` recovery workflow remains functional during migration.
-After the workflows in this document reach `main` and the App private-key secret
-is present, set `can_approve_pull_request_reviews` to `false`. The connected
-GitHub plugin could inspect repository and workflow-run data but could not read
-administration-protected branch settings; the authenticated GitHub CLI supplied
-that read and applied the supported repository settings.
+GitHub Actions cannot create or approve pull requests
+(`can_approve_pull_request_reviews: false`). The App private-key secret is
+configured, so all privileged pull-request mutations use the narrower App
+installation token. The connected GitHub plugin could inspect repository and
+workflow-run data but could not read administration-protected branch settings;
+the authenticated GitHub CLI supplied that read and applied the supported
+repository settings.
 
 `actionlint` 1.7.12 reports `client-id` as unknown because its bundled action
 metadata predates `actions/create-github-app-token@v3.3.0`. The live `v3`
