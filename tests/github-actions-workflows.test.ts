@@ -29,7 +29,7 @@ describe('GitHub Actions trust boundaries', () => {
       '@csc3213-2026-group-b/academic-domain-schemas'
     );
     expect(packageSource).toContain(
-      '"@csc3213-2026-group-b/scs-schemas": "0.2.1"'
+      '"@csc3213-2026-group-b/scs-schemas": "0.3.1"'
     );
 
     for (const scriptName of scriptNames) {
