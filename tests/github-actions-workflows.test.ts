@@ -182,6 +182,13 @@ describe('GitHub Actions trust boundaries', () => {
     expect(autoMerge).toContain(
       'group: ${{ github.workflow }}-${{ github.event.pull_request.number }}-${{ github.event.label.name }}'
     );
+    expect(autoMerge).toContain(
+      '"repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/update-branch"'
+    );
+    expect(autoMerge).toContain('expected_head_sha="$HEAD_SHA"');
+    expect(autoMerge.indexOf('/update-branch')).toBeLessThan(
+      autoMerge.indexOf('gh pr merge "$PR_NUMBER"')
+    );
     expect(recovery).toContain(
       "if: steps.changes.outputs.changed == 'true'\n        id: app-token"
     );

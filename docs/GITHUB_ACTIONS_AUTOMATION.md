@@ -60,6 +60,10 @@ flowchart LR
   creates a token with `contents: write` and `pull-requests: write`.
 - Auto-merge concurrency includes the triggering label. An ordinary operation
   label therefore cannot cancel the simultaneous `auto-merge-*` label event.
+- Before enabling auto-merge, the App updates a behind branch with GitHub's
+  update-branch API and supplies the previously observed head SHA. This keeps
+  strict branch protection from leaving an otherwise valid App PR open while
+  refusing to overwrite a concurrently advanced head.
 - The recovery workflow runs only from trusted `main`, uses the App identity,
   and updates its single branch with force-with-lease. It is defense in depth
   for direct or administrative updates that somehow reach `main` with stale
