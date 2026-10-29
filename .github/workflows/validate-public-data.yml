@@ -19,7 +19,9 @@ on:
       - 'wrangler.jsonc'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: >-
+    ${{ github.workflow }}-${{ github.event_name }}-${{
+        github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
@@ -27,66 +29,40 @@ env:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   validate-public-data:
     name: Validate Public Data
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
           ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/bunfig.toml" <<'EOF'
+          [install.scopes]
+          "@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }
+          EOF
+          bun install --frozen-lockfile --ignore-scripts \
+            --config "$RUNNER_TEMP/bunfig.toml"
 
       - name: Typecheck
         run: bun run typecheck
 
       - name: Run tests
         run: bun run test
-
-      - name: Generate public projections
-        if: >
-          github.event_name == 'pull_request' &&
-          github.event.pull_request.head.repo.full_name == github.repository &&
-          github.event.pull_request.user.login == 'scs-portal-github-app[bot]'
-        run: bun run generate
-
-      - name: Commit generated projections
-        if: >
-          github.event_name == 'pull_request' &&
-          github.event.pull_request.head.repo.full_name == github.repository &&
-          github.event.pull_request.user.login == 'scs-portal-github-app[bot]'
-        env:
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          set -euo pipefail
-
-          git add -A -- public/people/v2 public/projects/v2 public/academic/v2
-
-          if git diff --cached --quiet; then
-            echo "Generated projections are already current."
-            exit 0
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git commit -m "chore(data): regenerate public projections"
-
-          git push origin "HEAD:refs/heads/$HEAD_REF" \
-            --force-with-lease="refs/heads/$HEAD_REF:$HEAD_SHA"
 
       - name: Check generated projections
         run: bun run generate:check

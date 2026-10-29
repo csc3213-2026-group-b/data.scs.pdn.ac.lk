@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from 'bun:test';
-import { cp, readFile, rm } from 'node:fs/promises';
+import { cp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { generatePublicProjections } from '../.github/scripts/generate-public-projections.js';
@@ -41,6 +41,21 @@ describe('generatePublicProjections', () => {
     const secondRun = await generatePublicProjections({ root, check: true });
 
     expect(secondRun).toEqual({ changed: [], removed: [] });
+  });
+
+  test('preserves CRLF in an existing generated file', async () => {
+    const root = await copyPublicTree();
+    await generatePublicProjections({ root });
+    const searchPath = path.join(root, 'public/people/v2/search.json');
+    const search = await readFile(searchPath, 'utf8');
+    await writeFile(
+      searchPath,
+      search.replaceAll('\r\n', '\n').replaceAll('\n', '\r\n')
+    );
+
+    const result = await generatePublicProjections({ root, check: true });
+
+    expect(result).toEqual({ changed: [], removed: [] });
   });
 
   test('removes a deleted project from every derived membership', async () => {

@@ -9,12 +9,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
-env:
-  GH_TOKEN: ${{ github.token }}
-
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: read
 
 jobs:
   auto-merge:
@@ -22,16 +19,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Enable auto-merge for eligible PR
+      - name: Check automatic merge eligibility
+        id: eligibility
         env:
+          GH_TOKEN: ${{ github.token }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           set -euo pipefail
 
           pr_json="$(gh pr view "$PR_NUMBER" \
             --repo "$GITHUB_REPOSITORY" \
-            --json number,state,isDraft,headRefName,headRepository,labels)"
+            --json author,state,isDraft,headRefName,headRepository,labels)"
 
+          author="$(jq -r '.author.login' <<< "$pr_json")"
           state="$(jq -r '.state' <<< "$pr_json")"
           is_draft="$(jq -r '.isDraft' <<< "$pr_json")"
           head_ref="$(jq -r '.headRefName' <<< "$pr_json")"
@@ -43,18 +43,18 @@ jobs:
               <<< "$pr_json" >/dev/null
           }
 
-          if [[ "$state" != "OPEN" ]]; then
-            echo "PR #$PR_NUMBER is not open; skipping."
+          if [[ "$author" != "app/scs-portal-github-app" ]]; then
+            echo "PR #$PR_NUMBER was not opened by the trusted GitHub App."
             exit 0
           fi
 
-          if [[ "$is_draft" == "true" ]]; then
-            echo "PR #$PR_NUMBER is still a draft; skipping."
+          if [[ "$state" != "OPEN" || "$is_draft" == "true" ]]; then
+            echo "PR #$PR_NUMBER is not an open, ready pull request."
             exit 0
           fi
 
           if [[ "$head_repo" != "$GITHUB_REPOSITORY" ]]; then
-            echo "PR #$PR_NUMBER is from another repository; skipping."
+            echo "PR #$PR_NUMBER is from another repository."
             exit 0
           fi
 
@@ -102,13 +102,27 @@ jobs:
             eligible=true
           fi
 
-          if [[ "$eligible" != "true" ]]; then
-            echo "PR #$PR_NUMBER is not eligible for automatic merging."
-            exit 0
-          fi
+          echo "eligible=$eligible" >> "$GITHUB_OUTPUT"
 
-          echo "PR is eligible. Enabling auto-merge."
+      - name: Create scoped GitHub App token
+        if: steps.eligibility.outputs.eligible == 'true'
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SCS_PORTAL_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SCS_PORTAL_GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
 
+      - name: Enable auto-merge
+        if: steps.eligibility.outputs.eligible == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
           gh pr merge "$PR_NUMBER" \
             --repo "$GITHUB_REPOSITORY" \
             --merge \

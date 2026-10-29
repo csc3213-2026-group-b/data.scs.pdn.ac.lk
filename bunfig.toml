@@ -2,5 +2,8 @@
 # Only install package versions published at least 7 days ago
 minimumReleaseAge = 604800
 
-# Exclude trusted packages from the age gate
-minimumReleaseAgeExcludes = ["@csc3213-2026-group-b/academic-domain-schemas"]
+# The internal package is released from the verified monorepo main workflow.
+minimumReleaseAgeExcludes = ["@csc3213-2026-group-b/scs-schemas"]
+
+[install.scopes]
+"@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }

@@ -378,15 +378,16 @@ async function applyPlan(
 
   for (const [relativePath, value] of outputs) {
     const absolutePath = path.join(root, relativePath);
+    const current = existsSync(absolutePath)
+      ? await readFile(absolutePath, 'utf8')
+      : null;
     const next = await format(JSON.stringify(value), {
       parser: 'json',
       printWidth: 80,
       singleQuote: true,
-      trailingComma: 'none'
+      trailingComma: 'none',
+      endOfLine: current?.includes('\r\n') ? 'crlf' : 'lf'
     });
-    const current = existsSync(absolutePath)
-      ? await readFile(absolutePath, 'utf8')
-      : null;
     if (current === next) continue;
     changed.push(relativePath);
     if (check) continue;

@@ -10,6 +10,7 @@ const student = {
   registrationNo: 'S21513',
   studentType: 'UNDERGRADUATE',
   studentTrack: 'HONOURS',
+  honoursProgramme: 'COMPUTER_SCIENCE',
   level: '4000',
   status: 'CURRENT'
 };

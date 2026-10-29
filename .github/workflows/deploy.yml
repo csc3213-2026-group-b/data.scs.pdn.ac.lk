@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 env:
   HUSKY: 0
@@ -34,15 +35,25 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ env.DEPLOY_REF }}
+          persist-credentials: false
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/bunfig.toml" <<'EOF'
+          [install.scopes]
+          "@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }
+          EOF
+          bun install --frozen-lockfile --ignore-scripts \
+            --config "$RUNNER_TEMP/bunfig.toml"
 
       - name: Typecheck
         run: bun run typecheck
@@ -80,9 +91,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ env.DEPLOY_REF }}
+          persist-credentials: false
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2

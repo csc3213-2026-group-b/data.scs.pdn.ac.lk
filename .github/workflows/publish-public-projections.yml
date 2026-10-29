@@ -19,11 +19,10 @@ concurrency:
 
 env:
   HUSKY: 0
-  GH_TOKEN: ${{ github.token }}
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  packages: read
 
 jobs:
   publish:
@@ -35,12 +34,22 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/bunfig.toml" <<'EOF'
+          [install.scopes]
+          "@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }
+          EOF
+          bun install --frozen-lockfile --ignore-scripts \
+            --config "$RUNNER_TEMP/bunfig.toml"
 
       - name: Generate projections
         run: bun run generate
@@ -57,28 +66,43 @@ jobs:
 
       - name: Validate generated publication
         if: steps.changes.outputs.changed == 'true'
-        run: |
-          bun run test
-          bun run generate:check
-          bun run validate:people
-          bun run validate:academic
-          bun run validate:projects
-          bun run format:check
-          bunx wrangler build
+        run: bun run check
+
+      - name: Create scoped GitHub App token
+        if: steps.changes.outputs.changed == 'true'
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SCS_PORTAL_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SCS_PORTAL_GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Publish projection pull request
         if: steps.changes.outputs.changed == 'true'
         shell: bash
         env:
           BRANCH: automation/public-projections
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          gh auth setup-git
+          git config user.name "scs-portal-github-app[bot]"
+          git config user.email \
+            "258597335+scs-portal-github-app[bot]@users.noreply.github.com"
           git checkout -B "$BRANCH"
           git add public
           git commit -m "chore(data): regenerate public projections"
-          git push --force origin "HEAD:$BRANCH"
+
+          remote_sha="$(git ls-remote --heads origin "$BRANCH" | cut -f1)"
+          if [[ -n "$remote_sha" ]]; then
+            git push origin "HEAD:refs/heads/$BRANCH" \
+              --force-with-lease="refs/heads/$BRANCH:$remote_sha"
+          else
+            git push --set-upstream origin "HEAD:refs/heads/$BRANCH"
+          fi
 
           pr_number="$(gh pr list \
             --head "$BRANCH" \

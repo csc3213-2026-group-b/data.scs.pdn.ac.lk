@@ -26,8 +26,10 @@ projections. Special-programme files retain programme membership while the
 generator refreshes each member from the authoritative user record.
 
 Pull requests and merge-queue candidates only check generated output; CI does
-not silently format or rewrite a contributor's branch. A serialized recovery
-workflow opens one `automation/public-projections` pull request if an
+not silently format or rewrite a contributor's branch. A separate privileged
+workflow uses protected-base generator code to update only trusted, same-repo
+PRs opened by the portal GitHub App. A serialized recovery workflow opens one
+`automation/public-projections` pull request if an
 authoritative change reaches `main` without matching projections. Deployment
 runs against the exact successful `Validate Public Data` commit. Manual
 dispatch remains the recovery path; the polling schedule was removed after the
@@ -39,6 +41,12 @@ event-driven production deployment succeeded.
 bun install
 bun run check
 ```
+
+Validation imports `@csc3213-2026-group-b/scs-schemas`, the private package
+published automatically from `packages/schemas` on the monorepo `main` branch.
+For local installation, set `NODE_AUTH_TOKEN` to a GitHub token with
+`read:packages` access. GitHub Actions uses its short-lived repository token;
+the retired `@csc3213-2026-group-b/academic-domain-schemas` package is not used.
 
 Regenerate projections after changing an authoritative entity:
 
@@ -57,9 +65,14 @@ bun run validate:academic
 
 ## Repository Settings
 
-The `main` ruleset must require `Validate Public Data`, including merge-queue
-checks when the queue is enabled. GitHub Actions must be allowed to create pull
-requests, and auto-merge must be enabled so the recovery projection pull
-request can enter the same protected validation path. The workflow token uses
-only `contents: write` and `pull-requests: write`; validation and deployment
-remain read-only except for Cloudflare deployment credentials.
+The `main` branch protection must require `Validate Public Data`, including
+merge-queue checks when the queue is enabled. Auto-merge must be enabled.
+Repository workflows use installation tokens from the existing portal GitHub
+App for projection commits, recovery PRs, and auto-merge; the default workflow
+token remains read-only apart from `packages: read` for the private schemas
+package. Validation and deployment are read-only except for the Cloudflare
+deployment credentials.
+
+See [GitHub Actions automation](docs/GITHUB_ACTIONS_AUTOMATION.md) for the trust
+model, required App secret and variable, repository settings, and recovery
+procedure.

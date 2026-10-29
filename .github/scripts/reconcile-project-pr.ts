@@ -1,9 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises';
 
-import {
-  ProjectSchema,
-  type Project
-} from '@csc3213-2026-group-b/academic-domain-schemas';
+import { ProjectSchema, type Project } from '@csc3213-2026-group-b/scs-schemas';
 
 interface ProjectManifest {
   version: string;
