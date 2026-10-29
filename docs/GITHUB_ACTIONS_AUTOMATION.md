@@ -88,6 +88,52 @@ GitHub's package permission model. The package contains only the intended
 compiled schemas. Workflows never expose the package token to test or build
 commands, and installation runs with lifecycle scripts disabled.
 
+The dependency is exact-pinned in both `package.json` and `bun.lock`. To adopt a
+schema change:
+
+1. Merge the schema change to the monorepo `main` branch.
+2. Wait for `Publish Schemas Package` to publish its generated immutable
+   version.
+3. Update the exact version and lockfile in this repository while authenticated
+   with `read:packages`.
+4. Run `bun run check` and merge through the normal protected-branch flow.
+
+Do not fall back to the retired
+`@csc3213-2026-group-b/academic-domain-schemas` package, a Git URL, or a
+submodule. A missing package version is a publication or access failure that
+must be fixed at its source.
+
+## Event and Freshness Guarantees
+
+| Failure mode                                                        | Enforced guarantee                                                                                                                                            |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The App applies an operation label and an auto-merge label together | Auto-merge concurrency includes the triggering label, so the ordinary label run cannot cancel the auto-merge run.                                             |
+| Strict protection marks a trusted PR as behind                      | The App calls the update-branch API with the already verified head SHA before enabling auto-merge. A concurrent head change causes the update to fail safely. |
+| Several `main` validations finish close together                    | Deployment compares `workflow_run.head_sha` with the current `main` ref and skips stale events.                                                               |
+| `main` advances between deployment jobs                             | The immutable SHA selected by the freshness job is used for both validation and deployment.                                                                   |
+| A candidate PR changes workflow or generator code                   | The privileged updater executes only protected-base code and rejects paths outside the supported public-data trees.                                           |
+| A projection update is missing after merge                          | The serialized recovery workflow creates or refreshes one App-authored recovery PR; it never writes directly to `main`.                                       |
+
+These guarantees are regression-tested in `tests/github-actions.test.ts`. PR
+#101 exercised the label-ordering and behind-branch cases: after the workflow
+fixes, the App refreshed the branch, the required check reran, auto-merge
+completed, and deployment used the validated merge commit.
+
+## Operations and Recovery
+
+- For an eligible trusted PR that remains open, confirm both its operation and
+  `auto-merge-*` labels, then reapply the auto-merge label to create a fresh
+  event. Do not merge around the required check.
+- If projections on `main` are stale, run **Publish Public Projections**
+  manually. It must converge on the single recovery branch and PR.
+- If a validated current `main` commit was not deployed, run **Deploy Public
+  Data to Cloudflare** manually. The workflow still validates the selected
+  current commit before deployment.
+- If private-package installation fails, verify `packages: read`, package
+  **Manage Actions access**, the npm scope, and the exact published version.
+- Treat a skipped deployment as expected when a newer commit has already
+  advanced `main`; inspect the newer validation/deployment run instead.
+
 ## Required GitHub App and Secret Configuration
 
 The existing `scs-portal-github-app` installation has sufficient repository

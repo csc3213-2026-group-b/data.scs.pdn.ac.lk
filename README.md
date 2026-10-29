@@ -31,9 +31,17 @@ workflow uses protected-base generator code to update only trusted, same-repo
 PRs opened by the portal GitHub App. A serialized recovery workflow opens one
 `automation/public-projections` pull request if an
 authoritative change reaches `main` without matching projections. Deployment
-runs against the exact successful `Validate Public Data` commit. Manual
-dispatch remains the recovery path; the polling schedule was removed after the
-event-driven production deployment succeeded.
+runs only when the successful `Validate Public Data` commit is still the live
+`main` commit, and uses that immutable SHA for both validation and Cloudflare
+deployment. Superseded validation events are skipped. Manual dispatch remains
+the recovery path; the polling schedule was removed after the event-driven
+production deployment succeeded.
+
+Trusted App pull requests use operation-specific auto-merge labels. Label
+events have independent concurrency groups, so a normal operation label cannot
+cancel the simultaneous auto-merge event. If strict branch protection reports
+the PR as behind, the App updates the branch using the head SHA it already
+verified, then enables auto-merge and lets the required check decide the merge.
 
 ## Development
 
@@ -44,9 +52,21 @@ bun run check
 
 Validation imports `@csc3213-2026-group-b/scs-schemas`, the private package
 published automatically from `packages/schemas` on the monorepo `main` branch.
-For local installation, set `NODE_AUTH_TOKEN` to a GitHub token with
-`read:packages` access. GitHub Actions uses its short-lived repository token;
-the retired `@csc3213-2026-group-b/academic-domain-schemas` package is not used.
+This repository pins the exact published version in `package.json` and
+`bun.lock`; update both only after the monorepo publish workflow succeeds. For
+local installation, set `NODE_AUTH_TOKEN` to a GitHub token with
+`read:packages` access. GitHub Actions uses its short-lived repository token,
+and package access does not expose the private monorepo. The retired
+`@csc3213-2026-group-b/academic-domain-schemas` package and a Git submodule are
+not supported alternatives.
+
+PowerShell example:
+
+```powershell
+$env:NODE_AUTH_TOKEN = gh auth token
+bun install
+Remove-Item Env:NODE_AUTH_TOKEN
+```
 
 Regenerate projections after changing an authoritative entity:
 
