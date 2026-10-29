@@ -6,7 +6,7 @@ on:
       - labeled
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}-${{ github.event.label.name }}
   cancel-in-progress: true
 
 permissions:
@@ -29,12 +29,13 @@ jobs:
 
           pr_json="$(gh pr view "$PR_NUMBER" \
             --repo "$GITHUB_REPOSITORY" \
-            --json author,state,isDraft,headRefName,headRepository,labels)"
+            --json author,state,isDraft,headRefName,headRefOid,headRepository,labels)"
 
           author="$(jq -r '.author.login' <<< "$pr_json")"
           state="$(jq -r '.state' <<< "$pr_json")"
           is_draft="$(jq -r '.isDraft' <<< "$pr_json")"
           head_ref="$(jq -r '.headRefName' <<< "$pr_json")"
+          head_sha="$(jq -r '.headRefOid' <<< "$pr_json")"
           head_repo="$(jq -r '.headRepository.nameWithOwner' <<< "$pr_json")"
 
           has_label() {
@@ -103,6 +104,7 @@ jobs:
           fi
 
           echo "eligible=$eligible" >> "$GITHUB_OUTPUT"
+          echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
 
       - name: Create scoped GitHub App token
         if: steps.eligibility.outputs.eligible == 'true'
@@ -115,6 +117,45 @@ jobs:
           repositories: ${{ github.event.repository.name }}
           permission-contents: write
           permission-pull-requests: write
+
+      - name: Update stale branch
+        if: steps.eligibility.outputs.eligible == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          HEAD_SHA: ${{ steps.eligibility.outputs.head_sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+
+          merge_state=unknown
+          for attempt in {1..5}; do
+            merge_state="$(gh api \
+              "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER" \
+              --jq '.mergeable_state')"
+            if [[ "$merge_state" != "unknown" ]]; then
+              break
+            fi
+            sleep 1
+          done
+
+          case "$merge_state" in
+            behind)
+              gh api --method PUT \
+                "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/update-branch" \
+                -f expected_head_sha="$HEAD_SHA"
+              ;;
+            dirty)
+              echo "PR #$PR_NUMBER has merge conflicts."
+              exit 1
+              ;;
+            unknown)
+              echo "GitHub did not resolve the merge state for PR #$PR_NUMBER."
+              exit 1
+              ;;
+            *)
+              echo "PR #$PR_NUMBER does not need a branch update ($merge_state)."
+              ;;
+          esac
 
       - name: Enable auto-merge
         if: steps.eligibility.outputs.eligible == 'true'

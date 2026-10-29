@@ -132,7 +132,19 @@ describe('GitHub Actions trust boundaries', () => {
     );
     expect(source).toContain("github.event.workflow_run.head_branch == 'main'");
     expect(source).toContain('github.event.workflow_run.head_sha');
-    expect(source).toContain('ref: ${{ env.DEPLOY_REF }}');
+    expect(source).toContain('id: deployment-ref');
+    expect(source).toContain(
+      'current_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main"'
+    );
+    expect(source).toContain(
+      'if [[ -n "$VALIDATED_SHA" && "$VALIDATED_SHA" != "$current_sha" ]]'
+    );
+    expect(source).toContain('needs: freshness');
+    expect(source).toContain('needs: [freshness, validate]');
+    expect(
+      source.match(/ref: \$\{\{ needs\.freshness\.outputs\.ref \}\}/g)
+    ).toHaveLength(2);
+    expect(source).not.toContain('ref: ${{ env.DEPLOY_REF }}');
     expect(source).not.toContain('pull_request_target:');
     expect(
       source.match(/NODE_AUTH_TOKEN: \$\{\{ github\.token \}\}/g)
@@ -166,6 +178,16 @@ describe('GitHub Actions trust boundaries', () => {
     );
     expect(autoMerge).toContain(
       'permissions:\n  contents: read\n  pull-requests: read'
+    );
+    expect(autoMerge).toContain(
+      'group: ${{ github.workflow }}-${{ github.event.pull_request.number }}-${{ github.event.label.name }}'
+    );
+    expect(autoMerge).toContain(
+      '"repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/update-branch"'
+    );
+    expect(autoMerge).toContain('expected_head_sha="$HEAD_SHA"');
+    expect(autoMerge.indexOf('/update-branch')).toBeLessThan(
+      autoMerge.indexOf('gh pr merge "$PR_NUMBER"')
     );
     expect(recovery).toContain(
       "if: steps.changes.outputs.changed == 'true'\n        id: app-token"
