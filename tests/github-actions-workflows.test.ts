@@ -134,6 +134,12 @@ describe('GitHub Actions trust boundaries', () => {
     expect(source).toContain('github.event.workflow_run.head_sha');
     expect(source).toContain('ref: ${{ env.DEPLOY_REF }}');
     expect(source).not.toContain('pull_request_target:');
+    expect(
+      source.match(/NODE_AUTH_TOKEN: \$\{\{ github\.token \}\}/g)
+    ).toHaveLength(2);
+    expect(source.lastIndexOf('- name: Install dependencies')).toBeLessThan(
+      source.indexOf('uses: cloudflare/wrangler-action@v4')
+    );
   });
 
   test('uses the installed App for every privileged pull request mutation', async () => {

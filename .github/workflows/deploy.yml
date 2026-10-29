@@ -98,6 +98,17 @@ jobs:
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
 
+      - name: Install dependencies
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/bunfig.toml" <<'EOF'
+          [install.scopes]
+          "@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }
+          EOF
+          bun --config="$RUNNER_TEMP/bunfig.toml" install --frozen-lockfile --ignore-scripts
+
       - name: Deploy Cloudflare Worker
         uses: cloudflare/wrangler-action@v4
         with:
