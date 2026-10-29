@@ -68,6 +68,22 @@ bun install
 Remove-Item Env:NODE_AUTH_TOKEN
 ```
 
+Bash, Zsh, or Git Bash:
+
+```bash
+export NODE_AUTH_TOKEN="$(gh auth token)"
+bun install
+unset NODE_AUTH_TOKEN
+```
+
+Windows Command Prompt (interactive):
+
+```batch
+for /f "delims=" %i in ('gh auth token') do set "NODE_AUTH_TOKEN=%i"
+bun install
+set "NODE_AUTH_TOKEN="
+```
+
 Regenerate projections after changing an authoritative entity:
 
 ```sh
