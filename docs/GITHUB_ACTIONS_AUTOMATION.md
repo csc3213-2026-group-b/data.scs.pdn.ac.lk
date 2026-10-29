@@ -58,12 +58,16 @@ flowchart LR
 - Auto-merge rechecks the GraphQL App author (`app/scs-portal-github-app`),
   repository, branch family, operation label, and auto-merge label before it
   creates a token with `contents: write` and `pull-requests: write`.
+- Auto-merge concurrency includes the triggering label. An ordinary operation
+  label therefore cannot cancel the simultaneous `auto-merge-*` label event.
 - The recovery workflow runs only from trusted `main`, uses the App identity,
   and updates its single branch with force-with-lease. It is defense in depth
   for direct or administrative updates that somehow reach `main` with stale
   projections.
 - Deployment consumes `workflow_run.head_sha` only when `Validate Public Data`
-  succeeded on branch `main`; PR validation can never deploy.
+  succeeded on branch `main`. It compares that SHA with the live `main` ref,
+  skips superseded validation events, and uses one immutable SHA for both its
+  validation and deployment jobs. PR validation can never deploy.
 
 ### Canonical schema package
 

@@ -15,29 +15,59 @@ permissions:
 
 env:
   HUSKY: 0
-  DEPLOY_REF: >-
-    ${{ github.event_name == 'workflow_run'
-        && github.event.workflow_run.head_sha
-        || 'main' }}
 
 concurrency:
   group: cloudflare-deploy
   cancel-in-progress: false
 
 jobs:
-  validate:
-    name: Validate Public Data
+  freshness:
+    name: Resolve Current Main Commit
     runs-on: ubuntu-latest
     if: >-
       github.event_name != 'workflow_run' ||
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.head_branch == 'main')
+    outputs:
+      current: ${{ steps.deployment-ref.outputs.current }}
+      ref: ${{ steps.deployment-ref.outputs.ref }}
+
+    steps:
+      - name: Resolve immutable deployment commit
+        id: deployment-ref
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VALIDATED_SHA: >-
+            ${{ github.event_name == 'workflow_run'
+                && github.event.workflow_run.head_sha
+                || '' }}
+        run: |
+          set -euo pipefail
+
+          current_sha="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" \
+            --jq '.object.sha')"
+
+          if [[ -n "$VALIDATED_SHA" && "$VALIDATED_SHA" != "$current_sha" ]]; then
+            echo "Validated commit $VALIDATED_SHA is no longer current main ($current_sha)."
+            echo "current=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "current=true" >> "$GITHUB_OUTPUT"
+          echo "ref=${VALIDATED_SHA:-$current_sha}" >> "$GITHUB_OUTPUT"
+
+  validate:
+    name: Validate Public Data
+    runs-on: ubuntu-latest
+    needs: freshness
+    if: needs.freshness.outputs.current == 'true'
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          ref: ${{ env.DEPLOY_REF }}
+          ref: ${{ needs.freshness.outputs.ref }}
           persist-credentials: false
 
       - name: Set up Bun
@@ -85,14 +115,16 @@ jobs:
           || 'Verified Main Deployment' }}
 
     runs-on: ubuntu-latest
-    needs: validate
-    if: needs.validate.result == 'success'
+    needs: [freshness, validate]
+    if: >-
+      needs.freshness.outputs.current == 'true' &&
+      needs.validate.result == 'success'
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          ref: ${{ env.DEPLOY_REF }}
+          ref: ${{ needs.freshness.outputs.ref }}
           persist-credentials: false
 
       - name: Set up Bun
