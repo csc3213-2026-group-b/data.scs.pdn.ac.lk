@@ -91,6 +91,33 @@ describe('manual project index sync', () => {
       'scs-pdn-portal'
     );
 
+    const courseContent = Buffer.from(
+      JSON.stringify({
+        projectType: 'COURSE_PROJECT',
+        course: {
+          courseId: 'software-engineering-project',
+          code: 'CSC3213',
+          title: 'Software Engineering Project'
+        },
+        media: { coverImage: 'https://example.com/cover.png' }
+      })
+    ).toString('base64');
+    const courseFetcher = (async (url: string | URL | Request) =>
+      String(url) === source.indexUrl
+        ? Response.json({ content: courseContent })
+        : new Response(null, { status: 404 })) as typeof fetch;
+    await syncProjectIndexes({ root, fetcher: courseFetcher });
+    const courseProject = JSON.parse(await readFile(file, 'utf8')) as Record<
+      string,
+      unknown
+    >;
+    expect(courseProject).toMatchObject({
+      projectType: 'COURSE_PROJECT',
+      course: { courseId: 'software-engineering-project' },
+      media: { coverImage: 'https://example.com/cover.png' }
+    });
+    expect(courseProject.courseOffering).toBeUndefined();
+
     const unchanged = await readFile(file, 'utf8');
     const invalidContent = Buffer.from(
       JSON.stringify({ id: 'forged-id' })
