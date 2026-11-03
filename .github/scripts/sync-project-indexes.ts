@@ -1,32 +1,12 @@
-import { ProjectSchema } from '@csc3213-2026-group-b/scs-schemas';
+import {
+  ProjectIndexSchema,
+  ProjectSchema
+} from '@csc3213-2026-group-b/scs-schemas';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { format } from 'prettier';
-import { z } from 'zod';
 
 type JsonRecord = Record<string, unknown>;
-
-const ProjectIndexSchema = z
-  .object(ProjectSchema.shape)
-  .omit({ id: true, slug: true })
-  .partial()
-  .extend({
-    $schema: z
-      .literal('https://api.scs-pdn.space/api/projects/v2/schemas/index.json')
-      .optional(),
-    course: ProjectSchema.shape.course.unwrap().partial().optional(),
-    courseOffering: ProjectSchema.shape.courseOffering
-      .unwrap()
-      .partial()
-      .optional(),
-    dates: z
-      .object(ProjectSchema.shape.dates.shape)
-      .partial()
-      .strict()
-      .optional(),
-    media: ProjectSchema.shape.media.partial().optional()
-  })
-  .strict();
 
 function record(value: unknown): value is JsonRecord {
   return value !== null && typeof value === 'object' && !Array.isArray(value);

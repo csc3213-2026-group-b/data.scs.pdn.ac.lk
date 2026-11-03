@@ -30,8 +30,15 @@ describe('GitHub Actions trust boundaries', () => {
       path.join(root, 'package.json'),
       'utf8'
     );
+    const lockSource = await readFile(path.join(root, 'bun.lock'), 'utf8');
+    const packageVersion = (
+      JSON.parse(packageSource) as {
+        devDependencies: Record<string, string>;
+      }
+    ).devDependencies['@csc3213-2026-group-b/scs-schemas'];
     const scriptNames = [
       'reconcile-project-pr.ts',
+      'sync-project-indexes.ts',
       'validate-academic-data.ts',
       'validate-people-data.ts',
       'validate-projects-data.ts'
@@ -40,8 +47,12 @@ describe('GitHub Actions trust boundaries', () => {
     expect(packageSource).not.toContain(
       '@csc3213-2026-group-b/academic-domain-schemas'
     );
-    expect(packageSource).toContain(
-      '"@csc3213-2026-group-b/scs-schemas": "0.3.1"'
+    expect(packageVersion).toMatch(/^\d+\.\d+\.\d+$/);
+    expect(lockSource).toContain(
+      `"@csc3213-2026-group-b/scs-schemas": "${packageVersion}"`
+    );
+    expect(lockSource).toContain(
+      `"@csc3213-2026-group-b/scs-schemas@${packageVersion}"`
     );
 
     for (const scriptName of scriptNames) {
