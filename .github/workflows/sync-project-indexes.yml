@@ -1,0 +1,96 @@
+name: Sync Project Repository Indexes
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: project-repository-index-sync
+  cancel-in-progress: false
+
+env:
+  HUSKY: 0
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout verified main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: |
+          cat > "$RUNNER_TEMP/bunfig.toml" <<'EOF'
+          [install.scopes]
+          "@csc3213-2026-group-b" = { token = "$NODE_AUTH_TOKEN", url = "https://npm.pkg.github.com/" }
+          EOF
+          bun --config="$RUNNER_TEMP/bunfig.toml" install --frozen-lockfile --ignore-scripts
+
+      - name: Read registered indexes and regenerate projections
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bun .github/scripts/sync-project-indexes.ts
+          bun run generate
+
+      - name: Check for changes
+        id: changes
+        shell: bash
+        run: |
+          if git diff --quiet -- public/projects/v2; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate candidate data
+        if: steps.changes.outputs.changed == 'true'
+        run: bun run check
+
+      - name: Create scoped GitHub App token
+        if: steps.changes.outputs.changed == 'true'
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.SCS_PORTAL_GITHUB_APP_CLIENT_ID }}
+          private-key: ${{ secrets.SCS_PORTAL_GITHUB_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Open validated sync pull request
+        if: steps.changes.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          BRANCH: automation/project-index-sync-${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          gh auth setup-git
+          git config user.name "scs-portal-github-app[bot]"
+          git config user.email "258597335+scs-portal-github-app[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add -- public/projects/v2
+          git commit -m "chore(data): sync project repository indexes"
+          git push --set-upstream origin "$BRANCH"
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "chore(data): sync project repository indexes" \
+            --body "Refreshes registered project records from their GitHub .docs/index.json files, preserving ID and slug, then regenerates person and listing projections."
+          pr_number="$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')"
+          gh pr merge "$pr_number" --auto --merge --delete-branch

@@ -13,6 +13,18 @@ async function workflow(name: string) {
 }
 
 describe('GitHub Actions trust boundaries', () => {
+  test('runs repository index sync manually from trusted main and validates before opening a PR', async () => {
+    const source = await workflow('sync-project-indexes.yml');
+    expect(source).toContain('workflow_dispatch:');
+    expect(source).toContain('ref: main');
+    expect(source).toContain('persist-credentials: false');
+    expect(source).toContain('bun .github/scripts/sync-project-indexes.ts');
+    expect(source).toContain('bun run generate');
+    expect(source.indexOf('bun run check')).toBeLessThan(
+      source.indexOf('gh pr create')
+    );
+    expect(source).not.toContain('pull_request_target:');
+  });
   test('uses the private canonical schemas package without legacy sources', async () => {
     const packageSource = await readFile(
       path.join(root, 'package.json'),

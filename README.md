@@ -25,6 +25,22 @@ search, manifest, staff, student, and `by-person` files are deterministic
 projections. Special-programme files retain programme membership while the
 generator refreshes each member from the authoritative user record.
 
+Project records can store `source.indexUrl` for a GitHub repository root
+`.docs/index.json`. Public project pages can read that index dynamically; this
+does not update the data repository or its `by-person` files. Run the manual
+**Sync Project Repository Indexes** GitHub Action to scan registered indexes,
+apply valid project fields except `id` and `slug`, regenerate projections, and
+open a validated auto-merge pull request. A missing index is skipped. Any other
+fetch or validation error stops the run before project files are written.
+Index authors can add
+`"$schema": "https://api.scs-pdn.space/api/projects/v2/schemas/index.json"`
+to receive JSON editor validation. An index must omit `id` and `slug`.
+Run it from the Actions tab or with:
+
+```sh
+gh workflow run sync-project-indexes.yml --repo csc3213-2026-group-b/data.scs.pdn.ac.lk --ref main
+```
+
 Pull requests and merge-queue candidates only check generated output; CI does
 not silently format or rewrite a contributor's branch. A separate privileged
 workflow uses protected-base generator code to update only trusted, same-repo
