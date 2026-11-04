@@ -98,6 +98,20 @@ afterEach(async () => {
 });
 
 describe('validatePeopleData', () => {
+  test('rejects legacy public image URLs in authoritative records', async () => {
+    const root = await makeRoot();
+    await writeJson(root, 'public/people/v2/users/s21513.json', {
+      ...student,
+      profileImageUrl: 'https://example.com/portrait.jpg'
+    });
+
+    const result = await validatePeopleData(root);
+
+    expect(result.errors).toContain(
+      'public/people/v2/users/s21513.json.profileImageUrl: legacy public avatar URL is not allowed'
+    );
+  });
+
   test('accepts an empty initialized data tree', async () => {
     const root = await makeRoot();
 

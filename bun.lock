@@ -6,7 +6,7 @@
       "name": "data.scs.pdn.ac.lk",
       "devDependencies": {
         "@cloudflare/workers-types": "^4.20260702.1",
-        "@csc3213-2026-group-b/scs-schemas": "0.7.1",
+        "@csc3213-2026-group-b/scs-schemas": "0.8.1",
         "@types/bun": "^1.4.3",
         "husky": "^9.1.7",
         "lint-staged": "^17.6.0",
@@ -34,7 +34,7 @@
 
     "@cloudflare/workers-types": ["@cloudflare/workers-types@4.20260702.1", "", {}, "sha512-mOhf5TUEB1m2vPrxtqoIGfz0fUC9xyxRDx5gWHy5s+OCo6dcV+g7wI1R7gYCMFohhqF/2y2xeKVwMwCJjfn/WA=="],
 
-    "@csc3213-2026-group-b/scs-schemas": ["@csc3213-2026-group-b/scs-schemas@0.7.1", "https://npm.pkg.github.com/download/@csc3213-2026-group-b/scs-schemas/0.7.1/2bcf0192bcfdf4b4507a6904c88a0cb956affc3b", { "dependencies": { "zod": "^4.4.3" } }, "sha512-xwvalwosX5Zzlu4p+V5yTkULY+vXObOjbloUXXOn+kEZgLIl+RaBcIpKZVGMjVM7X+SA1lH5hTmVySj5/T8i3g=="],
+    "@csc3213-2026-group-b/scs-schemas": ["@csc3213-2026-group-b/scs-schemas@0.8.1", "https://npm.pkg.github.com/download/@csc3213-2026-group-b/scs-schemas/0.8.1/430740ffb842cb6dd0de70fe4fd3ad6798311b80", { "dependencies": { "zod": "^4.4.3" } }, "sha512-2i5YIgAnLPyRN99/xDGkT/T7EoN8AmzLJtk2niTydoYnLSE0jkB42S8dK9XZdKYGNo1sdYl8aY2YQjvQxzdlEA=="],
 
     "@cspotcode/source-map-support": ["@cspotcode/source-map-support@0.8.1", "", { "dependencies": { "@jridgewell/trace-mapping": "0.3.9" } }, "sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw=="],
 

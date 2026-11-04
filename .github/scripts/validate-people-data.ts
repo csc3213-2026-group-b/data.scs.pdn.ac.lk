@@ -250,6 +250,12 @@ function validateRecord(
   schema: ZodType<JsonRecord>,
   record: unknown
 ): JsonRecord | null {
+  if (record && typeof record === 'object' && 'profileImageUrl' in record) {
+    result.errors.push(
+      `${relativePath}.profileImageUrl: legacy public avatar URL is not allowed`
+    );
+    return null;
+  }
   const parsed = schema.safeParse(record);
   if (parsed.success) return parsed.data;
 

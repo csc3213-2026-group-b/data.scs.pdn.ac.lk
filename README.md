@@ -24,6 +24,9 @@ academic `courses` and `offerings` directories are authoritative. Collection,
 search, manifest, staff, student, and `by-person` files are deterministic
 projections. Special-programme files retain programme membership while the
 generator refreshes each member from the authoritative user record.
+Public avatar images are stored and moderated by the API Worker in R2. People
+records and projections must not contain `profileImageUrl`; avatar changes do
+not use this repository's pull request workflow.
 
 Project records can store `source.indexUrl` for a GitHub repository root
 `.docs/index.json`. Public project pages can read that index dynamically; this
