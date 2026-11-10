@@ -72,12 +72,6 @@
       "slug": "csc3213-20-group-l",
       "title": "Development of a Computerized System for the University of Peradeniya Medical Center",
       "href": "projects/csc3213-20-group-l.json"
-    },
-    {
-      "id": "prj-scs-pdn-portal",
-      "slug": "scs-pdn-portal",
-      "title": "SCS PDN Portal",
-      "href": "projects/scs-pdn-portal.json"
     }
   ]
 }
