@@ -84,12 +84,6 @@
       "slug": "scs-pdn-portal",
       "title": "SCS PDN Portal",
       "href": "projects/scs-pdn-portal.json"
-    },
-    {
-      "id": "prj-scs-people-directory",
-      "slug": "scs-people-directory",
-      "title": "SCS People Directory",
-      "href": "projects/scs-people-directory.json"
     }
   ]
 }

@@ -138,20 +138,6 @@
     "lastUpdatedAt": "2026-07-30"
   },
   {
-    "id": "prj-scs-people-directory",
-    "slug": "scs-people-directory",
-    "title": "SCS People Directory",
-    "shortDescription": "People directory for students, alumni, and staff of the Department of Statistics & Computer Science.",
-    "projectType": "DEPARTMENT_SYSTEM",
-    "status": "ACTIVE",
-    "categories": ["department-system", "people-directory"],
-    "tags": ["people directory", "students", "staff", "alumni", "Next.js"],
-    "academicYear": "2025/2026",
-    "role": "supervisor",
-    "href": "projects/scs-people-directory.json",
-    "lastUpdatedAt": "2026-07-30"
-  },
-  {
     "id": "prj-csc3213-20-group-i",
     "slug": "csc3213-20-group-i",
     "title": "Smart  Digital Fitting Room",
