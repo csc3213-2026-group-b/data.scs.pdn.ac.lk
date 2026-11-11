@@ -27,12 +27,30 @@ describe('manual project index sync', () => {
     });
     const file = path.join(
       root,
-      'public/projects/v2/projects/scs-pdn-portal.json'
+      'public/projects/v2/projects/test-project.json'
     );
-    const original = JSON.parse(await readFile(file, 'utf8')) as Record<
-      string,
-      unknown
-    >;
+    const original = {
+      id: 'prj-test-project',
+      slug: 'test-project',
+      title: 'Test project',
+      shortDescription: 'A project index sync test fixture.',
+      description: 'A standalone project used to test repository index sync.',
+      projectType: 'DEPARTMENT_SYSTEM',
+      status: 'ACTIVE',
+      categories: ['department-system'],
+      tags: ['test'],
+      academicYear: '2025/2026',
+      people: [
+        {
+          name: 'Previous Person',
+          role: 'contributor',
+          username: 'previousperson'
+        }
+      ],
+      links: { repository: 'https://github.com/example/test-project' },
+      media: {},
+      dates: { startedAt: '2026-01-01', lastUpdatedAt: '2026-01-01' }
+    };
     const source = {
       kind: 'TEMPLATE_INDEX_JSON',
       repositoryOwner: 'scs-pdn',
@@ -60,7 +78,7 @@ describe('manual project index sync', () => {
         : new Response(null, { status: 404 })) as typeof fetch;
 
     expect(await syncProjectIndexes({ root, fetcher })).toContain(
-      'scs-pdn-portal.json'
+      'test-project.json'
     );
     await generatePublicProjections({ root });
     const updated = JSON.parse(await readFile(file, 'utf8')) as Record<
@@ -79,17 +97,13 @@ describe('manual project index sync', () => {
       )
     ) as Array<{ slug: string }>;
     expect(newPersonProjects.map((project) => project.slug)).toContain(
-      'scs-pdn-portal'
+      'test-project'
     );
-    const previousPersonProjects = JSON.parse(
-      await readFile(
-        path.join(root, 'public/projects/v2/by-person/s21513.json'),
-        'utf8'
-      )
-    ) as Array<{ slug: string }>;
-    expect(previousPersonProjects.map((project) => project.slug)).not.toContain(
-      'scs-pdn-portal'
-    );
+    expect(
+      await Bun.file(
+        path.join(root, 'public/projects/v2/by-person/previousperson.json')
+      ).exists()
+    ).toBe(false);
 
     const courseContent = Buffer.from(
       JSON.stringify({
