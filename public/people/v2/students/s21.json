@@ -8,6 +8,7 @@
     "studentType": "UNDERGRADUATE",
     "studentTrack": "GENERAL",
     "level": "3000",
+    "subjects": ["COMPUTER_SCIENCE", "STATISTICS"],
     "status": "CURRENT",
     "socialLinks": {
       "urls": { "facebook": "https://www.facebook.com/chamod.franando.7" }
