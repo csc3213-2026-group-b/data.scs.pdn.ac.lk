@@ -3,6 +3,7 @@
   "name": "data.scs.pdn.ac.lk",
   "description": "Static JSON data published for SCS public sites.",
   "private": true,
+  "packageManager": "bun@1.4.4",
   "type": "module",
   "scripts": {
     "format": "prettier --write \"**/*.{js,ts,json,md}\"",
