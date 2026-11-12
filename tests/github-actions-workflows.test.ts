@@ -117,6 +117,12 @@ describe('GitHub Actions trust boundaries', () => {
       'bun ../trusted/.github/scripts/generate-public-projections.ts'
     );
     expect(source).toContain(
+      'bun ../trusted/node_modules/prettier/bin/prettier.cjs'
+    );
+    expect(source.indexOf('Format candidate public data')).toBeLessThan(
+      source.indexOf('Commit current projections')
+    );
+    expect(source).toContain(
       '--force-with-lease="refs/heads/$HEAD_REF:$HEAD_SHA"'
     );
     expect(source).not.toContain('pull-requests: write');

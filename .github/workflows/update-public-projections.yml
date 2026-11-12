@@ -104,6 +104,21 @@ jobs:
         working-directory: candidate
         run: bun ../trusted/.github/scripts/generate-public-projections.ts
 
+      - name: Format candidate public data
+        working-directory: candidate
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          set -euo pipefail
+          mapfile -t changed_files < <(
+            gh api --paginate \
+              "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/files" \
+              --jq '.[].filename'
+          )
+          bun ../trusted/node_modules/prettier/bin/prettier.cjs \
+            --write "${changed_files[@]}"
+
       - name: Commit current projections
         working-directory: candidate
         env:
