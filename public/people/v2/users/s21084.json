@@ -5,13 +5,15 @@
   "mobilePhone": "0769916470",
   "registrationNo": "S21084",
   "studentType": "UNDERGRADUATE",
-  "studentTrack": "GENERAL",
+  "studentTrack": "HONOURS",
   "level": "3000",
+  "honoursProgramme": "COMPUTER_SCIENCE",
   "status": "CURRENT",
   "personalEmail": "hashnikavindhya2000@gmail.com",
   "socialLinks": {
     "urls": {
-      "linkedin": "https://www.linkedin.com/in/hashni-hettiarachchi-7b85a72a4"
+      "linkedin": "https://www.linkedin.com/in/hashni-hettiarachchi-7b85a72a4",
+      "github": "https://github.com/HashniKavindhya"
     }
   }
 }
