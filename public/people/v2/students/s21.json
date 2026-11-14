@@ -1,5 +1,22 @@
 [
   {
+    "title": "Ms",
+    "fullName": "Hashni Kavindhya Hettiarachchi",
+    "email": "s21084@sci.pdn.ac.lk",
+    "mobilePhone": "0769916470",
+    "registrationNo": "S21084",
+    "studentType": "UNDERGRADUATE",
+    "studentTrack": "GENERAL",
+    "level": "3000",
+    "status": "CURRENT",
+    "personalEmail": "hashnikavindhya2000@gmail.com",
+    "socialLinks": {
+      "urls": {
+        "linkedin": "https://www.linkedin.com/in/hashni-hettiarachchi-7b85a72a4"
+      }
+    }
+  },
+  {
     "title": "Mr",
     "fullName": "M.C.N. FERNANDO",
     "email": "s21368@sci.pdn.ac.lk",
